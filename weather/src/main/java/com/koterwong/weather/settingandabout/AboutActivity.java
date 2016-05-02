@@ -20,8 +20,8 @@ public class AboutActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        getSwipeBackLayout()
-                .setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
+        swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("关于");

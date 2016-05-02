@@ -10,18 +10,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.R;
+import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 
 import java.util.List;
 
-public class ManagerCityActivity extends AppCompatActivity implements ManagerCityView {
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class ManagerCityActivity extends SwipeBackActivity implements ManagerCityView {
 
     /**
      * UI reference
@@ -42,6 +47,7 @@ public class ManagerCityActivity extends AppCompatActivity implements ManagerCit
      * 回传给MainActivity的数据
      */
     private Bundle mResultBundle;
+    private SwipeBackLayout mSwipeBackLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +58,13 @@ public class ManagerCityActivity extends AppCompatActivity implements ManagerCit
         mResultBundle = new Bundle();
     }
 
+
     private void initView() {
-
-//        mSwipeBackLayout = getSwipeBackLayout();
-//        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
-
         setContentView(R.layout.activity_manager_city);
+
+        mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mFloatingAb = (FloatingActionButton) findViewById(R.id.fab);

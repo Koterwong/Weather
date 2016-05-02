@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +13,21 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.koterwong.weather.R;
 import com.koterwong.weather.beans.City;
 import com.koterwong.weather.beans.Province;
-import com.koterwong.weather.R;
-import com.koterwong.weather.utils.ToolsUtil;
 import com.koterwong.weather.choicecity.View.CityView;
 import com.koterwong.weather.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.choicecity.presenter.CityPresenterImp;
 import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.utils.ToolsUtil;
 
 import java.util.List;
 
-public class ChoiceCityActivity extends AppCompatActivity implements CityView {
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
 
 
     //ui
@@ -48,8 +50,8 @@ public class ChoiceCityActivity extends AppCompatActivity implements CityView {
     private void initView() {
         setContentView(R.layout.activity_choice_city);
 
-//        mSwipeBackLayout = getSwipeBackLayout();
-//        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
         //ScrollToolbar
         mCollapsing = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);

@@ -30,7 +30,7 @@
         tools:context=".managercity.ManagerCityActivity"
         tools:showIn="@layout/activity_manager_city">
 
-        <android.support.v7.widget.RecyclerView
+        <com.koterwong.weather.managercity.MyRecyclerView
             android:id="@+id/rv_manager_city"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -51,7 +51,7 @@
             android:name=".managercity.ManagerCityActivity"
             android:label="@string/title_activity_manager_city"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.koterwong.weather.main.MainActivity2" />
@@ -71,6 +71,9 @@
                 android:value="com.koterwong.weather.main.MainActivity2" />
         </activity>
 
+        <activity
+            android:name=".settingandabout.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar.Translucent"/>
         <service android:name=".settingandabout.AutoUpdateService" />
 
         <receiver android:name=".settingandabout.NotifyHelperReceiver">
@@ -79,9 +82,7 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".settingandabout.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar.Translucent"/>
+
     </application>
 
 </manifest>
