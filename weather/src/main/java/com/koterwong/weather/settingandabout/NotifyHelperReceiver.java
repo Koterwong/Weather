@@ -1,5 +1,6 @@
 package com.koterwong.weather.settingandabout;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
@@ -29,20 +31,28 @@ public class NotifyHelperReceiver extends BroadcastReceiver {
         int mNotificationId = 1;
         //取消通知
         mNotifyMgr.cancel(mNotificationId);
-        if (!isShow){
-           return;
+        if (!isShow) {
+            return;
         }
         //城市和天气数据
         String firstCity = SavedCityDBManager.getInstance(BaseApplication.getApplication()).queryCities().get(0);
         WeatherBean weatherBean = (WeatherBean) BaseApplication.getACache().getAsObject(firstCity);
-
+        String aqi;
+        if (weatherBean.aqi != null) {
+            aqi = WeatherJsonUtil.getAqi(weatherBean.aqi.city.aqi) + "AQI:" + weatherBean.aqi.city.aqi;
+        } else {
+            aqi = "";
+        }
         //create a  notification Builder
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(BaseApplication.getApplication())
                         .setOngoing(true)
+                        .setColor(BaseApplication.getApplication().getResources().getColor(R.color.primary))
+//                        .setSubText()
                         .setSmallIcon(WeatherJsonUtil.getWeatherImage(weatherBean.now.cond.txt))
-                        .setContentTitle(firstCity)
-                        .setContentText(weatherBean.now.cond.txt+"  "+weatherBean.now.tmp+"°");
+                        .setContentTitle(weatherBean.now.cond.txt)
+                        .setContentInfo(firstCity)
+                        .setContentText(weatherBean.now.tmp + "°     " + aqi);
 
         //create a action
         Intent resultIntent = new Intent(BaseApplication.getApplication(), MainActivity2.class);
@@ -54,7 +64,11 @@ public class NotifyHelperReceiver extends BroadcastReceiver {
         );
         mBuilder.setContentIntent(resultPendingIntent);
 
+        Notification build = mBuilder.build();
+        int largeIcon = WeatherJsonUtil.getWeatherImage(weatherBean.now.cond.txt);
+        build.contentView.setImageViewResource(android.R.id.icon, largeIcon);
+
         //issue the notification
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+        mNotifyMgr.notify(mNotificationId, build);
     }
 }

@@ -97,4 +97,24 @@ public class WeatherJsonUtil {
         }
         return R.mipmap.weather12;
     }
+
+    /*获取空气质量指数*/
+    public static String getAqi(String aqi) {
+        int aqiNumber = Integer.parseInt(aqi);
+        if (aqiNumber <= 50) {
+            return "空气质量优";
+        } else if (aqiNumber > 50 && aqiNumber <= 100) {
+            return "空气质量良好";
+        } else if (aqiNumber > 100 && aqiNumber <= 150) {
+            return "空气轻度污染";
+        } else if (aqiNumber > 150 && aqiNumber <= 200) {
+            return "空气中度污染";
+        } else if (aqiNumber > 200 && aqiNumber <= 300) {
+            return "空气重度污染";
+        } else if (aqiNumber > 300) {
+            return "空气严重污染";
+        }
+        return "空气质量未知";
+    }
+
 }
