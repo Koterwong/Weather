@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="SimpleWeather">
+
+        <Preference
+            android:summary="SimpleWeather1.0"
+            android:title="版本" />
+        <Preference
+            android:summary="项目全部源码已托管到Github，点击下面红色按钮试试"
+            android:title="关于更新" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About More">
+
+        <Preference
+            android:summary="数据来源和风天气网（版权所有和风天气）"
+            android:title="天气数据" />
+        <Preference
+            android:summary="百度locSDK_6.23"
+            android:title="定位" />
+        <Preference
+            android:summary="侵权删"
+            android:title="图片" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="作者">
+        <Preference
+            android:key="pre_address"
+            android:title="微博"
+            android:summary="\@Koterwong">
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="dependencies"
+        >
+        <Preference
+            android:summary="okhttputils，hellocharts，view-pager-transforms，RxJava，swipeback"
+            android:title="感谢以下开源库的作者" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

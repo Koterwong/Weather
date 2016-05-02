@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="通用设置">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="switch_location"
+            android:summaryOff="自动定位已关闭"
+            android:summaryOn="自动定位已开启"
+            android:title="开启定位" />
+        <SwitchPreference
+            android:key="switch_update"
+            android:defaultValue="false"
+            android:summary="开启自动更新天气，只有需要时才会请求网络，并不会在后台消耗流量"
+            android:title="自动更新" />
+        <ListPreference
+            android:key="sync_frequency"
+            android:defaultValue="4"
+            android:dependency="switch_update"
+            android:entries="@array/pref_sync_update"
+            android:entryValues="@array/pref_sync_update_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="更新频率" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="通知">
+        <CheckBoxPreference
+            android:key="cb_notification"
+            android:checked="false"
+            android:title="通知栏天气"
+            android:summary="开启通知栏天气"/>
+        <CheckBoxPreference
+            android:key="cb_notification_icon"
+            android:checked="false"
+            android:dependency="cb_notification"
+            android:title="通知栏天气图标"
+            />
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

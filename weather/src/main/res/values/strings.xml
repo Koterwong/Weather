@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">天气</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_weather">天气</string>
+    <string name="nav_manager_city">管理城市</string>
+    <string name="nav_choice_city">选择城市</string>
+    <string name="nav_setting">设置</string>
+    <string name="nav_about">关于</string>
+    <string name="title_activity_manager_city">管理城市</string>
+    <string name="title_activity_settings">设置</string>
+
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="share">分享</string>
+
+    <string-array name="pref_sync_update">
+        <item>2 小时</item>
+        <item>4 小时</item>
+        <item>6 小时</item>
+        <item>8 小时</item>
+    </string-array>
+
+    <string-array name="pref_about">
+        <item>2 小时</item>
+        <item>4 小时</item>
+        <item>6 小时</item>
+        <item>8 小时</item>
+    </string-array>
+
+    <string-array name="pref_sync_update_values">
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+    <string name="title_activity_about">AboutActivity</string>
+
+</resources>
