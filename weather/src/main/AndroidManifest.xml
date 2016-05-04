@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.koterwong.weather">
 
     <!-- 网络访问权限 -->
@@ -46,12 +47,14 @@
         <activity
             android:name=".choicecity.ChoiceCityActivity"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent" />
+            android:theme="@style/AppTheme.NoActionBar.Translucent"
+             />
         <activity
             android:name=".managercity.ManagerCityActivity"
             android:label="@string/title_activity_manager_city"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent">
+            android:theme="@style/AppTheme.NoActionBar.Translucent"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.koterwong.weather.main.MainActivity2" />
@@ -65,7 +68,8 @@
             android:name=".settingandabout.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent">
+            android:theme="@style/AppTheme.NoActionBar.Translucent"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.koterwong.weather.main.MainActivity2" />

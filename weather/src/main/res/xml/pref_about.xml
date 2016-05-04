@@ -25,7 +25,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="作者">
+        android:title="Author">
         <Preference
             android:key="pre_address"
             android:title="微博"

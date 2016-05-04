@@ -14,10 +14,9 @@ import java.util.List;
  * 作者：Koterwong，创建日期：2016/4/24.
  * Description:
  */
-public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.LoadLocationListener {
+public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.LoadLocationListener, WeatherModelImp.LoadServiceListener {
 
-    private static final String TAG = "WeatherPresenterImp";
-
+    private String mCity;
     /**
      * mDatas
      */
@@ -40,47 +39,92 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.Lo
      *
      * @param city 具体城市
      */
-    public void loadWeatherData(final String city) {
-        //加载中，将界面置为progressBar。如果为下拉刷新状态，不去显示progress
-        if (!mWeatherView.isSwipeRefreshLayoutRefreshing())
-            mWeatherView.setContentVisible(false);
+    public void loadWeatherData(String city) {
         if (city == null) {
             mWeatherView.showToastMsg("未接受到城市数据~");
             return;
         }
-        if (!ToolsUtil.isNetworkAvailable(BaseApplication.getApplication())) {
-            //网络不可用,加载本地数据
-            mWeatherView.showToastMsg("网络未连接~");
+        mCity = city;
+
+        if (mWeatherView.isSwipeRefreshLayoutRefreshing()) {
+            /**
+             * 如果为下拉刷新状态，才去去服务加载数据
+             */
+            if (!ToolsUtil.isNetworkAvailable(BaseApplication.getApplication())) {
+                mWeatherView.showToastMsg("网络未连接~");
+                return;
+            }
+            mWeatherModel.loadWeatherFromServer(city, this);
+        } else {
+            /**
+             * 不是下拉刷新状态，则直接加载本地数据
+             */
+            mWeatherView.showLoadingVisible();
             mWeatherModel.loadLocation(city,this);
-            return;
         }
-        mWeatherModel.loadWeatherFromServer(city, new WeatherModelImp.LoadWeatherListener() {
+    }
 
-            @Override
-            public void onLoadSuccess(WeatherBean weatherBean) {
-                mNowBean = weatherBean.now;
-                mApiBean = weatherBean.aqi;
-                mDailyList = weatherBean.dailyForecastList;
-                mUpdataBean = weatherBean.basic.update;
-                upDateWeatherUI();
-            }
+    /**
+     * 加载服务器成功的回调
+     *
+     * @param weatherBean
+     */
+    @Override
+    public void onLoadServiceSuccess(WeatherBean weatherBean) {
+        mNowBean = weatherBean.now;
+        mApiBean = weatherBean.aqi;
+        mDailyList = weatherBean.dailyForecastList;
+        mUpdataBean = weatherBean.basic.update;
+        upDateWeatherUI();
+    }
 
-            @Override
-            public void onLoadFailed(Exception e) {
-                /*加载失败原因：1.请求超时，2.没有该城市天气信息。*/
-                mWeatherView.showToastMsg(e.toString());
-                //加载本地数据
-                mWeatherModel.loadLocation(city,WeatherPresenterImp.this);
-            }
+    /**
+     * 加载服务器失败的回调
+     *
+     * @param e
+     */
+    @Override
+    public void onLoadServiceFailed(Exception e) {
+        /*加载失败原因：1.请求超时，2.没有该城市天气信息。*/
+        mWeatherView.showToastMsg(e.toString());
+        if (mWeatherView.isSwipeRefreshLayoutRefreshing()){
+            //下拉刷新失败
+            mWeatherView.setmSwipeRefreshLayoutStatue(false);
+        }else{
+            mWeatherView.showErrorVisible();
+        }
+    }
 
-        });
+    /**
+     * 加载本地成功的回调。
+     *
+     * @param weatherBean
+     */
+    @Override
+    public void onLoadLocSuccess(WeatherBean weatherBean) {
+        mNowBean = weatherBean.now;
+        mApiBean = weatherBean.aqi;
+        mDailyList = weatherBean.dailyForecastList;
+        mUpdataBean = weatherBean.basic.update;
+        upDateWeatherUI();
+    }
+
+    /**
+     * 加载本地失败的回调。
+     *
+     * @param e
+     */
+    @Override
+    public void onLoadLocFailed(Exception e) {
+        if (mCity != null)
+            mWeatherModel.loadWeatherFromServer(mCity, this);
     }
 
     /*更新UI*/
     private void upDateWeatherUI() {
-        //加载成功将界面置为显示
-        mWeatherView.setContentVisible(true);
-        //如果，为下拉刷新状态，返回正常状态
+        //显示加载成功界面
+        mWeatherView.showSuccessVisible();
+        //如果为下拉刷新状态，返回正常状态
         if (mWeatherView.isSwipeRefreshLayoutRefreshing())
             mWeatherView.setmSwipeRefreshLayoutStatue(false);
 
@@ -92,17 +136,22 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.Lo
         } else {
             mWeatherView.setmWeatherAqi("没有该城市空气质量指数");
         }
-        mWeatherView.setmWeatherHum("湿度：" + mNowBean.hum);
+        mWeatherView.setmWeatherHum("湿度：" + mNowBean.hum+"%");
         mWeatherView.setmWeatherWind(mNowBean.wind.dir + mNowBean.wind.sc + "级");
         String time = mUpdataBean.loc.substring(11);
         mWeatherView.setmWeatherUpdateTime(time + "更新");
         //刷新未来五天的天气
         refreshWeatherDaily();
         //刷新生活建议界面
+        refreshWeatherSug();
     }
 
     private void refreshWeatherDaily() {
         mWeatherView.refreshWeatherDaily(mDailyList);
+    }
+
+    private void refreshWeatherSug() {
+
     }
 
     /*获取空气质量指数*/
@@ -122,36 +171,5 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.Lo
             return "空气严重污染";
         }
         return "空气质量未知";
-    }
-
-    /**
-     * 加载本地成功的回调。
-     *
-     * @param weatherBean
-     */
-    @Override
-    public void onLoadLocSuccess(WeatherBean weatherBean) {
-        mNowBean = weatherBean.now;
-        mApiBean = weatherBean.aqi;
-        mDailyList = weatherBean.dailyForecastList;
-        mUpdataBean = weatherBean.basic.update;
-        upDateWeatherUI();
-        mWeatherView.showToastMsg("加载本地数据成功~");
-    }
-
-    /**
-     * 加载本地失败的回调。
-     *
-     * @param e
-     */
-    @Override
-    public void onLoadLocFailed(Exception e) {
-        /*网络和本地都加载失败，同样将界面置为显示状态*/
-        mWeatherView.setContentVisible(true);
-        mWeatherView.setLoadEmpty();
-        //如果，为下拉刷新状态，返回正常状态
-        if (mWeatherView.isSwipeRefreshLayoutRefreshing())
-            mWeatherView.setmSwipeRefreshLayoutStatue(false);
-//        mWeatherView.showToastMsg(e.toString());
     }
 }

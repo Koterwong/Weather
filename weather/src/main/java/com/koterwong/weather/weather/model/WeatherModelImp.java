@@ -1,7 +1,11 @@
 package com.koterwong.weather.weather.model;
 
+import android.os.Process;
+
+import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.UrlHelper;
+import com.koterwong.weather.utils.ThreadManager;
 import com.koterwong.weather.weather.WeatherJsonUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -27,12 +31,13 @@ public class WeatherModelImp implements WeatherModel {
      * @param listener 加载完成的监听
      */
     @Override
-    public void loadWeatherFromServer(String cityName, final LoadWeatherListener listener) {
+    public void loadWeatherFromServer(String cityName, final LoadServiceListener listener) {
         this.cityName = cityName;
         /**
          * 替换不必要的字符串。
          */
-        cityName = cityName.replace("市", "")
+        cityName = cityName
+                .replace("市", "")
                 .replace("省", "")
                 .replace("自治区", "")
                 .replace("特别行政区", "")
@@ -55,7 +60,7 @@ public class WeatherModelImp implements WeatherModel {
                     @Override
                     public void onError(Call call, Exception e) {
                         if (listener != null) {
-                            listener.onLoadFailed(e);
+                            listener.onLoadServiceFailed(e);
                         }
                     }
 
@@ -68,10 +73,10 @@ public class WeatherModelImp implements WeatherModel {
                         if (listener!=null){
                             if (weatherBean != null) {
                             /*数据解析成功*/
-                                listener.onLoadSuccess(weatherBean);
+                                listener.onLoadServiceSuccess(weatherBean);
                             } else {
                             /* 数据解析失败 ，校园网不不能访问API接口数据 */
-                                listener.onLoadFailed(new Exception("没有该城市数据，sorry~"));
+                                listener.onLoadServiceFailed(new Exception("没有该城市数据，sorry~"));
                             }
                         }
                     }
@@ -79,6 +84,9 @@ public class WeatherModelImp implements WeatherModel {
 
     }
 
+    /**
+     * 自定义callBack将解析数据的操作放到子线程去执行。
+     */
     public abstract class WeatherCallBack extends Callback<WeatherBean> {
 
         /**
@@ -101,20 +109,40 @@ public class WeatherModelImp implements WeatherModel {
      * @param listener
      */
     @Override
-    public void loadLocation(String cityName,LoadLocationListener listener) {
-        WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(cityName);
-        if (weatherBean != null) {
-            //本地读取成功
-            listener.onLoadLocSuccess(weatherBean);
-        } else {
-            listener.onLoadLocFailed(new Exception("本地没有缓存~"));
-        }
+    public void loadLocation(final String cityName, final LoadLocationListener listener) {
+        ThreadManager.getInstance().createShortPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                final WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(cityName);
+                /**
+                 * 将跟新UI的操作放到主线程主执行
+                 */
+                if (Process.myTid()==BaseApplication.getMainId()){
+                    if (weatherBean != null) {
+                        listener.onLoadLocSuccess(weatherBean);
+                    } else {
+                        listener.onLoadLocFailed(new Exception("本地没有缓存~"));
+                    }
+                }else {
+                    BaseApplication.getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (weatherBean != null) {
+                                listener.onLoadLocSuccess(weatherBean);
+                            } else {
+                                listener.onLoadLocFailed(new Exception("本地没有缓存~"));
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
-    public interface LoadWeatherListener {
-        void onLoadSuccess(WeatherBean weatherBean);
+    public interface LoadServiceListener {
+        void onLoadServiceSuccess(WeatherBean weatherBean);
 
-        void onLoadFailed(Exception e);
+        void onLoadServiceFailed(Exception e);
     }
 
     public interface LoadLocationListener {

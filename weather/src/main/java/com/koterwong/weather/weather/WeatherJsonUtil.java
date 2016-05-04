@@ -9,6 +9,7 @@ import com.google.gson.JsonParser;
 import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.R;
+import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.utils.ACache;
 import com.koterwong.weather.utils.JsonUtils;
 import com.koterwong.weather.utils.L;
@@ -42,8 +43,9 @@ public class WeatherJsonUtil {
             if ("ok".equals(jsonObject1.get("status").getAsString())) {
                 /*数据请求正确*/
                 WeatherBean weatherBean = JsonUtils.deserialize(jsonObject1, WeatherBean.class);
-                /*将WeatherBean保存到本地，设置过期时间为8小时*/
-                BaseApplication.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * 8);
+                /*将WeatherBean保存到本地，并设置过期时间,默认为8*/
+                int time = Integer.valueOf(Setting.getString(Setting.AUTO_DELETE_CACHE_TIME,"8"));
+                BaseApplication.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * time);
                 return weatherBean;
             } else {
                 //数据请求失败
@@ -116,5 +118,4 @@ public class WeatherJsonUtil {
         }
         return "空气质量未知";
     }
-
 }

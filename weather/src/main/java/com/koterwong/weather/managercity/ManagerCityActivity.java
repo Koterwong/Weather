@@ -142,7 +142,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
             /*移除，并在数据库中删除城市*/
             String removeCity = mCityDatas.remove(position);
             mPresenter.deleteCity(removeCity);
-            Snackbar.make(mRecyclerView,"删除成功~",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(mRecyclerView,"删除成功,下次启动生效",Snackbar.LENGTH_LONG).show();
             /*将移除的数据保存到bundle中*/
             mResultBundle.putString(removeCity + position, removeCity);
             mAdapter.notifyItemRemoved(position);

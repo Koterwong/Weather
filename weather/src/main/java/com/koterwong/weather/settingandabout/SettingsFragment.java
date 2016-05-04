@@ -8,10 +8,13 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.koterwong.weather.R;
+import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.utils.FileUtils;
 
 public class SettingsFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener,
@@ -20,14 +23,20 @@ public class SettingsFragment extends PreferenceFragment implements
     private final String SWITCH_LOCATION = "switch_location";
     private final String SWITCH_UPDATE = "switch_update";
     private final String SYNC_FREQUENCY = "sync_frequency";
+
     private final String CB_NOTIFICATION = "cb_notification";
-    private final String CB_NOTIFICATION_ICON = "cb_notification_icon";
+
+    private final String LIST_PRE_CACHE_TIME = "list_pre_cache_time";
+    private final String PREF_CACHE_SIZE_CLEAR = "pref_cache_size_clear";
+
 
     private SwitchPreference mSwitchLocation;
     private SwitchPreference mSwitchUpdate;
     private ListPreference mSyncFrequency;
     private CheckBoxPreference mCbNotification;
-    private CheckBoxPreference mCbNotificationIcon;
+
+    private ListPreference mCacheSizeListPref;
+    private Preference mCacheSizePref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,15 +47,22 @@ public class SettingsFragment extends PreferenceFragment implements
         mSwitchUpdate = (SwitchPreference) findPreference(SWITCH_UPDATE);
         mSyncFrequency = (ListPreference) findPreference(SYNC_FREQUENCY);
         mCbNotification = (CheckBoxPreference) findPreference(CB_NOTIFICATION);
-        mCbNotificationIcon = (CheckBoxPreference) findPreference(CB_NOTIFICATION_ICON);
+        mCacheSizeListPref = (ListPreference) findPreference(LIST_PRE_CACHE_TIME);
+        mCacheSizePref = findPreference(PREF_CACHE_SIZE_CLEAR);
 
         mSwitchLocation.setOnPreferenceChangeListener(this);
         mSwitchUpdate.setOnPreferenceChangeListener(this);
         mSyncFrequency.setOnPreferenceChangeListener(this);
         mCbNotification.setOnPreferenceChangeListener(this);
-        mCbNotificationIcon.setOnPreferenceChangeListener(this);
+        mCacheSizeListPref.setOnPreferenceChangeListener(this);
+        mCacheSizePref.setOnPreferenceClickListener(this);
 
+        //设置子标题为当前数据的实体
         mSyncFrequency.setSummary(mSyncFrequency.getEntry());
+        mCacheSizeListPref.setSummary(mCacheSizeListPref.getEntry());
+
+        //设置缓冲大小
+        mCacheSizePref.setSummary(FileUtils.getCacheSize());
     }
 
     @Override
@@ -62,49 +78,60 @@ public class SettingsFragment extends PreferenceFragment implements
             boolean statue = Boolean.valueOf(newValue.toString());
             if (preference.getKey().equals(SWITCH_LOCATION)) {
                 /*将时候允许定位信息保存 */
-//                L.e(preference.getKey(), statue + "");
                 Setting.putBoolean(Setting.IS_ALLOW_LOCATION, statue);
             } else if (preference.getKey().equals(SWITCH_UPDATE)) {
-//                L.e(preference.getKey(), statue + "");
                 //后台更新
                 Setting.putBoolean(Setting.IS_ALLOW_UPDATE, statue);
+
+                switchAutoUpdateService(Boolean.valueOf(newValue.toString()));
+
             }
         } else if (preference instanceof CheckBoxPreference) {
             if (preference.getKey().equals(CB_NOTIFICATION)) {
-//                L.e(preference.getKey(), newValue.toString());
-                //打开或取消通知
-                switchNotification(Boolean.valueOf(newValue.toString()));
-
-            } else if (preference.getKey().equals(CB_NOTIFICATION_ICON)) {
-//                L.e(preference.getKey(), newValue.toString());
-                //显示隐藏Notification的Icon
-                switchNotificationIcon(Boolean.valueOf(newValue.toString()));
+                //打开或取消通知栏
+                Setting.putBoolean(Setting.IS_SHOW_NOTIFY, Boolean.valueOf(newValue.toString()));
+                switchNotification();
             }
         } else if (preference instanceof ListPreference) {
             if (preference.getKey().equals(SYNC_FREQUENCY)) {
-//                L.e(preference.getKey(), newValue.toString());
                 //后台更新的间隔
                 Setting.putString(Setting.AUTO_UPDATE_TIME, newValue.toString());
                 mSyncFrequency.setSummary(newValue.toString() + " 小时");
+            } else if (preference.getKey().equals(LIST_PRE_CACHE_TIME)) {
+                Setting.putString(Setting.AUTO_DELETE_CACHE_TIME, newValue.toString());
+                mCacheSizeListPref.setSummary(newValue.toString() + " 小时");
             }
         }
         return true;
     }
 
-    /**/
-    private void switchNotification(boolean statue) {
-        Intent intent  =  new Intent("com.koterwong.weather.Notification");
-        intent.putExtra("isShow",statue);
-        getActivity().sendBroadcast(intent);
-    }
-
-    private void switchNotificationIcon(boolean statue) {
-
-    }
-
     @Override
     public boolean onPreferenceClick(Preference preference) {
-
+        if (preference == mCacheSizePref) {
+            BaseApplication.getACache().clear();
+            mCacheSizePref.setSummary(FileUtils.getCacheSize());
+            Snackbar.make(getView(),"缓存以清除",Snackbar.LENGTH_SHORT).show();
+        }
         return true;
+    }
+
+    private void switchAutoUpdateService(boolean statue) {
+
+        //打开或关闭服务
+        Intent intent = new Intent(getActivity(), AutoUpdateService.class);
+        if (statue) {
+            //启动服务
+            getActivity().startService(intent);
+        } else {
+            //关闭服务
+            getActivity().stopService(intent);
+        }
+
+    }
+
+    /*打开关闭状态栏通知*/
+    private void switchNotification() {
+        Intent intent = new Intent("com.koterwong.weather.Notification");
+        getActivity().sendBroadcast(intent);
     }
 }

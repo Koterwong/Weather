@@ -109,6 +109,7 @@ public class DailyForecastHolder {
         mChartData.setAxisYLeft(null);
         //设置不可交互
 //        mChart.setInteractive(true);
+        mChart.setClickable(true);
         //设置不可缩放
         mChart.setZoomEnabled(false);
         mChart.setLineChartData(mChartData);

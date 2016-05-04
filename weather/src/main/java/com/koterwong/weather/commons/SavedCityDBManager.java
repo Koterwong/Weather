@@ -62,6 +62,7 @@ public class SavedCityDBManager {
                 String mCity = mCursor.getString(0);
                 mCityList.add(mCity);
             }while (mCursor.moveToNext());
+            mCursor.close();
             return mCityList;
         }
         return null;

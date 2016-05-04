@@ -10,13 +10,13 @@
         <SwitchPreference
             android:key="switch_update"
             android:defaultValue="false"
-            android:summary="开启自动更新天气，只有需要时才会请求网络，并不会在后台消耗流量"
+            android:summary="开启自动更新天气，只有需要时才会请求网络，并不会在后台消耗流量，建议开启没4小时更新"
             android:title="自动更新" />
         <ListPreference
             android:key="sync_frequency"
             android:defaultValue="4"
             android:dependency="switch_update"
-            android:entries="@array/pref_sync_update"
+            android:entries="@array/pref_cache_time"
             android:entryValues="@array/pref_sync_update_values"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
@@ -30,14 +30,26 @@
             android:checked="false"
             android:title="通知栏天气"
             android:summary="开启通知栏天气"/>
-        <CheckBoxPreference
-            android:key="cb_notification_icon"
-            android:checked="false"
-            android:dependency="cb_notification"
-            android:title="通知栏天气图标"
-            />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="缓存"
+        >
+        <ListPreference
+            android:key="list_pre_cache_time"
+            android:defaultValue="4"
+            android:entries="@array/pref_sync_update"
+            android:entryValues="@array/pref_sync_update_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="本地缓存存放时间" />
 
+        <Preference
+            android:key="pref_cache_size_clear"
+            android:title="缓存大小"
+            />
+
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

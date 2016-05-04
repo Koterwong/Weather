@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
 import com.koterwong.weather.R;
 import com.koterwong.weather.choicecity.ChoiceCityActivity;
+import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.main.presenter.MainPresenter;
 import com.koterwong.weather.main.presenter.MainPresenterImp;
 import com.koterwong.weather.main.view.MainView;
@@ -30,7 +31,8 @@ import com.koterwong.weather.settingandabout.AboutActivity;
 import com.koterwong.weather.settingandabout.AutoUpdateService;
 import com.koterwong.weather.settingandabout.ServiceStatueUtils;
 import com.koterwong.weather.settingandabout.SettingsActivity;
-import com.koterwong.weather.weather.WeatherFragment;
+import com.koterwong.weather.utils.L;
+import com.koterwong.weather.weather.WeatherLazyFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,10 +87,11 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
         //判断自动更新服务运行状态。服务不再运行，才去开启服务。
         if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
-            startService(new Intent(this, AutoUpdateService.class));
+            if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)){
+                startService(new Intent(this, AutoUpdateService.class));
+            }
         }
     }
-
 
     private void initView() {
         setContentView(R.layout.activity_main2);
@@ -112,12 +115,19 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
         //viewPager
         mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
+        //设置viewPager的缓冲数俩个
+        mViewPager.setOffscreenPageLimit(3);
         /*设置ViewPager动画*/
         mViewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 setToolbarTitle(mCityList.get(position));
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                L.d(TAG,"position:"+position+"----positionOffset:"+positionOffset+"----positionOffsetPixels"+positionOffsetPixels);
             }
         });
     }
@@ -305,7 +315,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
             super(fm);
             mFragments = new HashMap<>();
             for (int i = 0; i < mCityList.size(); i++) {
-                WeatherFragment mFragment = new WeatherFragment();
+                WeatherLazyFragment mFragment = new WeatherLazyFragment();
                 Bundle mBundle = new Bundle();
                 mBundle.putString("city", mCityList.get(i));
                 mFragment.setArguments(mBundle);
@@ -315,7 +325,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
         //在已经有城市数据的基础上，添加城市调用该方法。
         public void addCity(String cityName) {
-            WeatherFragment fragment = new WeatherFragment();
+            WeatherLazyFragment fragment = new WeatherLazyFragment();
             Bundle mBundle = new Bundle();
             mBundle.putString("city", cityName);
             fragment.setArguments(mBundle);

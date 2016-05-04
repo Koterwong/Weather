@@ -12,6 +12,7 @@ import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.main.MainActivity2;
 import com.koterwong.weather.weather.WeatherJsonUtil;
 
@@ -24,7 +25,7 @@ public class NotifyHelperReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        boolean isShow = intent.getBooleanExtra("isShow", false);
+        boolean isShow = Setting.getBoolean(Setting.IS_SHOW_NOTIFY,false);
 
         NotificationManager mNotifyMgr = (NotificationManager) BaseApplication.getApplication().
                 getSystemService(Context.NOTIFICATION_SERVICE);

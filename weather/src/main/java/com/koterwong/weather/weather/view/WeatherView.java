@@ -12,9 +12,11 @@ public interface WeatherView {
 
     void showToastMsg(String msg);
 
-    void setContentVisible(boolean statue);
+    void showLoadingVisible();
 
-    void setLoadEmpty();
+    void showSuccessVisible();
+
+    void showErrorVisible();
 
     void setmSwipeRefreshLayoutStatue(boolean statue);
 

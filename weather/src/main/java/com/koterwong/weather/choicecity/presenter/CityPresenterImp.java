@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class CityPresenterImp implements CityPresenter, CityModelImp.LoadCityDBListener, CityModelImp.QueryProListener {
 
-    public static final int LEVEL_PROVINCE = 0;
-    public static final int LEVEL_CITY = 1;
-    public static int currentLevel =LEVEL_PROVINCE;
+//    public static final int LEVEL_PROVINCE = 0;
+//    public static final int LEVEL_CITY = 1;
+//    public static int currentLevel =LEVEL_PROVINCE;
 
     private CityView mCityView;
     private CityModel mCityModel;

@@ -3,12 +3,11 @@ package com.koterwong.weather.choicecity.Model;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 
+import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.City;
 import com.koterwong.weather.beans.Province;
-import com.koterwong.weather.R;
 import com.koterwong.weather.utils.L;
 import com.koterwong.weather.utils.ThreadManager;
 
@@ -29,22 +28,9 @@ public class CityModelImp implements CityModel {
 
 //    private static String DB_Name = "china_city.db";
 
-    /**
-     * 数据库Copy的位置
-     */
-    static StringBuilder builder = new StringBuilder();
-    private static String path = builder.append(File.separator)
-            .append("data")
-            .append(Environment.getDataDirectory().getAbsolutePath())
-            .append(File.separator)
-            .append(BaseApplication.getApplication().getPackageName())
-            .append(File.separator)
-            .append("china_city.db")
-            .toString();
-
     @Override
     public void queryProvince(CityModelImp.QueryProListener listener) {
-        SQLiteDatabase cityDb = DBManager.getCityDataBase(path);
+        SQLiteDatabase cityDb = DBManager.getCityDataBase(DBManager.getDBCopyPath());
         Cursor cursor = cityDb.query("T_Province", null, null, null, null, null, null);
         if (cursor == null) {
             listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
@@ -66,7 +52,7 @@ public class CityModelImp implements CityModel {
 
     @Override
     public void queryCity(String ProID, CityModelImp.QueryCityListener listener) {
-        SQLiteDatabase cityDb = DBManager.getCityDataBase(path);
+        SQLiteDatabase cityDb = DBManager.getCityDataBase(DBManager.getDBCopyPath());
 
         Cursor cursor = cityDb.query("T_City", null, "ProID = ?", new String[]{ProID}, null, null, null);
         if (cursor == null) {
@@ -88,11 +74,12 @@ public class CityModelImp implements CityModel {
 
     @Override
     public void loadCityDataBase(final CityModelImp.LoadCityDBListener listener) {
-        File file = new File(path);
+        File file = new File(DBManager.getDBCopyPath());
         if (file.exists()) {
             listener.copySuccess();
             return;
         }
+        /*使用线程池，将数据库copy到手机内存*/
         ThreadManager.getInstance().createShortPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -100,7 +87,7 @@ public class CityModelImp implements CityModel {
                 InputStream is = resources.openRawResource(R.raw.china_city);
                 FileOutputStream fos = null;
                 try {
-                    fos = new FileOutputStream(path);
+                    fos = new FileOutputStream(DBManager.getDBCopyPath());
                     byte[] buf = new byte[1024 * 8];
                     int len;
                     while ((len = is.read(buf)) != -1) {

@@ -1,6 +1,11 @@
 package com.koterwong.weather.choicecity.Model;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+
+import com.koterwong.weather.base.BaseApplication;
+
+import java.io.File;
 
 /**
  * Author：Koterwong，Data：2016/4/25.
@@ -17,5 +22,23 @@ public class DBManager {
             db = SQLiteDatabase.openOrCreateDatabase(path,null);
         }
         return db;
+    }
+
+
+    /**
+     * 获取数据库Copy的位置.
+     */
+    public static String getDBCopyPath(){
+        StringBuilder builder = new StringBuilder();
+        return builder.append(File.separator)
+                .append("data")
+                .append(Environment.getDataDirectory().getAbsolutePath())
+                .append(File.separator)
+                .append(BaseApplication.getApplication().getPackageName())
+                .append(File.separator)
+                .append("databases")
+                .append(File.separator)
+                .append("china_city.db")
+                .toString();
     }
 }

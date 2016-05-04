@@ -29,7 +29,10 @@ public class ManagerCityPresenter {
 
     public WeatherBean.NowBean querySimpleWeather(String city){
         WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(city);
-        return weatherBean.now;
+        if (weatherBean!=null){
+            return weatherBean.now;
+        }else{
+            return null;
+        }
     }
-
 }

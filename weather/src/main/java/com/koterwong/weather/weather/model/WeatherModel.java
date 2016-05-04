@@ -7,7 +7,7 @@ package com.koterwong.weather.weather.model;
 public interface WeatherModel {
 
     /* 包含的业务逻辑 */
-    void loadWeatherFromServer(String cityName,WeatherModelImp.LoadWeatherListener listener);
+    void loadWeatherFromServer(String cityName,WeatherModelImp.LoadServiceListener listener);
     void loadLocation(String cityName,WeatherModelImp.LoadLocationListener listener);
 
 }

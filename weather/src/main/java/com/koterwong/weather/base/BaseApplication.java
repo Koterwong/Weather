@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.koterwong.weather.utils.ACache;
-import com.koterwong.weather.commons.Setting;
 
 /**
  * Author：Koterwong，Data：2016/4/24.
@@ -13,7 +12,10 @@ import com.koterwong.weather.commons.Setting;
  */
 public class BaseApplication extends Application {
 
+    public static final String CACHE_NAME = "Weather_Cache";
+
     private static Handler mHandler;
+
     private static int mainId;
 
     private static BaseApplication application;
@@ -26,7 +28,7 @@ public class BaseApplication extends Application {
         application=this;
         mainId = android.os.Process.myTid();
         mHandler = new Handler();
-        mACache = ACache.get(this, Setting.CACHE_NAME);
+        mACache = ACache.get(this, CACHE_NAME);
     }
 
     /**

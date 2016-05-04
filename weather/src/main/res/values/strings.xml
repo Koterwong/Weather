@@ -31,7 +31,7 @@
         <item>8 小时</item>
     </string-array>
 
-    <string-array name="pref_about">
+    <string-array name="pref_cache_time">
         <item>2 小时</item>
         <item>4 小时</item>
         <item>6 小时</item>
@@ -45,5 +45,6 @@
         <item>8</item>
     </string-array>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="load_error">加载失败点击重试</string>
 
 </resources>
