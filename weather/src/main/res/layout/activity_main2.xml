@@ -60,7 +60,7 @@
                             android:layout_height="100dp"
                             android:elevation="5dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
+                            android:layout_marginTop="200dp"
                             android:src="@mipmap/nocity" />
                         <Button
                             android:id="@+id/btn_choice_city"
@@ -73,17 +73,14 @@
                             android:background="@drawable/btn_bg"
                             android:paddingLeft="60dp"
                             android:paddingRight="60dp"
-                            android:text="请添加城市或地区"
+                            android:text="@string/add_city"
                             android:textColor="@color/primary_text" />
                     </RelativeLayout>
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/main_view_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true" />
+                        android:layout_height="match_parent" />
                 </FrameLayout>
             </LinearLayout>
         </RelativeLayout>

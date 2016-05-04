@@ -52,6 +52,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherModelImp.Lo
              */
             if (!ToolsUtil.isNetworkAvailable(BaseApplication.getApplication())) {
                 mWeatherView.showToastMsg("网络未连接~");
+                mWeatherView.setmSwipeRefreshLayoutStatue(false);
                 return;
             }
             mWeatherModel.loadWeatherFromServer(city, this);
