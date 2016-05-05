@@ -23,6 +23,7 @@ public class AboutActivity extends SwipeBackActivity {
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("关于");
         setSupportActionBar(toolbar);

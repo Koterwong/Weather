@@ -7,12 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,7 +88,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
         //判断自动更新服务运行状态。服务不再运行，才去开启服务。
         if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
-            if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)){
+            if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)) {
                 startService(new Intent(this, AutoUpdateService.class));
             }
         }
@@ -99,8 +100,24 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         setSupportActionBar(mToolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(
-                this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, mDrawer, mToolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                Log.d(TAG, "onDrawerClosed");
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                Log.d(TAG, "onDrawerOpened");
+            }
+        };
+
         mDrawer.addDrawerListener(mToggle);
+        //Drawer的拉出隐藏，改变android.R.id.home的图标，并带有的动画效果。
         mToggle.syncState();
 
         mNvView = (NavigationView) findViewById(R.id.nav_view);
@@ -127,7 +144,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                L.d(TAG,"position:"+position+"----positionOffset:"+positionOffset+"----positionOffsetPixels"+positionOffsetPixels);
+                L.d(TAG, "position:" + position + "----positionOffset:" + positionOffset + "----positionOffsetPixels" + positionOffsetPixels);
             }
         });
     }
@@ -204,10 +221,13 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
     /*Nav点击事件的处理 */
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        mPresenter.switchNavigation(item.getItemId());
+
         item.setChecked(true);
+        mDrawer.closeDrawer(GravityCompat.START);
+        mPresenter.switchNavigation(item.getItemId());
         return true;
     }
+
 
     /*跳转到选择城市的Activity*/
     @Override
@@ -353,9 +373,9 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
          * 过去的Bug。我们需要重写该方法，让其PagerAdapter.POSITION_NONE就可以测底删除Viewpager中的
          * Fragment。
          */
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
-        }
+//        @Override
+//        public int getItemPosition(Object object) {
+//            return PagerAdapter.POSITION_NONE;
+//        }
     }
 }

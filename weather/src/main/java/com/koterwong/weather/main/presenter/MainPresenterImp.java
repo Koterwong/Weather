@@ -3,6 +3,7 @@ package com.koterwong.weather.main.presenter;
 import android.app.Activity;
 
 import com.koterwong.weather.R;
+import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.main.model.MainModel;
@@ -23,21 +24,26 @@ public class MainPresenterImp implements MainPresenter {
     }
 
     @Override
-    public void switchNavigation(int position) {
-        switch (position) {
-            case R.id.nav_choice_city:
-                mMainView.switch2ChoiceCityActivity();
-                break;
-            case R.id.nav_manager_city:
-                mMainView.switch2ManagerCityActivity();
-                break;
-            case R.id.nav_setting:
-                mMainView.switch2SettingActivity();
-                break;
-            case R.id.nav_about:
-                mMainView.switch2AboutActivity();
-                break;
-        }
+    public void switchNavigation(final int position) {
+        BaseApplication.getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (position) {
+                    case R.id.nav_choice_city:
+                        mMainView.switch2ChoiceCityActivity();
+                        break;
+                    case R.id.nav_manager_city:
+                        mMainView.switch2ManagerCityActivity();
+                        break;
+                    case R.id.nav_setting:
+                        mMainView.switch2SettingActivity();
+                        break;
+                    case R.id.nav_about:
+                        mMainView.switch2AboutActivity();
+                        break;
+                }
+            }
+        }, 200);
     }
 
     @Override

@@ -124,7 +124,7 @@ public class WeatherModelImp implements WeatherModel {
                         listener.onLoadLocFailed(new Exception("本地没有缓存~"));
                     }
                 }else {
-                    BaseApplication.getHandler().post(new Runnable() {
+                    BaseApplication.getHandler().post( new Runnable() {
                         @Override
                         public void run() {
                             if (weatherBean != null) {

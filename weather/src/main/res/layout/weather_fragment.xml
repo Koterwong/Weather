@@ -125,15 +125,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:orientation="horizontal">
-
                             <TextView
                                 android:id="@+id/weather_humidity"
                                 style="@style/daily_week_text" />
-
                             <TextView
                                 android:id="@+id/weather_wind"
                                 style="@style/daily_week_text" />
-
                             <TextView
                                 android:id="@+id/weather_update_time"
                                 style="@style/daily_week_text" />

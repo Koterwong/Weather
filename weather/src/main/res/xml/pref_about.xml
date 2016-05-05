@@ -37,8 +37,10 @@
         android:title="dependencies"
         >
         <Preference
-            android:summary="okhttputils，hellocharts，view-pager-transforms，RxJava，swipeback"
-            android:title="感谢以下开源库的作者" />
+            android:summary="okHttpUtils，HelloCharts，
+            view-pager-transforms，RxJava，RxAndroid，
+            swipeBackLayout，ACache"
+            android:title="感谢以下开源库的作者或组织" />
     </PreferenceCategory>
 
 </PreferenceScreen>

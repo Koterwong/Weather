@@ -91,7 +91,7 @@ public class AutoUpdateService extends Service {
         List<String> cityList = SavedCityDBManager.getInstance(BaseApplication.getApplication())
                 .queryCities();
         final WeatherModelImp weatherModelImp = new WeatherModelImp();
-        //RxJava遍历数据，List
+        //RxJava遍历数组，List
         Observable
                 .from(cityList)
                 .subscribe(new Action1<String>() {

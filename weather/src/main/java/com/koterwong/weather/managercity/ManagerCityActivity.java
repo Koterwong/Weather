@@ -113,7 +113,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
          * 3. 传入零表示不执行操作
          */
         public MySimpleCallBack() {
-            super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+            super(0, ItemTouchHelper.LEFT );
         }
 
         /**

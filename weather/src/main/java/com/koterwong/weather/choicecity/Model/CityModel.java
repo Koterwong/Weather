@@ -10,6 +10,6 @@ public interface CityModel {
 
     void queryProvince(CityModelImp.QueryProListener listener);
 
-    void queryCity(String proId,CityModelImp.QueryCityListener listenter);
+    void queryCity(String proId,CityModelImp.QueryCityListener listener);
 
 }
