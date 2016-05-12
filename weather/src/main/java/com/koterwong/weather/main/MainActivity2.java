@@ -321,7 +321,15 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_share) {
-
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("text/plain");
+            String title = "分享";
+            String extraText="给大家介绍一个不错的天气软件，www.github.com/koterwong/weather";
+            share.putExtra(Intent.EXTRA_TEXT, extraText);
+            if (title != null) {
+                share.putExtra(Intent.EXTRA_SUBJECT, title);
+            }
+            startActivity(share);
         }
         return true;
     }
