@@ -1,5 +1,3 @@
-# 一款精美的天气软件
-
 ##界面展示
 ![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/1.png)
 ![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/2.png)
