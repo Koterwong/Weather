@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="5dp">
+                style="@style/KKCardView"
+                >
 
                 <FrameLayout
                     android:layout_width="match_parent"

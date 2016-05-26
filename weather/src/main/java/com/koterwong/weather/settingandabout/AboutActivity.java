@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.koterwong.weather.R;
@@ -25,7 +26,7 @@ public class AboutActivity extends SwipeBackActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("关于");
+        toolbar.setTitle(R.string.about);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,17 +36,31 @@ public class AboutActivity extends SwipeBackActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "在Github上查看项目介绍", Snackbar.LENGTH_LONG)
-                        .setAction("OK", new View.OnClickListener() {
+                Snackbar
+                        .make(view, R.string.github_intro, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.ok, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.github.com/koterwong"));
                                 startActivity(intent);
                             }
-                        }).show();
+                        })
+                        .show();
             }
         });
 
-        getFragmentManager().beginTransaction().replace(R.id.fl_content, new AboutActivityFragment()).commit();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_content, new AboutActivityFragment())
+                .commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -24,12 +24,10 @@ public class MyRecyclerView extends RecyclerView {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-//        //不要拦截事件
-//        getParent().requestDisallowInterceptTouchEvent(true);
-
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                getParent().requestDisallowInterceptTouchEvent(true);// 不要拦截,这样是为了保证ACTION_MOVE调用
+                //对ACTION_DOWN消费，否则ACTION_MOVE不会调用。
+                getParent().requestDisallowInterceptTouchEvent(true);
                 startX = (int) ev.getRawX();
                 break;
             case MotionEvent.ACTION_MOVE:

@@ -7,8 +7,8 @@
             android:summary="SimpleWeather1.0"
             android:title="版本" />
         <Preference
-            android:summary="项目全部源码已托管到Github，点击下面红色按钮试试"
-            android:title="关于更新" />
+            android:summary="当前版本为最新版本"
+            android:title="更新" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="About More">
@@ -37,10 +37,8 @@
         android:title="dependencies"
         >
         <Preference
-            android:summary="okHttpUtils，HelloCharts，
-            view-pager-transforms，RxJava，RxAndroid，
-            swipeBackLayout，ACache"
-            android:title="感谢以下开源库的作者或组织" />
+            android:summary="@string/dependencies"
+            android:title="@string/thx" />
     </PreferenceCategory>
 
 </PreferenceScreen>

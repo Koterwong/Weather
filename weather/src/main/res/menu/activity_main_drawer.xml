@@ -6,20 +6,20 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_choice_city"
-                    android:icon="@mipmap/ic_addcity"
+                    android:icon="@drawable/ic_choice_city_black_36dp"
                     android:title="@string/nav_choice_city" />
                 <item
                     android:id="@+id/nav_manager_city"
-                    android:icon="@mipmap/ic_manager_city"
+                    android:icon="@drawable/ic_namaget_city_black_36dp"
                     android:title="@string/nav_manager_city" />
                 <item
                     android:id="@+id/nav_setting"
-                    android:icon="@mipmap/ic_settings"
+                    android:icon="@drawable/ic_settings_black_36dp"
 
                     android:title="@string/nav_setting" />
                 <item
                     android:id="@+id/nav_about"
-                    android:icon="@mipmap/ic_about"
+                    android:icon="@drawable/ic_about_black_36dp"
                     android:title="@string/nav_about" />
             </group>
 

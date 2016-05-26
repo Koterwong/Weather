@@ -14,8 +14,8 @@
     </style>
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Translucent">
@@ -46,6 +46,13 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">25dp</item>
         <item name="android:layout_width">25dp</item>
+    </style>
+
+    <style name="KKCardView" parent="CardView">
+        <item name="contentPadding">0dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardElevation">8dp</item>
     </style>
 
 </resources>

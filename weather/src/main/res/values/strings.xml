@@ -47,5 +47,21 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="load_error">加载失败点击重试</string>
     <string name="add_city">请添加城市或地区</string>
-
+    <string name="about">关于</string>
+    <string name="github_intro">在Github上查看项目介绍</string>
+    <string name="ok">OK</string>
+    <string name="save_one">请至少保留一个城市</string>
+    <string name="delete_city_success">删除成功,下次启动生效</string>
+    <string name="slide_delete">滑动删除</string>
+    <string name="action">Action</string>
+    <string name="thx">感谢以下开源库的作者或组织</string>
+    <string name="dependencies">
+        \t\tOkHttpUtils
+        \n\t\tHelloCharts
+        \n\t\tView-pager-transforms
+        \n\t\tRxJava
+        \n\t\tRxAndroids
+        \n\t\tSwipeBackLayouts
+        \n\t\tASimpleCache</string>
+    <string name="weather">简单天气</string>
 </resources>

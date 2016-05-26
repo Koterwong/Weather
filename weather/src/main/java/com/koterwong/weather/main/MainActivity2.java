@@ -323,10 +323,12 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
             case android.R.id.home:
                 if (mDrawer.isDrawerOpen(GravityCompat.START)){
                     mDrawer.closeDrawers();
+                }else{
+                    mDrawer.openDrawer(GravityCompat.START);
                 }
                 break;
             case R.id.action_share:
-                ShareUtils.share(MainActivity2.this,"精美天气软件，下载地址：http://fir.im/9xj7");
+                ShareUtils.share(MainActivity2.this,"推荐一款精美天气软件，下载地址：http://fir.im/9xj7");
                 break;
         }
         return true;

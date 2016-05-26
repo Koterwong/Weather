@@ -44,6 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_compare_arrows_white_18dp" />
+        android:src="@drawable/ic_delete_white_36dp" />
 
 </android.support.design.widget.CoordinatorLayout>

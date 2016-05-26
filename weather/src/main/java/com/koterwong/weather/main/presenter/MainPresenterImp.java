@@ -43,7 +43,7 @@ public class MainPresenterImp implements MainPresenter {
                         break;
                 }
             }
-        }, 200);
+        }, 220);
     }
 
     @Override
