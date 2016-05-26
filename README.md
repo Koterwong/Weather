@@ -1,3 +1,5 @@
+#[下载软件](http://fir.im/koterweather)
+
 ##界面展示
 ![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/1.png)
 ![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/2.png)
