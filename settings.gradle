@@ -1,1 +1,1 @@
-include ':rxjavasimple', ':mvppractices', ':weather', ':swipeback'
+include ':mvppractices', ':weather', ':swipeback', ':app'

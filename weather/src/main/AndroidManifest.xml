@@ -35,10 +35,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:configChanges="orientation|screenSize"
-            android:name=".main.MainActivity2"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".main.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,16 +45,19 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".main.MainActivity2"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".choicecity.ChoiceCityActivity"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent"
-             />
+            android:theme="@style/AppTheme.NoActionBar.Translucent" />
         <activity
             android:name=".managercity.ManagerCityActivity"
             android:label="@string/title_activity_manager_city"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent"
-            >
+            android:theme="@style/AppTheme.NoActionBar.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.koterwong.weather.main.MainActivity2" />
@@ -69,16 +71,15 @@
             android:name=".settingandabout.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".main.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar.Translucent"
-            >
+            android:theme="@style/AppTheme.NoActionBar.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.koterwong.weather.main.MainActivity2" />
         </activity>
-
         <activity
             android:name=".settingandabout.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar.Translucent"/>
+            android:theme="@style/AppTheme.NoActionBar.Translucent" />
+
         <service android:name=".settingandabout.AutoUpdateService" />
 
         <receiver android:name=".settingandabout.NotifyHelperReceiver">

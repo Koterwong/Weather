@@ -33,6 +33,7 @@ import com.koterwong.weather.settingandabout.AutoUpdateService;
 import com.koterwong.weather.settingandabout.ServiceStatueUtils;
 import com.koterwong.weather.settingandabout.SettingsActivity;
 import com.koterwong.weather.utils.L;
+import com.koterwong.weather.utils.ShareUtils;
 import com.koterwong.weather.weather.WeatherLazyFragment;
 
 import java.util.ArrayList;
@@ -173,7 +174,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 //            this.mCityList = mCityList;
 //            mAdapter.notifyDataSetChanged();
 //        }
-//        L.e(TAG,mCityList.toString());
     }
 
     /**
@@ -288,7 +288,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                         while (iterator.hasNext()) {
                             String key = iterator.next();
                             String deleteCity = bundle.getString(key);
-//                            L.e(TAG,"删除的城市："+deleteCity);
                             /**
                              * 将Map中管理的Fragment删除。
                              */
@@ -320,16 +319,15 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_share) {
-            Intent share = new Intent(Intent.ACTION_SEND);
-            share.setType("text/plain");
-            String title = "分享";
-            String extraText="给大家介绍一个不错的天气软件，www.github.com/koterwong/weather";
-            share.putExtra(Intent.EXTRA_TEXT, extraText);
-            if (title != null) {
-                share.putExtra(Intent.EXTRA_SUBJECT, title);
-            }
-            startActivity(share);
+        switch (item.getItemId()){
+            case android.R.id.home:
+                if (mDrawer.isDrawerOpen(GravityCompat.START)){
+                    mDrawer.closeDrawers();
+                }
+                break;
+            case R.id.action_share:
+                ShareUtils.share(MainActivity2.this,"精美天气软件，下载地址：http://fir.im/9xj7");
+                break;
         }
         return true;
     }

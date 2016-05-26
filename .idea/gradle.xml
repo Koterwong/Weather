@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/mvppractices" />
-            <option value="$PROJECT_DIR$/rxjavasimple" />
             <option value="$PROJECT_DIR$/swipeback" />
             <option value="$PROJECT_DIR$/weather" />
           </set>
@@ -17,8 +17,8 @@
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/mvppractices" />
-            <option value="$PROJECT_DIR$/rxjavasimple" />
             <option value="$PROJECT_DIR$/swipeback" />
             <option value="$PROJECT_DIR$/weather" />
           </set>

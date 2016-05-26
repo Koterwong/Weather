@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvppractices/mvppractices.iml" filepath="$PROJECT_DIR$/mvppractices/mvppractices.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxjavasimple/rxjavasimple.iml" filepath="$PROJECT_DIR$/rxjavasimple/rxjavasimple.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/weather/weather.iml" filepath="$PROJECT_DIR$/weather/weather.iml" />
       <module fileurl="file://$PROJECT_DIR$/weatherpractices.iml" filepath="$PROJECT_DIR$/weatherpractices.iml" />

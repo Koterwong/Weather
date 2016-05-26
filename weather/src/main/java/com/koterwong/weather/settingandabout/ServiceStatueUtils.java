@@ -22,7 +22,6 @@ public class ServiceStatueUtils {
         for (ActivityManager.RunningServiceInfo runningServiceInfo : runningServices) {
             // 获取服务的名称
             String className = runningServiceInfo.service.getClassName();
-//            L.e("正在运行的服务"+className);
             if (className.equals(serviceName)) {// 服务存在
                 return true;
             }

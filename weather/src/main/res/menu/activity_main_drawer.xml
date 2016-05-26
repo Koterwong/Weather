@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <item android:title="简单天气">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_choice_city"
+                    android:icon="@mipmap/ic_addcity"
+                    android:title="@string/nav_choice_city" />
+                <item
+                    android:id="@+id/nav_manager_city"
+                    android:icon="@mipmap/ic_manager_city"
+                    android:title="@string/nav_manager_city" />
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@mipmap/ic_settings"
 
-        <item
-            android:id="@+id/nav_choice_city"
-            android:icon="@mipmap/ic_addcity"
-            android:title="@string/nav_choice_city" />
+                    android:title="@string/nav_setting" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@mipmap/ic_about"
+                    android:title="@string/nav_about" />
+            </group>
 
-        <item
-            android:id="@+id/nav_manager_city"
-            android:icon="@mipmap/ic_manager_city"
-            android:title="@string/nav_manager_city" />
-        <item
-            android:id="@+id/nav_setting"
-            android:icon="@mipmap/ic_settings"
-
-            android:title="@string/nav_setting"/>
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@mipmap/ic_about"
-            android:title="@string/nav_about"/>
-    </group>
+        </menu>
+    </item>
 
 </menu>

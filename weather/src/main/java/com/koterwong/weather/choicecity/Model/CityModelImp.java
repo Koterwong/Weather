@@ -96,11 +96,9 @@ public class CityModelImp implements CityModel {
                     listener.copySuccess();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                    L.e("该路径不是一个文件");
                     listener.copyFailed(e);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    L.e("读取文件异常");
                     listener.copyFailed(e);
                 } finally {
                     try {

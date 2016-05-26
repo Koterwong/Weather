@@ -79,7 +79,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onClick(v, position, mCityDatas.get(position).CityName,"0" ,LEVEL_CITY);
+                        listener.onClick(v, position, mCityDatas.get(position).CityName, "0", LEVEL_CITY);
                     }
                 });
             }
