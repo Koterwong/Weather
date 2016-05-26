@@ -63,6 +63,8 @@ public class SettingsFragment extends PreferenceFragment implements
 
         //设置缓冲大小
         mCacheSizePref.setSummary(FileUtils.getCacheSize());
+        //设置是否允许定位的开关。
+        mSwitchLocation.setChecked(Setting.getBoolean(Setting.IS_ALLOW_LOCATION,false));
     }
 
     @Override
@@ -77,12 +79,11 @@ public class SettingsFragment extends PreferenceFragment implements
         if (preference instanceof SwitchPreference) {
             boolean statue = Boolean.valueOf(newValue.toString());
             if (preference.getKey().equals(SWITCH_LOCATION)) {
-                /*将时候允许定位信息保存 */
+                //将是否允许定位信息保存
                 Setting.putBoolean(Setting.IS_ALLOW_LOCATION, statue);
             } else if (preference.getKey().equals(SWITCH_UPDATE)) {
                 //后台更新
                 Setting.putBoolean(Setting.IS_ALLOW_UPDATE, statue);
-
                 switchAutoUpdateService(Boolean.valueOf(newValue.toString()));
 
             }
@@ -116,7 +117,6 @@ public class SettingsFragment extends PreferenceFragment implements
     }
 
     private void switchAutoUpdateService(boolean statue) {
-
         //打开或关闭服务
         Intent intent = new Intent(getActivity(), AutoUpdateService.class);
         if (statue) {

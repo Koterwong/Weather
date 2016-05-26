@@ -8,8 +8,11 @@ import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.main.model.MainModel;
 import com.koterwong.weather.main.view.MainView;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
+
+import rx.functions.Action1;
 
 /**
  * Author：Koterwong，Data：2016/4/27.
@@ -57,11 +60,21 @@ public class MainPresenterImp implements MainPresenter {
         } else {
             //没有城市数据，更新界面
             mMainView.setContentVisible(false);
-            //判断是否允许定位
-            if (Setting.getBoolean(Setting.IS_ALLOW_LOCATION, true)) {
-                location();
-                mMainView.setToolbarTitle("正在定位...");
-            }
+            //请求定位权限。
+            RxPermissions.getInstance((Activity) mMainView)
+                    .request(android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                    .subscribe(new Action1<Boolean>() {
+                        @Override
+                        public void call(Boolean aBoolean) {
+                            if (aBoolean) {
+                                Setting.putBoolean(Setting.IS_ALLOW_LOCATION, true);
+                                mMainView.setToolbarTitle("正在定位...");
+                                location();
+                            } else {
+                                Setting.putBoolean(Setting.IS_ALLOW_LOCATION, false);
+                            }
+                        }
+                    });
         }
     }
 
@@ -74,7 +87,7 @@ public class MainPresenterImp implements MainPresenter {
             @Override
             public void locationSuccess(String city) {
                 mMainView.addCity(city);
-                /*添加到数据库*/
+                //添加到数据库
                 addCity(city);
             }
 

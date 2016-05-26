@@ -9,7 +9,7 @@ import com.koterwong.weather.base.BaseApplication;
 /**
  * Author：Koterwong，Data：2016/5/1.
  * Description:
- *          百度定位SDK
+ * 百度定位SDK
  */
 public class MainModel {
 
@@ -47,10 +47,10 @@ public class MainModel {
         public void onReceiveLocation(BDLocation location) {
             String city = location.getCity();
             if (city != null) {
-                if (locationListener !=null)
+                if (locationListener != null)
                     locationListener.locationSuccess(city);
-            }else{
-                if (locationListener !=null)
+            } else {
+                if (locationListener != null)
                     locationListener.locationError();
             }
             mLocationClient.stop();

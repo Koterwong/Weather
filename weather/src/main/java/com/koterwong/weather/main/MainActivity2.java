@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,7 +85,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         initView();
         mPresenter = new MainPresenterImp(this);
         mPresenter.loadCities();
-
         //判断自动更新服务运行状态。服务不再运行，才去开启服务。
         if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
             if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)) {
@@ -97,45 +95,30 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     private void initView() {
         setContentView(R.layout.activity_main2);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar,
                 R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                Log.d(TAG, "onDrawerClosed");
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                Log.d(TAG, "onDrawerOpened");
-            }
-        };
-
+                R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(mToggle);
         //Drawer的拉出隐藏，改变android.R.id.home的图标，并带有的动画效果。
         mToggle.syncState();
-
         mNvView = (NavigationView) findViewById(R.id.nav_view);
         if (mNvView != null) {
             mNvView.setNavigationItemSelectedListener(this);
         }
-
         //没有城市界面。
         mRlContent = (RelativeLayout) findViewById(R.id.rl_content_choice);
         mChoiceBtn = (Button) findViewById(R.id.btn_choice_city);
         mChoiceBtn.setOnClickListener(this);
-
         //viewPager
         mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
         //设置viewPager的缓冲数俩个
         mViewPager.setOffscreenPageLimit(3);
-        /*设置ViewPager动画*/
+        //设置ViewPager动画
         mViewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
