@@ -14,8 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.beans.City;
-import com.koterwong.weather.beans.Province;
+import com.koterwong.weather.beans.CityBean;
+import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.choicecity.View.CityView;
 import com.koterwong.weather.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.choicecity.presenter.CityPresenterImp;
@@ -126,13 +126,13 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     }
 
     @Override
-    public void setProDatas(List<Province> mDatas) {
+    public void setProDatas(List<ProvinceBean> mDatas) {
         mAdapter.setmProDatas(mDatas);
         setTitle("选择城市");
     }
 
     @Override
-    public void setCityDatas(List<City> mDatas) {
+    public void setCityDatas(List<CityBean> mDatas) {
         mAdapter.setmCityDatass(mDatas);
     }
 

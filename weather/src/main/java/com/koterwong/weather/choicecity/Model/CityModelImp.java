@@ -5,10 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.base.BaseApplication;
-import com.koterwong.weather.beans.City;
-import com.koterwong.weather.beans.Province;
-import com.koterwong.weather.utils.L;
+import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.beans.CityBean;
+import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.utils.ThreadManager;
 
 import java.io.File;
@@ -36,10 +35,10 @@ public class CityModelImp implements CityModel {
             listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
             return;
         }
-        List<Province> list = new ArrayList<>();
+        List<ProvinceBean> list = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                Province province = new Province();
+                ProvinceBean province = new ProvinceBean();
                 province.ProName = cursor.getString(cursor.getColumnIndex("ProName"));
                 province.ProShort = cursor.getString(cursor.getColumnIndex("ProSort"));
                 province.proRemeark = cursor.getString(cursor.getColumnIndex("ProRemark"));
@@ -59,10 +58,10 @@ public class CityModelImp implements CityModel {
             listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
             return;
         }
-        List<City> list = new ArrayList<>();
+        List<CityBean> list = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                City city = new City();
+                CityBean city = new CityBean();
                 city.CityName = cursor.getString(cursor.getColumnIndex("CityName"));
                 city.ProID = ProID;
                 list.add(city);
@@ -129,14 +128,14 @@ public class CityModelImp implements CityModel {
 
     public interface QueryCityListener {
 
-        void querySuccess(List<City> cityList);
+        void querySuccess(List<CityBean> cityList);
 
         void queryFailed(Exception e);
     }
 
     public interface QueryProListener {
 
-        void querySuccess(List<Province> provinceList);
+        void querySuccess(List<ProvinceBean> provinceList);
 
         void queryFailed(Exception e);
     }

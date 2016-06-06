@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
-        android:name=".base.BaseApplication"
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -65,13 +65,11 @@
                 android:value="com.koterwong.weather.main.MainActivity2" />
         </activity>
 
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="o6Z4ySHEx5TxhMTOGYWDidVvGSQRbdEX" />
+
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".settingandabout.SettingsActivity"
+            android:name=".settingandabout.setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".main.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar.Translucent">
@@ -81,17 +79,20 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".settingandabout.AboutActivity"
+            android:name=".settingandabout.about.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar.Translucent" />
 
-        <service android:name=".settingandabout.AutoUpdateService" />
+        <service android:name=".settingandabout.setting.AutoUpdateService" />
 
-        <receiver android:name=".settingandabout.NotifyHelperReceiver">
+        <receiver android:name=".settingandabout.setting.NotifyHelperReceiver">
             <intent-filter>
                 <action android:name="com.koterwong.weather.Notification" />
             </intent-filter>
         </receiver>
-
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="o6Z4ySHEx5TxhMTOGYWDidVvGSQRbdEX" />
+        <meta-data android:value="b63a250cf1393ce7e65da49a5fa8ae3c" android:name="BUG_HD_SDK_GENERAL_KEY" />
     </application>
 
 </manifest>

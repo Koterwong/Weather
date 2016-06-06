@@ -6,7 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.R;
 import com.koterwong.weather.commons.Setting;

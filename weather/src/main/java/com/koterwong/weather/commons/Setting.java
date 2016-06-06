@@ -3,7 +3,7 @@ package com.koterwong.weather.commons;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 
 /**
  * Author：Koterwong，Data：2016/4/27.

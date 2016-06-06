@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 
 import java.util.Calendar;
 

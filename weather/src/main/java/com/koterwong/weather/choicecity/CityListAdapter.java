@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.koterwong.weather.base.BaseApplication;
-import com.koterwong.weather.beans.City;
-import com.koterwong.weather.beans.Province;
+import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.beans.CityBean;
+import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.R;
 
 import java.util.ArrayList;
@@ -20,13 +20,13 @@ import java.util.List;
  */
 public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
 
-    List<Province> mProDatas = new ArrayList<>();
-    List<City> mCityDatas = new ArrayList<>();
+    List<ProvinceBean> mProDatas = new ArrayList<>();
+    List<CityBean> mCityDatas = new ArrayList<>();
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
     public static int currentLevel = LEVEL_PROVINCE;
 
-    public void setmProDatas(List<Province> mProDatas) {
+    public void setmProDatas(List<ProvinceBean> mProDatas) {
         if (this.mProDatas.size() != 0) {
             this.mProDatas.clear();
         }
@@ -35,7 +35,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
         this.notifyDataSetChanged();
     }
 
-    public void setmCityDatass(List<City> mCityDatas) {
+    public void setmCityDatass(List<CityBean> mCityDatas) {
         if (this.mCityDatas.size() != 0) {
             this.mCityDatas.clear();
         }

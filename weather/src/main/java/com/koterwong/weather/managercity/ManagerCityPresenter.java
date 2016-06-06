@@ -1,6 +1,6 @@
 package com.koterwong.weather.managercity;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.weather.WeatherJsonUtil;

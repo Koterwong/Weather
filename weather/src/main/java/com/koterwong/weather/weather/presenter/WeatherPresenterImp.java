@@ -1,6 +1,6 @@
 package com.koterwong.weather.weather.presenter;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.utils.ToolsUtil;
 import com.koterwong.weather.weather.WeatherJsonUtil;

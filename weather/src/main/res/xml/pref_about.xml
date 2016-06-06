@@ -10,7 +10,7 @@
         <Preference
             android:key="update"
             android:summary="当前版本为最新版本"
-            android:title="更新" />
+            android:title="检查更新" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="About More">

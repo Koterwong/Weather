@@ -1,4 +1,4 @@
-package com.koterwong.weather.settingandabout;
+package com.koterwong.weather.settingandabout.about;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,7 +23,6 @@ public class AboutActivity extends SwipeBackActivity {
 
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.about);

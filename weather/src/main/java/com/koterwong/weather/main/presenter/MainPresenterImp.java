@@ -3,7 +3,7 @@ package com.koterwong.weather.main.presenter;
 import android.app.Activity;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.main.model.MainModel;

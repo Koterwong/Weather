@@ -4,7 +4,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 
 /**
  * Author：Koterwong，Data：2016/5/1.

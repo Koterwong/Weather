@@ -2,7 +2,7 @@ package com.koterwong.weather.weather.model;
 
 import android.os.Process;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.UrlHelper;
 import com.koterwong.weather.utils.ThreadManager;

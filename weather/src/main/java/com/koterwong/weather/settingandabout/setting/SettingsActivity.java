@@ -1,4 +1,4 @@
-package com.koterwong.weather.settingandabout;
+package com.koterwong.weather.settingandabout.setting;
 
 
 import android.os.Bundle;

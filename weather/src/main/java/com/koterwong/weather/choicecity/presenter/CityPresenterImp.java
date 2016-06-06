@@ -1,8 +1,8 @@
 package com.koterwong.weather.choicecity.presenter;
 
-import com.koterwong.weather.base.BaseApplication;
-import com.koterwong.weather.beans.City;
-import com.koterwong.weather.beans.Province;
+import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.beans.CityBean;
+import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.choicecity.Model.CityModel;
 import com.koterwong.weather.choicecity.Model.CityModelImp;
 import com.koterwong.weather.choicecity.View.CityView;
@@ -56,7 +56,7 @@ public class CityPresenterImp implements CityPresenter, CityModelImp.LoadCityDBL
      * @param provinceList 回调的List集合
      */
     @Override
-    public void querySuccess(final List<Province> provinceList) {
+    public void querySuccess(final List<ProvinceBean> provinceList) {
         if (BaseApplication.getMainId()==Thread.currentThread().getId()){
             mCityView.setProDatas(provinceList);
         }else{
@@ -83,7 +83,7 @@ public class CityPresenterImp implements CityPresenter, CityModelImp.LoadCityDBL
     public void queryCity(String proID) {
         mCityModel.queryCity(proID, new CityModelImp.QueryCityListener() {
             @Override
-            public void querySuccess(List<City> cityList) {
+            public void querySuccess(List<CityBean> cityList) {
                 mCityView.setCityDatas(cityList);
             }
 

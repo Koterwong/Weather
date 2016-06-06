@@ -1,4 +1,4 @@
-package com.koterwong.weather.settingandabout;
+package com.koterwong.weather.settingandabout.setting;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.commons.Setting;

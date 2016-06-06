@@ -1,4 +1,4 @@
-package com.koterwong.weather.settingandabout;
+package com.koterwong.weather.settingandabout.setting;
 
 
 import android.content.Intent;
@@ -12,9 +12,11 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.utils.FileUtils;
+
+import me.drakeet.materialdialog.MaterialDialog;
 
 public class SettingsFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener,
@@ -109,11 +111,29 @@ public class SettingsFragment extends PreferenceFragment implements
     @Override
     public boolean onPreferenceClick(Preference preference) {
         if (preference == mCacheSizePref) {
-            BaseApplication.getACache().clear();
-            mCacheSizePref.setSummary(FileUtils.getCacheSize());
-            Snackbar.make(getView(),"缓存以清除",Snackbar.LENGTH_SHORT).show();
+           showDialog("清理缓存","确定要清除缓存吗？");
         }
         return true;
+    }
+
+    private void showDialog(CharSequence title, CharSequence summary) {
+        final MaterialDialog dialog = new MaterialDialog(getActivity())
+                .setTitle(title)
+                .setMessage(summary)
+                .setCanceledOnTouchOutside(true)
+                .setPositiveButton("OK", new View.OnClickListener() {
+                    @Override public void onClick(View v) {
+                        BaseApplication.getACache().clear();
+                        mCacheSizePref.setSummary(FileUtils.getCacheSize());
+                        Snackbar.make(getView(),"缓存已清除",Snackbar.LENGTH_SHORT).show();
+                    }
+                });
+        dialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void switchAutoUpdateService(boolean statue) {

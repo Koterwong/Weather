@@ -1,10 +1,12 @@
-package com.koterwong.weather.base;
+package com.koterwong.weather;
 
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
 import com.koterwong.weather.utils.ACache;
+
+import im.fir.sdk.FIR;
 
 /**
  * Author：Koterwong，Data：2016/4/24.
@@ -29,6 +31,7 @@ public class BaseApplication extends Application {
         mainId = android.os.Process.myTid();
         mHandler = new Handler();
         mACache = ACache.get(this, CACHE_NAME);
+        FIR.init(this);  //新版本检查更新。
     }
 
     /**

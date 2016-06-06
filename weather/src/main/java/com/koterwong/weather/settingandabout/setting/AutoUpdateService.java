@@ -1,10 +1,10 @@
-package com.koterwong.weather.settingandabout;
+package com.koterwong.weather.settingandabout.setting;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.utils.L;

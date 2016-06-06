@@ -2,7 +2,7 @@ package com.koterwong.weather.utils;
 
 import android.text.format.Formatter;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 
 import java.io.File;
 import java.io.FileInputStream;

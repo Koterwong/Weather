@@ -3,7 +3,7 @@ package com.koterwong.weather.choicecity.Model;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
-import com.koterwong.weather.base.BaseApplication;
+import com.koterwong.weather.BaseApplication;
 
 import java.io.File;
 

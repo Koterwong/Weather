@@ -1,7 +1,7 @@
 package com.koterwong.weather.choicecity.View;
 
-import com.koterwong.weather.beans.City;
-import com.koterwong.weather.beans.Province;
+import com.koterwong.weather.beans.CityBean;
+import com.koterwong.weather.beans.ProvinceBean;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface CityView {
 
-    void setProDatas(List<Province> mDatas);
-    void setCityDatas(List<City> mDatas);
+    void setProDatas(List<ProvinceBean> mDatas);
+    void setCityDatas(List<CityBean> mDatas);
 
     void showProgressBar();
 

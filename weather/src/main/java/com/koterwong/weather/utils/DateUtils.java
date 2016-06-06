@@ -15,35 +15,39 @@ public class DateUtils {
 
     /**
      * yyyy-MM-dd HH:mm:ss
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
-    public static String getNowYMDHMSTime(){
-
+    public static String getNowYMDHMSTime() {
 
         SimpleDateFormat mDateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss");
         String date = mDateFormat.format(new Date());
         return date;
     }
+
     /**
      * MM-dd HH:mm:ss
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
-    public static String getNowMDHMSTime(){
+    public static String getNowMDHMSTime() {
 
         SimpleDateFormat mDateFormat = new SimpleDateFormat(
                 "MM-dd HH:mm:ss");
         String date = mDateFormat.format(new Date());
         return date;
     }
+
     /**
      * MM-dd
+     *
      * @return
      */
     @SuppressLint("SimpleDateFormat")
-    public static String getNowYMD(){
+    public static String getNowYMD() {
 
         SimpleDateFormat mDateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd");
@@ -53,16 +57,34 @@ public class DateUtils {
 
     /**
      * yyyy-MM-dd
+     *
      * @param date
      * @return
      */
     @SuppressLint("SimpleDateFormat")
-    public static String getYMD(Date date){
+    public static String getYMD(Date date) {
 
         SimpleDateFormat mDateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd");
         String dateS = mDateFormat.format(date);
         return dateS;
+    }
+
+    public static String dateByString(String pTime) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(format.parse(pTime));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int day = 0;
+        int mouth = 0;
+        int year = 0;
+        day = c.get(Calendar.DAY_OF_MONTH);  //几日
+        mouth = c.get(Calendar.MONTH) + 1;
+        year = c.get(Calendar.YEAR);
+        return year+"-"+mouth+"-"+day;
     }
 
     public static String dayForWeek(String pTime) {
