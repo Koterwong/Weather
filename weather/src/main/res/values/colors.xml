@@ -9,7 +9,7 @@
     <color name="accent">#FF4081</color>
     <color name="primary_dark_text">#212121</color>
     <color name="secondary_dark_text">#727272</color>
-    <color name="primary_text">#FFFFFF</color>
+    <color name="primary_text">#ffffff</color>
     <color name="divider">#B6B6B6</color>
     <color name="translution">#00000000</color>
 </resources>

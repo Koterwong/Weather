@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -368,5 +369,15 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 //        public int getItemPosition(Object object) {
 //            return PagerAdapter.POSITION_NONE;
 //        }
+    }
+
+    @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            if (mDrawer.isDrawerOpen(GravityCompat.START)){
+                mDrawer.closeDrawers();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

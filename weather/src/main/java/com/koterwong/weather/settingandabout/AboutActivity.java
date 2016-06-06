@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.koterwong.weather.R;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -36,22 +36,22 @@ public class AboutActivity extends SwipeBackActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar
-                        .make(view, R.string.github_intro, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.ok, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                MaterialDialog dialog = new MaterialDialog(AboutActivity.this)
+                        .setTitle("点赞")
+                        .setMessage("去GitHub查看项目详细介绍，并给作者点个赞 o(∩_∩)o")
+                        .setCanceledOnTouchOutside(true)
+                        .setPositiveButton("好咧", new View.OnClickListener() {
+                            @Override public void onClick(View v) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.github.com/koterwong"));
                                 startActivity(intent);
                             }
-                        })
-                        .show();
+                        });
+                dialog.show();
             }
         });
-
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_content, new AboutActivityFragment())
+                .replace(R.id.fl_content, new AboutFragment())
                 .commit();
     }
 

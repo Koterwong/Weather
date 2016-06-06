@@ -18,9 +18,11 @@ import android.widget.TextView;
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseApplication;
 import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.utils.KKBorderDividerItemDecoration;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -73,10 +75,17 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
     private void initRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_manager_city);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new KKBorderDividerItemDecoration(
+                getResources().getDimensionPixelOffset(R.dimen.item_ver),
+                getResources().getDimensionPixelOffset(R.dimen.item_hor)
+        ));
         mCityDatas = mPresenter.querySavedCityList();
         if (mCityDatas != null && mCityDatas.size() > 0) {
             mAdapter = new ManagerCityAdapter();
-            mRecyclerView.setAdapter(mAdapter);
+            SlideInBottomAnimationAdapter adapter = new SlideInBottomAnimationAdapter(mAdapter);
+            adapter.setFirstOnly(false);
+            mRecyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
         new ItemTouchHelper(new MySimpleCallBack()).attachToRecyclerView(mRecyclerView);
     }

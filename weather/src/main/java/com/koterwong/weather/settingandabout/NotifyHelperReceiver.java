@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseApplication;
@@ -38,7 +39,12 @@ public class NotifyHelperReceiver extends BroadcastReceiver {
         //城市和天气数据
         String firstCity = SavedCityDBManager.getInstance(BaseApplication.getApplication()).queryCities().get(0);
         WeatherBean weatherBean = (WeatherBean) BaseApplication.getACache().getAsObject(firstCity);
+
         String aqi;
+        if (weatherBean==null){
+            Toast.makeText(BaseApplication.getApplication(),"请连接网络后重试",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (weatherBean.aqi != null) {
             aqi = WeatherJsonUtil.getAqi(weatherBean.aqi.city.aqi) + "AQI:" + weatherBean.aqi.city.aqi;
         } else {

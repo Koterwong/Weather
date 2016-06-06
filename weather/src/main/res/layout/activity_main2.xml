@@ -38,10 +38,10 @@
                 android:layout_alignTop="@id/background_layout"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin">
+                android:paddingEnd="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp">
 
                 <FrameLayout
                     android:id="@+id/fl_main"

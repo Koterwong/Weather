@@ -4,9 +4,11 @@
     <PreferenceCategory android:title="SimpleWeather">
 
         <Preference
-            android:summary="SimpleWeather1.0"
+            android:key="version"
+            android:summary="SimpleWeather1.2"
             android:title="版本" />
         <Preference
+            android:key="update"
             android:summary="当前版本为最新版本"
             android:title="更新" />
     </PreferenceCategory>
@@ -14,12 +16,15 @@
     <PreferenceCategory android:title="About More">
 
         <Preference
+            android:key="weather_data"
             android:summary="数据来源和风天气网（版权所有和风天气）"
             android:title="天气数据" />
         <Preference
+            android:key="location"
             android:summary="百度locSDK_6.23"
             android:title="定位" />
         <Preference
+            android:key="pic"
             android:summary="侵权删"
             android:title="图片" />
     </PreferenceCategory>
@@ -27,7 +32,7 @@
     <PreferenceCategory
         android:title="Author">
         <Preference
-            android:key="pre_address"
+            android:key="weibo"
             android:title="微博"
             android:summary="\@Koterwong">
         </Preference>
@@ -37,6 +42,7 @@
         android:title="dependencies"
         >
         <Preference
+            android:key="dependencies"
             android:summary="@string/dependencies"
             android:title="@string/thx" />
     </PreferenceCategory>

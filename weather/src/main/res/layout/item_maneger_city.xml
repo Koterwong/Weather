@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    app:cardCornerRadius="1dp"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    app:cardElevation="1dp"
+    style="@style/CardView.Light"
+    app:cardCornerRadius="3dp"
     android:layout_height="100dp">
     <RelativeLayout
-        android:background="@color/primary_text"
+        android:clickable="true"
+        android:background="@drawable/item_selector"
         android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

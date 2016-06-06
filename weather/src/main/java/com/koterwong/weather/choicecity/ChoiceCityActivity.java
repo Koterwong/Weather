@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,10 +20,12 @@ import com.koterwong.weather.choicecity.View.CityView;
 import com.koterwong.weather.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.choicecity.presenter.CityPresenterImp;
 import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.utils.KKBorderDividerItemDecoration;
 import com.koterwong.weather.utils.ToolsUtil;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -68,9 +69,13 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_city);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new CityListAdapter();
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        mRecyclerView.addItemDecoration(new KKBorderDividerItemDecoration(
+                getResources().getDimensionPixelOffset(R.dimen.item_ver),
+                getResources().getDimensionPixelOffset(R.dimen.item_hor)
+        ));
+        SlideInBottomAnimationAdapter adapter = new SlideInBottomAnimationAdapter(mAdapter);
+        adapter.setFirstOnly(false);
+        mRecyclerView.setAdapter(adapter);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         loadDatas();
     }
@@ -123,6 +128,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     @Override
     public void setProDatas(List<Province> mDatas) {
         mAdapter.setmProDatas(mDatas);
+        setTitle("选择城市");
     }
 
     @Override
@@ -150,7 +156,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
 
     @Override
     public void onBackPressed() {
-        if (mAdapter.currentLevel == CityListAdapter.LEVEL_CITY){
+        if (CityListAdapter.currentLevel == CityListAdapter.LEVEL_CITY){
             //回到省份
             mCityPresenter.loadDataList();
         }else{

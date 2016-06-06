@@ -60,8 +60,10 @@
         \n\t\tHelloCharts
         \n\t\tView-pager-transforms
         \n\t\tRxJava
-        \n\t\tRxAndroids
+        \n\t\tRxAndroid
+        \n\t\tRxPermission
         \n\t\tSwipeBackLayouts
-        \n\t\tASimpleCache</string>
-    <string name="weather">简单天气</string>
+        \n\t\tASimpleCache
+        \n\t\tMaterialDialog</string>
+    <string name="weather">Simple Weather</string>
 </resources>
