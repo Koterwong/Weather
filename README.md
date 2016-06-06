@@ -2,10 +2,16 @@
 
 ##界面展示
 <div align=center>
-<img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png" 
-    width="180" height="320"
-    alt="主界面"/>
+     <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png" 
+        width="180" height="320"
+        alt="主界面"/>
     <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-110017.png" 
+        width="180" height="320"
+        alt="主要功能"/>
+    <img src="https://https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105828.png" 
+        width="180" height="320"
+        alt="主要功能"/>
+    <img src="https://github.com/Koterwong/Weather/blob/master/screen/Screenshot_20160605-105846.png" 
         width="180" height="320"
         alt="主要功能"/>
 </div>
