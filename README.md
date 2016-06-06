@@ -3,14 +3,13 @@
 ##界面展示
 <div align=center>
 <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png" 
-    width="400" height="400"
+    width="180" height="320"
     alt="主界面"/>
+    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-110017.png" 
+        width="180" height="320"
+        alt="主要功能"/>
 </div>
-<div align=center>
-<img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-110017.png" 
-    width="400" height="400"
-    alt="主要功能"/>
-</div>
+
 
 ## 介绍
 
