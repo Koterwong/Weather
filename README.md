@@ -11,7 +11,7 @@
     <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105828.png" 
         width="180" height="320"
         alt=""/>
-    <img src="https://github.com/Koterwong/Weather/blob/master/screen/Screenshot_20160605-105846.png" 
+    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105846.png" 
         width="180" height="320"
         alt=""/>
 </div>
