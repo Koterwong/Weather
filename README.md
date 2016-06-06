@@ -1,9 +1,8 @@
 #[下载软件](http://fir.im/koterweather)
 
 ##界面展示
-![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/1.png)
-![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/2.png)
-![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/8.png)
+![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png)
+![](https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png)
 ## 介绍
 
 外观设计高仿了小沃天气，天气数据来源百度API平台和风数据。主要包含以下模块。
