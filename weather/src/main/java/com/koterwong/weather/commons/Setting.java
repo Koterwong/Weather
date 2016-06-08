@@ -37,4 +37,8 @@ public class Setting {
         return mPref.getBoolean(key, defaultValue);
     }
 
+    public void test(){
+
+    }
+
 }
