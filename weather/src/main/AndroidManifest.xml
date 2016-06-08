@@ -35,7 +35,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.SplashActivity"
+            android:name=".ui.main.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen">
             <intent-filter>
@@ -45,46 +46,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity2"
+            android:name=".ui.main.MainActivity2"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".choicecity.ChoiceCityActivity"
-            android:parentActivityName=".main.MainActivity2"
+            android:name=".ui.choicecity.ChoiceCityActivity"
+            android:parentActivityName=".ui.main.MainActivity2"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Translucent" />
         <activity
-            android:name=".managercity.ManagerCityActivity"
+            android:name=".ui.managercity.ManagerCityActivity"
             android:label="@string/title_activity_manager_city"
             android:screenOrientation="portrait"
-            android:parentActivityName=".main.MainActivity2"
+            android:parentActivityName=".ui.main.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.koterwong.weather.main.MainActivity2" />
+                android:value=".ui.main.MainActivity2" />
         </activity>
 
 
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".settingandabout.setting.SettingsActivity"
+            android:name=".ui.settingandabout.setting.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".main.MainActivity2"
+            android:parentActivityName=".ui.main.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.koterwong.weather.main.MainActivity2" />
+                android:value=".ui.main.MainActivity2" />
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".settingandabout.about.AboutActivity"
+            android:name=".ui.settingandabout.about.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar.Translucent" />
 
-        <service android:name=".settingandabout.setting.AutoUpdateService" />
+        <service android:name=".ui.settingandabout.setting.AutoUpdateService" />
 
-        <receiver android:name=".settingandabout.setting.NotifyHelperReceiver">
+        <receiver android:name=".ui.settingandabout.setting.NotifyHelperReceiver">
             <intent-filter>
                 <action android:name="com.koterwong.weather.Notification" />
             </intent-filter>
