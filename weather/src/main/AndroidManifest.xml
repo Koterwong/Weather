@@ -28,12 +28,13 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
-        android:name=".BaseApplication"
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
             android:name=".ui.main.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -49,12 +50,13 @@
             android:name=".ui.main.MainActivity2"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".ui.choicecity.ChoiceCityActivity"
+            android:label="@string/choice_city"
             android:parentActivityName=".ui.main.MainActivity2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.Translucent" />
+            android:theme="@style/AppTheme.NoActionBar.TranslucentStatue" />
         <activity
             android:name=".ui.managercity.ManagerCityActivity"
             android:label="@string/title_activity_manager_city"
@@ -66,11 +68,9 @@
                 android:value=".ui.main.MainActivity2" />
         </activity>
 
-
-
         <activity
             android:screenOrientation="portrait"
-            android:name=".ui.settingandabout.setting.SettingsActivity"
+            android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".ui.main.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar.Translucent">
@@ -80,12 +80,12 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".ui.settingandabout.about.AboutActivity"
+            android:name=".ui.about.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar.Translucent" />
 
-        <service android:name=".ui.settingandabout.setting.AutoUpdateService" />
+        <service android:name=".ui.setting.AutoUpdateService" />
 
-        <receiver android:name=".ui.settingandabout.setting.NotifyHelperReceiver">
+        <receiver android:name=".ui.setting.NotifyHelperReceiver">
             <intent-filter>
                 <action android:name="com.koterwong.weather.Notification" />
             </intent-filter>

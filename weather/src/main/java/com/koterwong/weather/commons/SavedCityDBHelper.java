@@ -22,23 +22,11 @@ public class SavedCityDBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, VERSION);
     }
 
-    /**
-     * 创建表
-     * @param db
-     */
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+    @Override public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_CITY);
     }
 
-    /**
-     * 更新表
-     * @param db
-     * @param oldVersion
-     * @param newVersion
-     */
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 }

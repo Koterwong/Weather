@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
@@ -146,7 +146,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
         @Override
         public ManagerCityHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ManagerCityHolder(LayoutInflater.from(BaseApplication.getApplication()).
+            return new ManagerCityHolder(LayoutInflater.from(MyApp.getApp()).
                     inflate(R.layout.item_maneger_city, parent, false));
         }
 

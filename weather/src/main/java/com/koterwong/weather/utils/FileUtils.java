@@ -2,7 +2,7 @@ package com.koterwong.weather.utils;
 
 import android.text.format.Formatter;
 
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,11 +23,11 @@ public class FileUtils {
     public static String getCacheFilePath() {
         StringBuilder builder = new StringBuilder();
         builder
-                .append(BaseApplication.getApplication().getCacheDir().getAbsolutePath())
+                .append(MyApp.getApp().getCacheDir().getAbsolutePath())
                 .append(File.separator)
-                .append(BaseApplication.CACHE_NAME)
+                .append(MyApp.CACHE_NAME)
                 .append(File.separator);
-        L.d(TAG, builder.toString());
+        LogUtils.d(TAG, builder.toString());
         return builder.toString();
     }
 
@@ -53,7 +53,7 @@ public class FileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Formatter.formatFileSize(BaseApplication.getApplication(), blockSize);
+        return Formatter.formatFileSize(MyApp.getApp(), blockSize);
     }
 
     /**

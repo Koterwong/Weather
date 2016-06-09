@@ -11,7 +11,7 @@
             android:key="switch_update"
             android:defaultValue="false"
             android:summary="开启自动更新天气，只有需要时才会请求网络，并不会在后台消耗流量，建议开启每4小时更新"
-            android:title="自动更新" />
+            android:title="天气自动更新" />
         <ListPreference
             android:key="sync_frequency"
             android:defaultValue="4"

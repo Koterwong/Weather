@@ -10,4 +10,5 @@
     <dimen name="bottom_daily">140dp</dimen>
     <dimen name="item_ver">10dp</dimen>
     <dimen name="item_hor">10dp</dimen>
+    <dimen name="content_item_margen">10dp</dimen>
 </resources>

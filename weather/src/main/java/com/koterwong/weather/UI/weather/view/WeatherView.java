@@ -18,23 +18,21 @@ public interface WeatherView {
 
     void showErrorVisible();
 
-    void setmSwipeRefreshLayoutStatue(boolean statue);
+    void setSwipeRefreshLayoutStatue(boolean statue);
 
     boolean isSwipeRefreshLayoutRefreshing();
 
-    void setmWeatherIcon(int ResId);
+    void setWeatherIcon(int ResId);
 
-    void setmWeatherDes(String mWeatherDes);
+    void setWeatherDes(String mWeatherDes);
 
-    void setmWeatherTmp(String mWeatherTmp);
+    void setWeatherTmp(String mWeatherTmp);
 
-    void setmWeatherAqi(String mWeatherAqi);
+    void setWeatherUpdateTime(String time);
 
-    void setmWeatherHum(String mWeatherHum);
+    void refreshDailyView(List<WeatherBean.DailyForecastBean> mDailyForecastList);
 
-    void setmWeatherWind(String mWeatherWind);
+    void refreshSuggestView(WeatherBean.SuggestionBean suggestionBean);
 
-    void setmWeatherUpdateTime(String mWeatherUpdateTime);
-
-    void refreshWeatherDaily(List<WeatherBean.DailyForecastBean> mDailyForecastList);
+    void refreshOverview(WeatherBean.NowBean nowBean);
 }

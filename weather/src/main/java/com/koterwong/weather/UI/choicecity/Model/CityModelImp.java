@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.utils.ThreadManager;
@@ -24,11 +24,7 @@ import java.util.List;
  */
 public class CityModelImp implements CityModel {
 
-
-//    private static String DB_Name = "china_city.db";
-
-    @Override
-    public void queryProvince(CityModelImp.QueryProListener listener) {
+    @Override public void queryProvince(CityModelImp.QueryProListener listener) {
         SQLiteDatabase cityDb = DBManager.getCityDataBase(DBManager.getDBCopyPath());
         Cursor cursor = cityDb.query("T_Province", null, null, null, null, null, null);
         if (cursor == null) {
@@ -49,10 +45,8 @@ public class CityModelImp implements CityModel {
         }
     }
 
-    @Override
-    public void queryCity(String ProID, CityModelImp.QueryCityListener listener) {
+    @Override public void queryCity(String ProID, CityModelImp.QueryCityListener listener) {
         SQLiteDatabase cityDb = DBManager.getCityDataBase(DBManager.getDBCopyPath());
-
         Cursor cursor = cityDb.query("T_City", null, "ProID = ?", new String[]{ProID}, null, null, null);
         if (cursor == null) {
             listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
@@ -71,18 +65,16 @@ public class CityModelImp implements CityModel {
         cursor.close();
     }
 
-    @Override
-    public void loadCityDataBase(final CityModelImp.LoadCityDBListener listener) {
+    @Override public void loadCityDataBase(final CityModelImp.LoadCityDBListener listener) {
         File file = new File(DBManager.getDBCopyPath());
         if (file.exists()) {
             listener.copySuccess();
             return;
         }
-        /*使用线程池，将数据库copy到手机内存*/
+        //使用线程池，将数据库copy到手机内存
         ThreadManager.getInstance().createShortPool().execute(new Runnable() {
-            @Override
-            public void run() {
-                Resources resources = BaseApplication.getApplication().getResources();
+            @Override public void run() {
+                Resources resources = MyApp.getApp().getResources();
                 InputStream is = resources.openRawResource(R.raw.china_city);
                 FileOutputStream fos = null;
                 try {

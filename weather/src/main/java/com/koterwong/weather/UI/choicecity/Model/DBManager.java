@@ -3,7 +3,7 @@ package com.koterwong.weather.ui.choicecity.Model;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 
 import java.io.File;
 
@@ -24,7 +24,6 @@ public class DBManager {
         return db;
     }
 
-
     /**
      * 获取数据库Copy的位置.
      */
@@ -34,7 +33,7 @@ public class DBManager {
                 .append("data")
                 .append(Environment.getDataDirectory().getAbsolutePath())
                 .append(File.separator)
-                .append(BaseApplication.getApplication().getPackageName())
+                .append(MyApp.getApp().getPackageName())
                 .append(File.separator)
                 .append("databases")
                 .append(File.separator)

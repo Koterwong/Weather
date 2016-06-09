@@ -16,14 +16,14 @@
         <TextView
             android:id="@+id/tv_city"
             android:textSize="22sp"
-            android:textColor="@color/secondary_dark_text"
+            android:textColor="@color/color_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         
         <TextView
             android:id="@+id/tv_tmp"
             android:textSize="16sp"
-            android:textColor="@color/secondary_dark_text"
+            android:textColor="@color/color_text_value"
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -32,7 +32,7 @@
             android:textSize="12sp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/tv_tmp"
-            android:textColor="@color/secondary_dark_text"
+            android:textColor="@color/color_text_value"
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -1,6 +1,6 @@
 package com.koterwong.weather.ui.managercity.presenter;
 
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;
@@ -21,12 +21,14 @@ public class ManagerCityPresenter {
     }
 
     public List<String> querySavedCityList(){
-       return SavedCityDBManager.getInstance(BaseApplication.getApplication()).queryCities();
+       return SavedCityDBManager
+               .getInstance(MyApp.getApp())
+               .queryCities();
     }
 
     public void deleteCity(String cityName){
         SavedCityDBManager
-                .getInstance(BaseApplication.getApplication())
+                .getInstance(MyApp.getApp())
                 .deleteCity(cityName);
     }
 

@@ -2,11 +2,11 @@ package com.koterwong.weather.ui.main.presenter;
 
 import android.app.Activity;
 
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
-import com.koterwong.weather.BaseApplication;
-import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.commons.SavedCityDBManager;
-import com.koterwong.weather.ui.main.model.MainModel;
+import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.ui.main.model.MainModelImpl;
 import com.koterwong.weather.ui.main.view.MainView;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -26,9 +26,8 @@ public class MainPresenterImp implements MainPresenter {
         this.mMainView = mMainView;
     }
 
-    @Override
-    public void switchNavigation(final int position) {
-        BaseApplication.getHandler().postDelayed(new Runnable() {
+    @Override public void switchNavigation(final int position) {
+        MyApp.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 switch (position) {
@@ -46,11 +45,10 @@ public class MainPresenterImp implements MainPresenter {
                         break;
                 }
             }
-        }, 220);
+        }, 240);
     }
 
-    @Override
-    public void loadCities() {
+    @Override public void loadCities() {
         SavedCityDBManager mDatabase = SavedCityDBManager.getInstance((Activity) mMainView);
         List<String> mCityList = mDatabase.queryCities();
         if (mCityList != null && mCityList.size() > 0) {
@@ -68,8 +66,7 @@ public class MainPresenterImp implements MainPresenter {
                         public void call(Boolean aBoolean) {
                             if (aBoolean) {
                                 Setting.putBoolean(Setting.IS_ALLOW_LOCATION, true);
-                                mMainView.setToolbarTitle("正在定位...");
-                                location();
+                                MainPresenterImp.this.location();
                             } else {
                                 Setting.putBoolean(Setting.IS_ALLOW_LOCATION, false);
                             }
@@ -82,30 +79,26 @@ public class MainPresenterImp implements MainPresenter {
      * 定位城市。
      */
     private void location() {
-        final MainModel mainModel = new MainModel();
-        mainModel.locationCity(new MainModel.LocationListener() {
-            @Override
-            public void locationSuccess(String city) {
+        final MainModelImpl mainModelImpl = new MainModelImpl();
+        mainModelImpl.locationCity(new MainModelImpl.LocationListener() {
+            @Override public void locationSuccess(String city) {
                 mMainView.addCity(city);
-                //添加到数据库
-                addCity(city);
+                mMainView.setToolbarTitle(((Activity)mMainView).getResources().getString(R.string.app_name));
+                MainPresenterImp.this.addCityToDB(city);
             }
 
-            @Override
-            public void locationError() {
-                mMainView.setToolbarTitle("定位失败");
+            @Override public void locationError() {
+
             }
         });
     }
 
-    @Override
-    public void addCity(String cityName) {
+    @Override public void addCityToDB(String cityName) {
         SavedCityDBManager mDatabase = SavedCityDBManager.getInstance((Activity) mMainView);
         mDatabase.addCity(cityName);
     }
 
-    @Override
-    public void deleteCity(String cityName) {
+    @Override public void deleteCity(String cityName) {
         SavedCityDBManager mDatabase = SavedCityDBManager.getInstance((Activity) mMainView);
         mDatabase.deleteCity(cityName);
     }

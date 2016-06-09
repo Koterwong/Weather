@@ -29,12 +29,11 @@ import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
 import com.koterwong.weather.ui.main.view.MainView;
 import com.koterwong.weather.ui.managercity.ManagerCityActivity;
-import com.koterwong.weather.ui.settingandabout.about.AboutActivity;
-import com.koterwong.weather.ui.settingandabout.setting.AutoUpdateService;
-import com.koterwong.weather.ui.settingandabout.setting.ServiceStatueUtils;
-import com.koterwong.weather.ui.settingandabout.setting.SettingsActivity;
+import com.koterwong.weather.ui.about.AboutActivity;
+import com.koterwong.weather.ui.setting.AutoUpdateService;
+import com.koterwong.weather.ui.setting.ServiceStatueUtils;
+import com.koterwong.weather.ui.setting.SettingsActivity;
 import com.koterwong.weather.ui.weather.WeatherLazyFragment;
-import com.koterwong.weather.utils.L;
 import com.koterwong.weather.utils.ShareUtils;
 
 import java.util.ArrayList;
@@ -52,42 +51,25 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     private final int REQUEST_CODE_ADD = 0;
     private final int REQUEST_CODE_DELETE = 1;
-    /**
-     * 判断是否为，额外添加的Activity；
-     */
-    private boolean isAddCity = false;
 
-    //UI reference
     private DrawerLayout mDrawer;
-    private NavigationView mNvView;
     private Toolbar mToolbar;
-    private ActionBarDrawerToggle mToggle;
 
-    //RlContent
     private RelativeLayout mRlContent;
-    private Button mChoiceBtn;
 
-    //viewPager
     private ViewPager mViewPager;
     private List<String> mCityList;
-
-    //mPresenter
     private MainPresenter mPresenter;
-
-    //adapter
     private MainAdapter mAdapter;
-    //mFragments
     private Map<String, Fragment> mFragments;
 
     private static final String TAG = "MainActivity2";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         mPresenter = new MainPresenterImp(this);
         mPresenter.loadCities();
-        //判断自动更新服务运行状态。服务不再运行，才去开启服务。
         if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
             if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)) {
                 startService(new Intent(this, AutoUpdateService.class));
@@ -97,24 +79,23 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     private void initView() {
         setContentView(R.layout.activity_main2);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setToolbarTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(mToggle);
-        //Drawer的拉出隐藏，改变android.R.id.home的图标，并带有的动画效果。
         mToggle.syncState();
-        mNvView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView mNvView = (NavigationView) findViewById(R.id.nav_view);
         if (mNvView != null) {
             mNvView.setNavigationItemSelectedListener(this);
         }
         //没有城市界面。
         mRlContent = (RelativeLayout) findViewById(R.id.rl_content_choice);
-        mChoiceBtn = (Button) findViewById(R.id.btn_choice_city);
+        Button mChoiceBtn = (Button) findViewById(R.id.btn_choice_city);
         mChoiceBtn.setOnClickListener(this);
         //viewPager
         mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
@@ -122,17 +103,11 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         mViewPager.setOffscreenPageLimit(3);
         //设置ViewPager动画
         mViewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                setToolbarTitle(mCityList.get(position));
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                L.d(TAG, "position:" + position + "----positionOffset:" + positionOffset + "----positionOffsetPixels" + positionOffsetPixels);
-            }
-        });
+//        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+//            @Override public void onPageSelected(int position) {
+//                setToolbarTitle(mCityList.get(position));
+//            }
+//        });
     }
 
     /**
@@ -141,39 +116,20 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
      *
      * @param mCityList 城市信息
      */
-    @Override
-    public void setCities(List<String> mCityList) {
+    @Override public void setCities(List<String> mCityList) {
         this.mCityList = mCityList;
         String cityName = mCityList.get(0);
-        setToolbarTitle(cityName);
-        /*设置标题，必须在setSupport之前，或者onResume（）*/
-        setSupportActionBar(mToolbar);
+//        setToolbarTitle(cityName);
         if (mAdapter == null) {
-            //启动app，并且查询到城市，mAdapter==null
             mAdapter = new MainAdapter(getSupportFragmentManager());
             mViewPager.setAdapter(mAdapter);
         }
-//        else{
-//            //从其他界面跳转过来，mAdapter!=null,添加了城市
-//            this.mCityList.clear();
-//            this.mCityList = mCityList;
-//            mAdapter.notifyDataSetChanged();
-//        }
     }
 
-    /**
-     * 添加单个城市。
-     *
-     * @param cityName
-     */
-    @Override
-    public void addCity(String cityName) {
+    @Override public void addCity(String cityName) {
         if (mAdapter == null) {
-            //将天气界面值为可见。
             setContentVisible(true);
-            //之前没有在数据库中查询到城市.通过定位或手动选择了城市。
-            //设置标题
-            setToolbarTitle(cityName);
+//            setToolbarTitle(cityName);
             mCityList = new ArrayList<>();
             mCityList.add(cityName);
             mAdapter = new MainAdapter(getSupportFragmentManager());
@@ -186,72 +142,49 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         }
     }
 
-    /*设置Toolbar标题*/
-    @Override
-    public void setToolbarTitle(String title) {
+    @Override public void setToolbarTitle(String title) {
         mToolbar.setTitle(title);
     }
 
-    /**
-     * 设置两种界面的显示方式
-     *
-     * @param visible true：天气界面显示 false：选择城市界面显示
-     */
-    @Override
-    public void setContentVisible(boolean visible) {
+    @Override public void setContentVisible(boolean visible) {
         mViewPager.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
         mRlContent.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
     }
 
-    /*Nav点击事件的处理 */
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
+    @Override public boolean onNavigationItemSelected(MenuItem item) {
         item.setChecked(true);
         mDrawer.closeDrawer(GravityCompat.START);
         mPresenter.switchNavigation(item.getItemId());
         return true;
     }
 
-
-    /*跳转到选择城市的Activity*/
-    @Override
-    public void switch2ChoiceCityActivity() {
+    @Override public void switch2ChoiceCityActivity() {
         Intent mIntent = new Intent(this, ChoiceCityActivity.class);
         this.startActivityForResult(mIntent, REQUEST_CODE_ADD);
     }
 
-    /*跳转到管理城市的Activity*/
-    @Override
-    public void switch2ManagerCityActivity() {
+    @Override public void switch2ManagerCityActivity() {
         Intent mIntent = new Intent(this, ManagerCityActivity.class);
         this.startActivityForResult(mIntent, REQUEST_CODE_DELETE);
     }
 
-    /*跳转到设置的Activity*/
-    @Override
-    public void switch2SettingActivity() {
+    @Override public void switch2SettingActivity() {
         this.startActivity(new Intent(this, SettingsActivity.class));
     }
 
-    /*跳转到关于的Activity*/
-    @Override
-    public void switch2AboutActivity() {
+    @Override public void switch2AboutActivity() {
         this.startActivity(new Intent(this, AboutActivity.class));
     }
 
-    /* 跳转到ChoiceActivity*/
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         Intent mIntent = new Intent(this, ChoiceCityActivity.class);
         startActivityForResult(mIntent, REQUEST_CODE_ADD);
     }
 
-    /* 选择城市界面返回的结果*/
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case REQUEST_CODE_ADD: //从没有城市数据到添加一个城市数据
+            case REQUEST_CODE_ADD:
+                //从没有城市数据到添加一个城市数据
                 if (resultCode == RESULT_OK) {
                     String city = data.getStringExtra("city");
                     if (city == null) {
@@ -259,8 +192,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                         return;
                     }
                     this.addCity(city);
-                    /*将城市保存到数据库*/
-                    mPresenter.addCity(city);
+                    mPresenter.addCityToDB(city);
                 }
                 break;
             case REQUEST_CODE_DELETE:
@@ -288,21 +220,18 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                         /**
                          * 从新设置标题，修复标题和天气信息不一致bug。
                          */
-                        setToolbarTitle(mCityList.get(mViewPager.getCurrentItem()));
+//                        setToolbarTitle(mCityList.get(mViewPager.getCurrentItem()));
                     }
                 }
         }
-//        super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 if (mDrawer.isDrawerOpen(GravityCompat.START)){
@@ -318,9 +247,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         return true;
     }
 
-    /**
-     * mAdapter
-     */
     class MainAdapter extends FragmentStatePagerAdapter {
 
         public MainAdapter(FragmentManager fm) {
@@ -349,13 +275,11 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
             mViewPager.setCurrentItem(mCityList.size() - 1);
         }
 
-        @Override
-        public Fragment getItem(int position) {
+        @Override public Fragment getItem(int position) {
             return mFragments.get(mCityList.get(position));
         }
 
-        @Override
-        public int getCount() {
+        @Override public int getCount() {
             return mFragments == null ? 0 : mFragments.size();
         }
 

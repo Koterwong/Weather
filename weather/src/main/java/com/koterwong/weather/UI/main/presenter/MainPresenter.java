@@ -8,7 +8,7 @@ public interface MainPresenter {
     void switchNavigation(int position);
 
     void loadCities();
-    void addCity(String cityName);
+    void addCityToDB(String cityName);
     void deleteCity(String cityName);
 
 }

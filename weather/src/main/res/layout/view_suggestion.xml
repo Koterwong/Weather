@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/content_item_bg"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <!--舒适度指数-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+        <ImageView
+            style="@style/suggest_img"
+            android:src="@drawable/index_dress"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/index_dress_title"
+                style="@style/suggest_title"
+                tools:text="数值指数"
+                />
+
+            <TextView
+                android:id="@+id/index_dress_detail"
+                style="@style/suggest_detail"
+                tools:text="天气较好，温度较高，天气较热，但有微风相伴，还是比较适宜旅游的，不过外出时要注意防暑防晒哦！"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_300"/>
+
+    <!--相对湿度-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            style="@style/suggest_img"
+            android:src="@drawable/index_sports"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/index_sport_title"
+                style="@style/suggest_title"
+                />
+
+            <TextView
+                android:id="@+id/index_sport_detail"
+                style="@style/suggest_detail"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_300"/>
+
+    <!--防晒指数-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            style="@style/suggest_img"
+            android:src="@drawable/index_sun"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/index_sun_title"
+                style="@style/suggest_title"
+                />
+
+            <TextView
+                android:id="@+id/index_sun_detail"
+                style="@style/suggest_detail"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_300"/>
+
+    <!--感冒-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            style="@style/suggest_img"
+            android:padding="1dp"
+            android:src="@drawable/index_fluen"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/index_fluen_title"
+                style="@style/suggest_title"
+                />
+
+            <TextView
+                android:id="@+id/index_fluen_detail"
+                style="@style/suggest_detail"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_300"/>
+
+    <!--旅游指数-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            style="@style/suggest_img"
+            android:padding="2dp"
+            android:src="@drawable/index_travel"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/index_travel_title"
+                style="@style/suggest_title"
+                />
+
+            <TextView
+                android:id="@+id/index_travel_detail"
+                style="@style/suggest_detail"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_300"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            style="@style/suggest_img"
+            android:src="@drawable/index_car_wash"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginLeft="72dp"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/index_car_wash_title"
+                style="@style/suggest_title"
+                />
+
+            <TextView
+                android:id="@+id/index_car_wash_detail"
+                style="@style/suggest_detail"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">天气</string>
+    <string name="app_name">简单天气</string>
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
@@ -66,4 +66,7 @@
         \n\t\tASimpleCache
         \n\t\tMaterialDialog</string>
     <string name="weather">Simple Weather</string>
+    <string name="choice_city">选择城市</string>
+    <string name="has_new_version">有最近版本，赶紧下载更新吧！</string>
+    <string name="this_is_new_version">当前版本为最新版本</string>
 </resources>

@@ -1,11 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -27,14 +27,14 @@
     <style name="weather_detail">
         <item name="android:drawablePadding">3dp</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColor">@color/color_text_title</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="daily_week_text">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/weather_text_color</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -43,15 +43,70 @@
 
     <style name="daily_week_img">
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">25dp</item>
-        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:padding">3dp</item>
     </style>
 
     <style name="KKCardView" parent="CardView">
         <item name="contentPadding">0dp</item>
-        <item name="cardCornerRadius">8dp</item>
+        <item name="cardCornerRadius">2dp</item>
         <item name="cardPreventCornerOverlap">false</item>
-        <item name="cardElevation">8dp</item>
+        <item name="android:layout_marginLeft">@dimen/content_item_margen</item>
+        <item name="android:layout_marginRight">@dimen/content_item_margen</item>
+        <item name="cardElevation">2dp</item>
     </style>
 
+    <style name="overview_img">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:tint">@color/grey</item>
+        <item name="android:alpha">0.9</item>
+    </style>
+
+    <style name="overview_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Caption</item>
+        <item name="android:textColor">@color/weather_text_color</item>
+    </style>
+
+    <style name="overview_value">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/weather_text_color_second</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:alpha">1.0</item>
+    </style>
+
+    <style name="suggest_img">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:tint">@color/teal</item>
+        <item name="android:alpha">0.9</item>
+    </style>
+
+
+    <style name="suggest_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/weather_text_color_second</item>
+    </style>
+
+    <style name="suggest_detail">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/weather_text_color_third</item>
+    </style>
 </resources>

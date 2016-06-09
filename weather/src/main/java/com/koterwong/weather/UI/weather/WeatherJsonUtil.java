@@ -6,13 +6,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.koterwong.weather.BaseApplication;
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
+import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.Setting;
 import com.koterwong.weather.utils.ACache;
 import com.koterwong.weather.utils.JsonUtils;
-import com.koterwong.weather.utils.L;
+
+import java.util.Calendar;
 
 /**
  * Author：Koterwong，Data：2016/4/24.
@@ -26,15 +27,11 @@ public class WeatherJsonUtil {
      * @param json
      * @return 失败返回null
      */
-    public static WeatherBean parseJSON(String cityName,String json) {
+    public static WeatherBean parseJSON(String cityName, String json) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
-        L.d(json);
         try {
-            /**
-             * 解析天气数据。
-             */
             JsonParser parser = new JsonParser();
             JsonObject jsonObject = parser.parse(json).getAsJsonObject();
             JsonArray jsonArray = jsonObject.getAsJsonArray("HeWeather data service 3.0");
@@ -44,8 +41,8 @@ public class WeatherJsonUtil {
                 /*数据请求正确*/
                 WeatherBean weatherBean = JsonUtils.deserialize(jsonObject1, WeatherBean.class);
                 /*将WeatherBean保存到本地，并设置过期时间,默认为8*/
-                int time = Integer.valueOf(Setting.getString(Setting.AUTO_DELETE_CACHE_TIME,"8"));
-                BaseApplication.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * time);
+                int time = Integer.valueOf(Setting.getString(Setting.AUTO_DELETE_CACHE_TIME, "8"));
+                MyApp.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * time);
                 return weatherBean;
             } else {
                 //数据请求失败
@@ -64,7 +61,51 @@ public class WeatherJsonUtil {
      * @return success weather，failed null
      */
     public static WeatherBean getLocWeatherBean(String city) {
-        return (WeatherBean) BaseApplication.getACache().getAsObject(city);
+        return (WeatherBean) MyApp.getACache().getAsObject(city);
+    }
+
+    public static int getWeatherImgResType2(String weather) {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int resId = 0;
+        if (6 <= hour && 18 >= hour) {
+            if ("晴".equals(weather)) {
+                resId = R.drawable.weather_clear_day;
+            } else if (weather.contains("云")||weather.contains("阴")) {
+                resId = R.drawable.weather_clouds_day;
+            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)) {
+                resId = R.drawable.weather_drizzle_day;
+            } else if (weather.contains("雨")) {
+                resId = R.drawable.weather_showers_day;
+            } else if (weather.contains("雪")) {
+                resId = R.drawable.weather_snow_day;
+            } else if (weather.contains("雷")) {
+                resId = R.drawable.weather_storm_day;
+            } else if (weather.contains("风")) {
+                resId = R.drawable.weather_wind_day;
+            } else {
+                resId = R.drawable.weather_none_available;
+            }
+        } else {
+            if ("晴".equals(weather)) {
+                resId = R.drawable.weather_clear_night;
+            } else if (weather.contains("云")) {
+                resId = R.drawable.weather_clouds_night;
+            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)) {
+                resId = R.drawable.weather_drizzle_night;
+            } else if (weather.contains("雨")) {
+                resId = R.drawable.weather_showers_night;
+            } else if (weather.contains("雪")) {
+                resId = R.drawable.weather_snow_night;
+            } else if (weather.contains("雷")) {
+                resId = R.drawable.weather_storm_night;
+            } else if (weather.contains("风")) {
+                resId = R.drawable.weather_wind_night;
+            } else {
+                resId = R.drawable.weather_none_available;
+            }
+        }
+        return resId;
     }
 
     public static int getWeatherImage(String weather) {
@@ -100,7 +141,6 @@ public class WeatherJsonUtil {
         return R.mipmap.weather12;
     }
 
-    /*获取空气质量指数*/
     public static String getAqi(String aqi) {
         int aqiNumber = Integer.parseInt(aqi);
         if (aqiNumber <= 50) {

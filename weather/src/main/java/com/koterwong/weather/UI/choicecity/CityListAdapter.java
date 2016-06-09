@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
 import com.koterwong.weather.R;
@@ -56,7 +56,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
 
     @Override
     public CityListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(BaseApplication.getApplication()).
+        View inflate = LayoutInflater.from(MyApp.getApp()).
                 inflate(R.layout.item_city, parent, false);
         return new CityListHolder(inflate);
     }

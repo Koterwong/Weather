@@ -14,10 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.BaseApplication;
+import com.koterwong.weather.MyApp;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -77,7 +76,7 @@ public class SplashActivity extends AppCompatActivity {
         ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                this,mRootView,"");
         ActivityCompat.startActivity(this,intent,compat.toBundle());
-        BaseApplication.getHandler().postDelayed(new Runnable() {
+        MyApp.getHandler().postDelayed(new Runnable() {
             @Override public void run() {
                 finish();
             }
