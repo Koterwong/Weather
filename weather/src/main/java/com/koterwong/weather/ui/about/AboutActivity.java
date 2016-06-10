@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.koterwong.weather.R;
+import com.koterwong.weather.commons.StatueBarCompat;
 
 import me.drakeet.materialdialog.MaterialDialog;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
@@ -16,10 +17,10 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class AboutActivity extends SwipeBackActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        StatueBarCompat.compat(this);
 
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);

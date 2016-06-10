@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.commons.StatueBarCompat;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;
 import com.koterwong.weather.utils.KKBorderDividerItemDecoration;
@@ -53,6 +54,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     private void initView() {
         setContentView(R.layout.activity_manager_city);
+        StatueBarCompat.compat(this);
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 

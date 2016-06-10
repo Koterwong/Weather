@@ -108,7 +108,7 @@ public class SettingsFragment extends PreferenceFragment implements
 
     @Override public boolean onPreferenceClick(Preference preference) {
         if (preference == mCacheSizePref) {
-           showDialog("清理缓存","确定要清除缓存吗？");
+           showDialog("清理缓存",getActivity().getString(R.string.clear_cache));
         }
         return true;
     }

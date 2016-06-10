@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -24,6 +26,7 @@ import android.widget.RelativeLayout;
 import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
 import com.koterwong.weather.R;
 import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.commons.StatueBarCompat;
 import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
@@ -79,6 +82,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     private void initView() {
         setContentView(R.layout.activity_main2);
+        StatueBarCompat.compat(this);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setToolbarTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);
@@ -159,26 +163,35 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
     }
 
     @Override public void switch2ChoiceCityActivity() {
-        Intent mIntent = new Intent(this, ChoiceCityActivity.class);
-        this.startActivityForResult(mIntent, REQUEST_CODE_ADD);
+        Intent intent = new Intent(this, ChoiceCityActivity.class);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,mToolbar,"");
+        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_ADD,compat.toBundle());
     }
 
     @Override public void switch2ManagerCityActivity() {
-        Intent mIntent = new Intent(this, ManagerCityActivity.class);
-        this.startActivityForResult(mIntent, REQUEST_CODE_DELETE);
+        Intent intent = new Intent(this, ManagerCityActivity.class);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,mToolbar,"");
+        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_DELETE,compat.toBundle());
     }
 
     @Override public void switch2SettingActivity() {
-        this.startActivity(new Intent(this, SettingsActivity.class));
+        Intent intent = new Intent(this, SettingsActivity.class);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,mToolbar,"");
+        ActivityCompat.startActivity(this,intent,compat.toBundle());
     }
 
     @Override public void switch2AboutActivity() {
-        this.startActivity(new Intent(this, AboutActivity.class));
+        Intent intent = new Intent(this, AboutActivity.class);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,mToolbar,"");
+        ActivityCompat.startActivity(this,intent,compat.toBundle());
     }
 
     @Override public void onClick(View v) {
-        Intent mIntent = new Intent(this, ChoiceCityActivity.class);
-        startActivityForResult(mIntent, REQUEST_CODE_ADD);
+        this.switch2ChoiceCityActivity();
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -73,7 +73,7 @@ public class WeatherJsonUtil {
                 resId = R.drawable.weather_clear_day;
             } else if (weather.contains("云")||weather.contains("阴")) {
                 resId = R.drawable.weather_clouds_day;
-            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)) {
+            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)||"阵雨".equals(weather)) {
                 resId = R.drawable.weather_drizzle_day;
             } else if (weather.contains("雨")) {
                 resId = R.drawable.weather_showers_day;
@@ -91,7 +91,7 @@ public class WeatherJsonUtil {
                 resId = R.drawable.weather_clear_night;
             } else if (weather.contains("云")) {
                 resId = R.drawable.weather_clouds_night;
-            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)) {
+            } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)||"阵雨".equals(weather)) {
                 resId = R.drawable.weather_drizzle_night;
             } else if (weather.contains("雨")) {
                 resId = R.drawable.weather_showers_night;

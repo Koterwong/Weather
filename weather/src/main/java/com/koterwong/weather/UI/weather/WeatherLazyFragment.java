@@ -56,6 +56,9 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
 
     @Bind(R.id.weather_update_time)
     TextView mUpdateTv;
+    @Bind(R.id.weather_pm25)
+    TextView mPm25;
+
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +159,10 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
 
     @Override public void setWeatherTmp(String mWeatherTmp) {
         this.mWeatherTmp.setText(mWeatherTmp);
+    }
+
+    @Override public void setWeatherPm25(String PM25) {
+        this.mPm25.setText(PM25);
     }
 
     @Override public void setWeatherUpdateTime(String time) {

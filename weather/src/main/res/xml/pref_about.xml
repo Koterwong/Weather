@@ -5,8 +5,8 @@
 
         <Preference
             android:key="version"
-            android:summary="SimpleWeather1.2"
-            android:title="版本" />
+            android:title="版本"
+            />
         <Preference
             android:key="update"
             android:summary="@string/this_is_new_version"
@@ -21,11 +21,11 @@
             android:title="天气数据" />
         <Preference
             android:key="location"
-            android:summary="百度locSDK_6.23"
+            android:summary="百度locSDK_6.23。ps：程序只在第一次启动时才用到定位，暂时没有在其它地方使用到定位的功能。"
             android:title="定位" />
         <Preference
             android:key="pic"
-            android:summary="侵权删"
+            android:summary="图片资源来自互联网，如有侵权，请尽快联系我删除！！！"
             android:title="图片" />
     </PreferenceCategory>
 

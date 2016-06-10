@@ -29,6 +29,7 @@ public interface WeatherView {
     void setWeatherTmp(String mWeatherTmp);
 
     void setWeatherUpdateTime(String time);
+    void setWeatherPm25(String time);
 
     void refreshDailyView(List<WeatherBean.DailyForecastBean> mDailyForecastList);
 

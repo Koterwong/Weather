@@ -44,7 +44,7 @@ public class WeatherPresenterImp implements
         } else {
             //不是下拉刷新状态，则直接加载本地数据
             mWeatherView.showLoadingVisible();
-            mWeatherModel.loadLocation(city,this);
+            mWeatherModel.loadLocation(city, this);
         }
     }
 
@@ -61,10 +61,10 @@ public class WeatherPresenterImp implements
     @Override public void onLoadServiceFailed(Exception e) {
         //加载失败原因：1.请求超时，2.没有该城市天气信息。
         mWeatherView.showToastMsg(e.toString());
-        if (mWeatherView.isSwipeRefreshLayoutRefreshing()){
+        if (mWeatherView.isSwipeRefreshLayoutRefreshing()) {
             //下拉刷新失败
             mWeatherView.setSwipeRefreshLayoutStatue(false);
-        }else{
+        } else {
             mWeatherView.showErrorVisible();
         }
     }
@@ -92,8 +92,10 @@ public class WeatherPresenterImp implements
             mWeatherView.setSwipeRefreshLayoutStatue(false);
         mWeatherView.setWeatherIcon(WeatherJsonUtil.getWeatherImgResType2(weatherBean.now.cond.txt));
         mWeatherView.setWeatherDes(weatherBean.now.cond.txt);
-        mWeatherView.setWeatherTmp(weatherBean.now.tmp+"°");
+        mWeatherView.setWeatherTmp(weatherBean.now.tmp + "°");
         mWeatherView.setWeatherUpdateTime(weatherBean.basic.update.loc.substring(11));
+        if (weatherBean.aqi != null)
+            mWeatherView.setWeatherPm25(String.format("pm25:%s",weatherBean.aqi.city.pm25));
         //刷新未来五天的天气
         mWeatherView.refreshDailyView(weatherBean.dailyForecastList);
         //刷新今日天气其他数据OverView

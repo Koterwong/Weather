@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
+import com.koterwong.weather.commons.StatueBarCompat;
 import com.koterwong.weather.ui.choicecity.View.CityView;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenterImp;
@@ -41,8 +42,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     private CollapsingToolbarLayout mCollapsing;
     private Toolbar mToolbar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCityPresenter = new CityPresenterImp(this);
         initView();
@@ -51,6 +51,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
 
     private void initView() {
         setContentView(R.layout.activity_choice_city);
+        StatueBarCompat.compat(this);
 
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);

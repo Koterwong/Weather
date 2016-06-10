@@ -8,8 +8,8 @@ android {
         applicationId "com.koterwong.weather"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.2"
+        versionCode 1
+        versionName "1.0"
     }
 
     repositories {

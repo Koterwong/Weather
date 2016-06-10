@@ -1,40 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/splash_root_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <ImageView
         android:id="@+id/bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/splash_02"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:src="@drawable/splash_02"/>
 
     <TextView
+        android:id="@+id/splash_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_marginTop="130dp"
-        android:textSize="45sp"
-        android:textColor="#fefefe"
-        android:text="天气"
+        android:paddingBottom="100dp"
+        android:textColor="#efefef"
+        android:textSize="36sp"
+        tools:text="简单天气"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-
-        android:layout_height="wrap_content" />
-
-    <TextView
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal"
         android:background="#1affffff"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:textColor="#ffffff"
-        android:lineSpacingExtra="8dp"
-        android:text="version_1.2\nCreated  All  By  @Koterwong"
-        android:layout_marginBottom="47dp"
-        />
+        >
+
+        <TextView
+            android:id="@+id/splash_app_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Powered  By  @Koterwong"
+            android:textColor="#ffffff"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

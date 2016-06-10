@@ -5,220 +5,210 @@
     android:layout_height="wrap_content"
     android:background="@color/content_item_bg"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp">
 
-    <!--体感温度-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--体感温度-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
 
-        <ImageView
-            style="@style/overview_img"
-            android:src="@drawable/ic_temperature"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/overview_title"
-                android:text="体感温度"
+            <ImageView
+                style="@style/overview_img"
+                android:src="@drawable/ic_temperature"
                 />
 
-            <TextView
-                android:id="@+id/apparent_temperature_value"
-                style="@style/overview_value"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/overview_title"
+                    android:text="体感温度"
+                    />
+
+                <TextView
+                    android:id="@+id/apparent_temperature_value"
+                    style="@style/overview_value"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <!--相对湿度-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
+
+            <ImageView
+                style="@style/overview_img"
+                android:alpha="0.8"
+                android:src="@drawable/ic_humidity"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/overview_title"
+                    android:text="相对湿度"
+                    />
+
+                <TextView
+                    android:id="@+id/humidity_value"
+                    style="@style/overview_value"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!--降雨量-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
+
+            <ImageView
+                style="@style/overview_img"
+                android:padding="6dp"
+                android:src="@drawable/ic_precipitation"
                 />
-        </LinearLayout>
-    </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/overview_title"
+                    android:text="降雨量"
+                    />
+
+                <TextView
+                    android:id="@+id/precipitation_value"
+                    style="@style/overview_value"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <View
+        android:background="@color/grey_300"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey_300"/>
+        />
 
-    <!--相对湿度-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--大气压-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
 
-        <ImageView
-            style="@style/overview_img"
-            android:src="@drawable/ic_humidity"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/overview_title"
-                android:text="相对湿度"
+            <ImageView
+                style="@style/overview_img"
+                android:src="@drawable/ic_pressure"
                 />
 
-            <TextView
-                android:id="@+id/humidity_value"
-                style="@style/overview_value"
-                />
-        </LinearLayout>
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey_300"/>
+                <TextView
+                    style="@style/overview_title"
+                    android:text="气压"
+                    />
 
-    <!--降雨量-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
+                <TextView
+                    android:id="@+id/pressure_value"
+                    style="@style/overview_value"/>
+            </LinearLayout>
+        </RelativeLayout>
 
-        <ImageView
-            style="@style/overview_img"
-            android:padding="3dp"
-            android:src="@drawable/ic_precipitation"
-            />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+        <!--可见度-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
 
-            <TextView
-                style="@style/overview_title"
-                android:text="降雨量"
-                />
+            <ImageView
+                style="@style/overview_img"
+                android:padding="6dp"
+                android:src="@drawable/ic_visibility"/>
 
-            <TextView
-                android:id="@+id/precipitation_value"
-                style="@style/overview_value"/>
-        </LinearLayout>
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey_300"/>
+                <TextView
+                    style="@style/overview_title"
+                    android:text="能见度"
+                    />
 
-    <!--大气压-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
+                <TextView
+                    android:id="@+id/visibility_value"
+                    style="@style/overview_value"/>
+            </LinearLayout>
+        </RelativeLayout>
 
-        <ImageView
-            style="@style/overview_img"
-            android:src="@drawable/ic_pressure"
-            />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            <ImageView
+                style="@style/overview_img"
+                android:src="@drawable/ic_wind"/>
 
-            <TextView
-                style="@style/overview_title"
-                android:text="气压"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/pressure_value"
-                style="@style/overview_value"/>
-        </LinearLayout>
-    </RelativeLayout>
+                <TextView
+                    style="@style/overview_title"
+                    android:text="风力风向"
+                    />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey_300"/>
-
-    <!--可见度-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
-
-        <ImageView
-            style="@style/overview_img"
-            android:padding="2dp"
-            android:src="@drawable/ic_visibility"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/overview_title"
-                android:text="能见度"
-                />
-
-            <TextView
-                android:id="@+id/visibility_value"
-                style="@style/overview_value"/>
-        </LinearLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey_300"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
-
-        <ImageView
-            style="@style/overview_img"
-            android:src="@drawable/ic_wind"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="72dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/overview_title"
-                android:text="风力风向"
-                />
-
-            <TextView
-                android:id="@+id/wind_value"
-                style="@style/overview_value"/>
-        </LinearLayout>
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/wind_value"
+                    style="@style/overview_value"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

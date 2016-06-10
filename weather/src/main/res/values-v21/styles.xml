@@ -1,26 +1,13 @@
 <resources>
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="AppTheme" parent="BaseAppTheme">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:navigationBarColor">@color/primary</item>
-    </style>
-    
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:navigationBarColor">@color/primary</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.Translucent">
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.TranslucentStatue">
+    <style name="windowTranslucent" parent="BaseAppTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:navigationBarColor">@color/primary</item>
     </style>
-
 </resources>

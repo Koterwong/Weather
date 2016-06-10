@@ -1,25 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme" parent="BaseAppTheme">
+
     </style>
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.Translucent">
+    <style name="windowTranslucent" parent="BaseAppTheme">
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -61,9 +59,9 @@
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:padding">2dp</item>
-        <item name="android:tint">@color/grey</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:tint">@color/primary</item>
         <item name="android:alpha">0.9</item>
     </style>
 
@@ -71,14 +69,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Caption</item>
-        <item name="android:textColor">@color/weather_text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/weather_text_color_second</item>
     </style>
 
     <style name="overview_value">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:textColor">@color/weather_text_color_second</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColor">@color/weather_text_color_third</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Caption</item>
         <item name="android:alpha">1.0</item>
     </style>
 

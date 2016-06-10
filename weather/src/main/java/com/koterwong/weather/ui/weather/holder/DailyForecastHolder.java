@@ -10,6 +10,7 @@ import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseHolder;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
+import com.koterwong.weather.utils.CalendarUtils;
 import com.koterwong.weather.utils.DateUtils;
 
 import java.util.ArrayList;
@@ -66,19 +67,24 @@ public class DailyForecastHolder extends BaseHolder<List<WeatherBean.DailyForeca
                 week = DateUtils.dayForWeek(mDailyForecastList.get(i).date);
             }
             mTextViews[i].setText(week);
-            int imfID = WeatherJsonUtil.getWeatherImage(mDailyForecastList.get(i).cond.txt_d);
-            mImageViews[i].setImageResource(imfID);
+            int resId = 0;
+            if (CalendarUtils.isDay()){
+                resId = WeatherJsonUtil.getWeatherImage(mDailyForecastList.get(i).cond.txt_d);
+            }else{
+                resId = WeatherJsonUtil.getWeatherImage(mDailyForecastList.get(i).cond.txt_n);
+            }
+            mImageViews[i].setImageResource(resId);
         }
         //刷新chart折线表
-        List<PointValue> mPointValuestemMax = new ArrayList<>();
-        List<PointValue> mPointValuestemMin = new ArrayList<>();
+        List<PointValue> mPointValuesTemMax = new ArrayList<>();
+        List<PointValue> mPointValuesTemMin = new ArrayList<>();
         for (int i = 0; i < mImageViews.length; i++) {
-            mPointValuestemMax.add(new PointValue(i, string2Float(mDailyForecastList.get(i).tmp.max)));
-            mPointValuestemMin.add(new PointValue(i, string2Float(mDailyForecastList.get(i).tmp.min)));
+            mPointValuesTemMax.add(new PointValue(i, string2Float(mDailyForecastList.get(i).tmp.max)));
+            mPointValuesTemMin.add(new PointValue(i, string2Float(mDailyForecastList.get(i).tmp.min)));
         }
         //初始化线和点
-        Line mLineMax = new Line(mPointValuestemMax);
-        Line mLineMin = new Line(mPointValuestemMin);
+        Line mLineMax = new Line(mPointValuesTemMax);
+        Line mLineMin = new Line(mPointValuesTemMin);
 
         List<Line> mLines = new ArrayList<>();
         mLines.add(mLineMax);

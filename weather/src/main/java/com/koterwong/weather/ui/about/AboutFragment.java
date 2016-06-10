@@ -52,7 +52,9 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         location.setOnPreferenceClickListener(this);
         weibo.setOnPreferenceClickListener(this);
         dependencies.setOnPreferenceClickListener(this);
-
+        version.setSummary(String.format("%s %s",
+                AppUtils.getAppName(getActivity()),
+                AppUtils.getVersionName(getActivity())));
         update.setSummary(Setting.getBoolean(Setting.IS_HAS_NEW_VERSION, false) ?
                 getResources().getString(R.string.has_new_version) :
                 getResources().getString(R.string.this_is_new_version));
@@ -76,7 +78,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
                 showDialog(location.getTitle(), location.getSummary());
                 break;
             case "weibo":
-                showDialog(weibo.getTitle(), weibo.getSummary());
+                showDialog(weibo.getTitle(), getString(R.string.contact_me));
                 break;
             case "dependencies":
                 showDialog(dependencies.getTitle(), dependencies.getSummary());
@@ -112,10 +114,10 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
                 int versionCode = AppUtils.getVersionCode(getActivity());
                 if (versionCode < versionBean.version) {
                     showUpdateDialog(versionBean);
-                    Setting.putBoolean(Setting.IS_HAS_NEW_VERSION,true);
+                    Setting.putBoolean(Setting.IS_HAS_NEW_VERSION, true);
                 } else {
                     Snackbar.make(getView(), "当前为最新版本", Snackbar.LENGTH_SHORT).show();
-                    Setting.putBoolean(Setting.IS_HAS_NEW_VERSION,false);
+                    Setting.putBoolean(Setting.IS_HAS_NEW_VERSION, false);
                 }
             }
 
