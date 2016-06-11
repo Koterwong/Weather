@@ -17,10 +17,10 @@ import android.widget.TextView;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.commons.StatueBarCompat;
+import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;
-import com.koterwong.weather.utils.KKBorderDividerItemDecoration;
+import com.koterwong.weather.widget.BorderDividerItemDecoration;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     private void initView() {
         setContentView(R.layout.activity_manager_city);
-        StatueBarCompat.compat(this);
+        ActivityStatueBarCompat.compat(this);
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
@@ -74,7 +74,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
     private void initRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_manager_city);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new KKBorderDividerItemDecoration(
+        mRecyclerView.addItemDecoration(new BorderDividerItemDecoration(
                 getResources().getDimensionPixelOffset(R.dimen.item_ver),
                 getResources().getDimensionPixelOffset(R.dimen.item_hor)
         ));

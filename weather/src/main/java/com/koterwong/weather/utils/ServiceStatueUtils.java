@@ -1,4 +1,4 @@
-package com.koterwong.weather.ui.setting;
+package com.koterwong.weather.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;

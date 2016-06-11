@@ -1,4 +1,4 @@
-package com.koterwong.weather.utils;
+package com.koterwong.weather.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +9,12 @@ import android.view.View;
  * Date：2016/5/22 08:50
  * Description:
  */
-public class KKBorderDividerItemDecoration extends RecyclerView.ItemDecoration{
+public class BorderDividerItemDecoration extends RecyclerView.ItemDecoration{
     private final int verticalItemSpacingInPx;
     private final int horizontalItemSpacingInPx;
 
 
-    public KKBorderDividerItemDecoration(int verticalItemSpacingInPx, int horizontalItemSpacingInPx) {
+    public BorderDividerItemDecoration(int verticalItemSpacingInPx, int horizontalItemSpacingInPx) {
         this.verticalItemSpacingInPx = verticalItemSpacingInPx;
         this.horizontalItemSpacingInPx = horizontalItemSpacingInPx;
     }

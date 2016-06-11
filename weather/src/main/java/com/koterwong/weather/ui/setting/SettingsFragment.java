@@ -11,9 +11,12 @@ import android.preference.SwitchPreference;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import com.koterwong.weather.R;
 import com.koterwong.weather.MyApp;
-import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.R;
+import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.receiver.LocalRegisterHelper;
+import com.koterwong.weather.receiver.NotificationReceiver;
+import com.koterwong.weather.service.AutoUpdateService;
 import com.koterwong.weather.utils.FileUtils;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -66,7 +69,7 @@ public class SettingsFragment extends PreferenceFragment implements
         //设置缓冲大小
         mCacheSizePref.setSummary(FileUtils.getCacheSize());
         //设置是否允许定位的开关。
-        mSwitchLocation.setChecked(Setting.getBoolean(Setting.IS_ALLOW_LOCATION,false));
+        mSwitchLocation.setChecked(SettingPref.getBoolean(SettingPref.IS_ALLOW_LOCATION, false));
     }
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -80,26 +83,26 @@ public class SettingsFragment extends PreferenceFragment implements
             boolean statue = Boolean.valueOf(newValue.toString());
             if (preference.getKey().equals(SWITCH_LOCATION)) {
                 //将是否允许定位信息保存
-                Setting.putBoolean(Setting.IS_ALLOW_LOCATION, statue);
+                SettingPref.putBoolean(SettingPref.IS_ALLOW_LOCATION, statue);
             } else if (preference.getKey().equals(SWITCH_UPDATE)) {
                 //后台更新
-                Setting.putBoolean(Setting.IS_ALLOW_UPDATE, statue);
+                SettingPref.putBoolean(SettingPref.IS_ALLOW_UPDATE, statue);
                 switchAutoUpdateService(Boolean.valueOf(newValue.toString()));
 
             }
         } else if (preference instanceof CheckBoxPreference) {
             if (preference.getKey().equals(CB_NOTIFICATION)) {
                 //打开或取消通知栏
-                Setting.putBoolean(Setting.IS_SHOW_NOTIFY, Boolean.valueOf(newValue.toString()));
+                SettingPref.putBoolean(SettingPref.IS_SHOW_NOTIFY, Boolean.valueOf(newValue.toString()));
                 switchNotification();
             }
         } else if (preference instanceof ListPreference) {
             if (preference.getKey().equals(SYNC_FREQUENCY)) {
                 //后台更新的间隔
-                Setting.putString(Setting.AUTO_UPDATE_TIME, newValue.toString());
+                SettingPref.putString(SettingPref.AUTO_UPDATE_TIME, newValue.toString());
                 mSyncFrequency.setSummary(newValue.toString() + " 小时");
             } else if (preference.getKey().equals(LIST_PRE_CACHE_TIME)) {
-                Setting.putString(Setting.AUTO_DELETE_CACHE_TIME, newValue.toString());
+                SettingPref.putString(SettingPref.AUTO_DELETE_CACHE_TIME, newValue.toString());
                 mCacheSizeListPref.setSummary(newValue.toString() + " 小时");
             }
         }
@@ -108,7 +111,7 @@ public class SettingsFragment extends PreferenceFragment implements
 
     @Override public boolean onPreferenceClick(Preference preference) {
         if (preference == mCacheSizePref) {
-           showDialog("清理缓存",getActivity().getString(R.string.clear_cache));
+            showDialog("清理缓存", getActivity().getString(R.string.clear_cache));
         }
         return true;
     }
@@ -122,7 +125,7 @@ public class SettingsFragment extends PreferenceFragment implements
                     @Override public void onClick(View v) {
                         MyApp.getACache().clear();
                         mCacheSizePref.setSummary(FileUtils.getCacheSize());
-                        Snackbar.make(getView(),"缓存已清除",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView(), "缓存已清除", Snackbar.LENGTH_SHORT).show();
                     }
                 });
         dialog.setNegativeButton("取消", new View.OnClickListener() {
@@ -143,12 +146,20 @@ public class SettingsFragment extends PreferenceFragment implements
             //关闭服务
             getActivity().stopService(intent);
         }
-
     }
 
-    //打开关闭状态栏通知
+    private NotificationReceiver receiver;
+
     private void switchNotification() {
-        Intent intent = new Intent("com.koterwong.weather.Notification");
-        getActivity().sendBroadcast(intent);
+        //发送广播，为了安全性考虑，只发送本地广播,其他程序则无法收到广播
+        receiver = new NotificationReceiver();
+        LocalRegisterHelper.getInstance(getActivity()).send(receiver, LocalRegisterHelper.action);
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            LocalRegisterHelper.getInstance(getActivity()).unRegister(receiver);
+        }
     }
 }

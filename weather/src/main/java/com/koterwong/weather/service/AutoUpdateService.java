@@ -1,4 +1,4 @@
-package com.koterwong.weather.ui.setting;
+package com.koterwong.weather.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.IBinder;
 
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.commons.SavedCityDBManager;
-import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.utils.LogUtils;
 import com.koterwong.weather.ui.weather.model.WeatherModelImp;
 
@@ -35,14 +35,14 @@ public class AutoUpdateService extends Service {
     }
 
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
-        if (!Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)) {
+        if (!SettingPref.getBoolean(SettingPref.IS_ALLOW_UPDATE, false)) {
             /**
              * 需要注意的是，即使调用了stopSelf方法，服务仍会接着执行完onStartCommand。
              * 这对于本次的定时任务并不适用。
              */
             stopSelf();
         }
-        int timeHour = Integer.parseInt(Setting.getString(Setting.AUTO_UPDATE_TIME,"8"));
+        int timeHour = Integer.parseInt(SettingPref.getString(SettingPref.AUTO_UPDATE_TIME,"8"));
         //RxJava执行周期性任务
         mObservable = Observable.interval(timeHour, TimeUnit.HOURS);
         //订阅任务
@@ -62,7 +62,7 @@ public class AutoUpdateService extends Service {
 
         @Override public void onNext(Long aLong) {
             //执行网络操作，请求天气数据
-            loadWeather();
+            AutoUpdateService.this.loadWeather();
         }
     }
 

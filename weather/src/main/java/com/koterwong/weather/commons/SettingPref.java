@@ -9,7 +9,7 @@ import com.koterwong.weather.MyApp;
  * Author：Koterwong，Data：2016/4/27.
  * Description:
  */
-public class Setting {
+public class SettingPref {
 
     public static final String IS_ALLOW_LOCATION = "isAllowLocation";
     public static final String IS_ALLOW_UPDATE = "isAllowUpdate";

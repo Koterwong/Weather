@@ -9,7 +9,7 @@ import com.google.gson.JsonParser;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.utils.ACache;
 import com.koterwong.weather.utils.JsonUtils;
 
@@ -41,7 +41,7 @@ public class WeatherJsonUtil {
                 /*数据请求正确*/
                 WeatherBean weatherBean = JsonUtils.deserialize(jsonObject1, WeatherBean.class);
                 /*将WeatherBean保存到本地，并设置过期时间,默认为8*/
-                int time = Integer.valueOf(Setting.getString(Setting.AUTO_DELETE_CACHE_TIME, "8"));
+                int time = Integer.valueOf(SettingPref.getString(SettingPref.AUTO_DELETE_CACHE_TIME, "8"));
                 MyApp.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * time);
                 return weatherBean;
             } else {
@@ -89,7 +89,7 @@ public class WeatherJsonUtil {
         } else {
             if ("晴".equals(weather)) {
                 resId = R.drawable.weather_clear_night;
-            } else if (weather.contains("云")) {
+            } else if (weather.contains("云")||weather.contains("阴")) {
                 resId = R.drawable.weather_clouds_night;
             } else if ("小雨".equals(weather) || "毛毛雨/细雨".equals(weather)||"阵雨".equals(weather)) {
                 resId = R.drawable.weather_drizzle_night;

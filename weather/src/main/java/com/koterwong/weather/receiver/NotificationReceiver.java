@@ -1,4 +1,4 @@
-package com.koterwong.weather.ui.setting;
+package com.koterwong.weather.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,7 +13,7 @@ import com.koterwong.weather.R;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SavedCityDBManager;
-import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.ui.main.MainActivity2;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 
@@ -21,11 +21,11 @@ import com.koterwong.weather.ui.weather.WeatherJsonUtil;
  * Author：Koterwong，Data：2016/5/2.
  * Description: 通知栏打开关闭的广播。
  */
-public class NotifyHelperReceiver extends BroadcastReceiver {
+public class NotificationReceiver extends BroadcastReceiver {
 
     @Override public void onReceive(Context context, Intent intent) {
 
-        boolean isShow = Setting.getBoolean(Setting.IS_SHOW_NOTIFY,false);
+        boolean isShow = SettingPref.getBoolean(SettingPref.IS_SHOW_NOTIFY,false);
 
         NotificationManager mNotifyMgr = (NotificationManager) MyApp.getApp() .
                 getSystemService(Context.NOTIFICATION_SERVICE);

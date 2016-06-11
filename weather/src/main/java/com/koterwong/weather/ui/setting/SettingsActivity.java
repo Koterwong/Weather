@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.StatueBarCompat;
+import com.koterwong.weather.commons.ActivityStatueBarCompat;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -17,7 +17,7 @@ public class SettingsActivity extends SwipeBackActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        StatueBarCompat.compat(this);
+        ActivityStatueBarCompat.compat(this);
         getSwipeBackLayout().
                 setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         init();

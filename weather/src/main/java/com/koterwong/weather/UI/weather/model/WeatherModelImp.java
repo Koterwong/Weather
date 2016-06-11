@@ -40,7 +40,7 @@ public class WeatherModelImp implements WeatherModel {
                 .replace("地区", "")
                 .replace("盟", "")
                 .replace("县", "");
-        String mUrl = UrlHelper.url + cityName;
+        String mUrl = UrlHelper.BASE_URL + cityName;
         OkHttpUtils.get()
                 .url(mUrl)
                 .addHeader(UrlHelper.key, UrlHelper.apiKeyValue)
@@ -82,9 +82,7 @@ public class WeatherModelImp implements WeatherModel {
             @Override
             public void run() {
                 final WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(cityName);
-                /**
-                 * 将跟新UI的操作放到主线程主执行
-                 */
+                //将跟新UI的操作放到主线程主执行
                 if (Process.myTid()== MyApp.getMainId()){
                     if (weatherBean != null) {
                         listener.onLoadLocSuccess(weatherBean);

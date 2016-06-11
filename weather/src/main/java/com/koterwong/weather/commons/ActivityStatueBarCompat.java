@@ -15,7 +15,7 @@ import android.view.ViewGroup;
  * Description: HongyangAndroid/
  * =================================================
  */
-public class StatueBarCompat {
+public class ActivityStatueBarCompat {
 
     private static final int INVALID_VAL = -1;
     private static final int COLOR_DEFAULT = Color.parseColor("#009688");

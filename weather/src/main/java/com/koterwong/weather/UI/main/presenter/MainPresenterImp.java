@@ -5,7 +5,7 @@ import android.app.Activity;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.commons.SavedCityDBManager;
-import com.koterwong.weather.commons.Setting;
+import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.ui.main.model.MainModelImpl;
 import com.koterwong.weather.ui.main.view.MainView;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -65,10 +65,10 @@ public class MainPresenterImp implements MainPresenter {
                         @Override
                         public void call(Boolean aBoolean) {
                             if (aBoolean) {
-                                Setting.putBoolean(Setting.IS_ALLOW_LOCATION, true);
+                                SettingPref.putBoolean(SettingPref.IS_ALLOW_LOCATION, true);
                                 MainPresenterImp.this.location();
                             } else {
-                                Setting.putBoolean(Setting.IS_ALLOW_LOCATION, false);
+                                SettingPref.putBoolean(SettingPref.IS_ALLOW_LOCATION, false);
                             }
                         }
                     });

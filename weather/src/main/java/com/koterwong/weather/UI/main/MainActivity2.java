@@ -25,16 +25,16 @@ import android.widget.RelativeLayout;
 
 import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.Setting;
-import com.koterwong.weather.commons.StatueBarCompat;
+import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
 import com.koterwong.weather.ui.main.view.MainView;
 import com.koterwong.weather.ui.managercity.ManagerCityActivity;
 import com.koterwong.weather.ui.about.AboutActivity;
-import com.koterwong.weather.ui.setting.AutoUpdateService;
-import com.koterwong.weather.ui.setting.ServiceStatueUtils;
+import com.koterwong.weather.service.AutoUpdateService;
+import com.koterwong.weather.utils.ServiceStatueUtils;
 import com.koterwong.weather.ui.setting.SettingsActivity;
 import com.koterwong.weather.ui.weather.WeatherLazyFragment;
 import com.koterwong.weather.utils.ShareUtils;
@@ -74,7 +74,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         mPresenter = new MainPresenterImp(this);
         mPresenter.loadCities();
         if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
-            if (Setting.getBoolean(Setting.IS_ALLOW_UPDATE, false)) {
+            if (SettingPref.getBoolean(SettingPref.IS_ALLOW_UPDATE, false)) {
                 startService(new Intent(this, AutoUpdateService.class));
             }
         }
@@ -82,7 +82,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
 
     private void initView() {
         setContentView(R.layout.activity_main2);
-        StatueBarCompat.compat(this);
+        ActivityStatueBarCompat.compat(this);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setToolbarTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);

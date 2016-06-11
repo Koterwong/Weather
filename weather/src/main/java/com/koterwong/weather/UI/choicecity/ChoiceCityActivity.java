@@ -16,12 +16,12 @@ import android.widget.Toast;
 import com.koterwong.weather.R;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
-import com.koterwong.weather.commons.StatueBarCompat;
+import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.choicecity.View.CityView;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenterImp;
 import com.koterwong.weather.commons.SavedCityDBManager;
-import com.koterwong.weather.utils.KKBorderDividerItemDecoration;
+import com.koterwong.weather.widget.BorderDividerItemDecoration;
 import com.koterwong.weather.utils.ToolsUtil;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
 
     private void initView() {
         setContentView(R.layout.activity_choice_city);
-        StatueBarCompat.compat(this);
+        ActivityStatueBarCompat.compat(this);
 
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
@@ -70,7 +70,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_city);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new CityListAdapter();
-        mRecyclerView.addItemDecoration(new KKBorderDividerItemDecoration(
+        mRecyclerView.addItemDecoration(new BorderDividerItemDecoration(
                 getResources().getDimensionPixelOffset(R.dimen.item_ver),
                 getResources().getDimensionPixelOffset(R.dimen.item_hor)
         ));

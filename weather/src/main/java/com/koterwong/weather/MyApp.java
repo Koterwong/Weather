@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.koterwong.weather.utils.ACache;
+import com.koterwong.weather.utils.LogUtils;
 
 import im.fir.sdk.FIR;
 
@@ -15,13 +16,9 @@ import im.fir.sdk.FIR;
 public class MyApp extends Application {
 
     public static final String CACHE_NAME = "Weather_Cache";
-
     private static Handler mHandler;
-
     private static int mainId;
-
     private static MyApp mInstance;
-
     private static ACache mACache;
 
     @Override public void onCreate() {
@@ -30,6 +27,7 @@ public class MyApp extends Application {
         mainId = android.os.Process.myTid();
         mHandler = new Handler();
         mACache = ACache.get(this, CACHE_NAME);
+        LogUtils.isDebug = false;  //release版本不打印log
         FIR.init(this);  //新版本检查更新。
     }
 
