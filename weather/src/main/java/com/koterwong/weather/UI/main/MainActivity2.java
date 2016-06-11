@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -25,18 +24,18 @@ import android.widget.RelativeLayout;
 
 import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.service.AutoUpdateService;
+import com.koterwong.weather.ui.about.AboutActivity;
 import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
 import com.koterwong.weather.ui.main.view.MainView;
 import com.koterwong.weather.ui.managercity.ManagerCityActivity;
-import com.koterwong.weather.ui.about.AboutActivity;
-import com.koterwong.weather.service.AutoUpdateService;
-import com.koterwong.weather.utils.ServiceStatueUtils;
 import com.koterwong.weather.ui.setting.SettingsActivity;
 import com.koterwong.weather.ui.weather.WeatherLazyFragment;
+import com.koterwong.weather.utils.ServiceStatueUtils;
 import com.koterwong.weather.utils.ShareUtils;
 
 import java.util.ArrayList;
@@ -201,7 +200,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                 if (resultCode == RESULT_OK) {
                     String city = data.getStringExtra("city");
                     if (city == null) {
-                        Snackbar.make(mRlContent, "添加失败啦~", Snackbar.LENGTH_LONG);
+                        Snackbar.make(mRlContent, "添加失败啦", Snackbar.LENGTH_LONG);
                         return;
                     }
                     this.addCity(city);
@@ -254,7 +253,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                 }
                 break;
             case R.id.action_share:
-                ShareUtils.share(MainActivity2.this,"推荐一款精美天气软件，下载地址：http://fir.im/9xj7");
+                ShareUtils.share(MainActivity2.this,getString(R.string.share_app));
                 break;
         }
         return true;
@@ -302,9 +301,9 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
          * 过去的Bug。我们需要重写该方法，让其PagerAdapter.POSITION_NONE就可以测底删除Viewpager中的
          * Fragment。
          */
-        @Override public int getItemPosition(Object object) {
-            return FragmentPagerAdapter.POSITION_NONE;
-        }
+//        @Override public int getItemPosition(Object object) {
+//            return FragmentPagerAdapter.POSITION_NONE;
+//        }
     }
 
     @Override public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -13,12 +13,8 @@ import java.io.FileInputStream;
  */
 public class FileUtils {
 
-    private static final String TAG = "FileUtils";
-
     /**
      * 获取缓存目录
-     *
-     * @return
      */
     public static String getCacheFilePath() {
         StringBuilder builder = new StringBuilder();
@@ -27,7 +23,6 @@ public class FileUtils {
                 .append(File.separator)
                 .append(MyApp.CACHE_NAME)
                 .append(File.separator);
-        LogUtils.d(TAG, builder.toString());
         return builder.toString();
     }
 

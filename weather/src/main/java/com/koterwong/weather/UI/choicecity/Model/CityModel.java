@@ -6,7 +6,7 @@ package com.koterwong.weather.ui.choicecity.Model;
  */
 public interface CityModel {
 
-    void loadCityDataBase(CityModelImp.LoadCityDBListener listener);
+    void copyDatabase(CityModelImp.LoadCityDBListener listener);
 
     void queryProvince(CityModelImp.QueryProListener listener);
 

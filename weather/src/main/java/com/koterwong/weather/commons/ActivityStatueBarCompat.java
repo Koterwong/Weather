@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * ================================================
  * Created By：Koterwong; Time: 2016/06/10 13:45
  * <p>
- * Description: HongyangAndroid/
+ * Description: pick from HongyangAndroid
  * =================================================
  */
 public class ActivityStatueBarCompat {

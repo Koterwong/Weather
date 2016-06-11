@@ -71,4 +71,5 @@
     <string name="this_is_new_version">当前版本为最新版本</string>
     <string name="contact_me">如果你有好的意见或建议，可以微博留言给我@koterwong，或者联系我邮箱331244921@qq.com。\n不胜感激！</string>
     <string name="clear_cache">确定要清除缓存吗？\n如果不清理会在你设定的时间内清除，并不会占用手机内存</string>
+    <string name="share_app">推荐一款精美天气软件，太好用了。下载地址：http://fir.im/jiandantianqi</string>
 </resources>

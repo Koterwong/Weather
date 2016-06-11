@@ -29,7 +29,7 @@ public class CityPresenterImp implements CityPresenter, CityModelImp.LoadCityDBL
     @Override public void loadDataList() {
         //copy
         mCityView.showProgressBar();
-        mCityModel.loadCityDataBase(this);
+        mCityModel.copyDatabase(this);
     }
 
     /**
