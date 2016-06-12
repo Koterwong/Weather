@@ -1,17 +1,17 @@
-#[下载软件](http://fir.im/koterweather)
+#[下载软件](http://fir.im/jiandantianqi)
 
 ##界面展示
 <div align=center>
-     <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105818.png" 
+     <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/%E6%88%AA%E5%9B%BE%20(1).png" 
         width="180" height="320"
         alt=""/>
-    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-110017.png" 
+    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/%E6%88%AA%E5%9B%BE%20(2).png" 
         width="180" height="320"
         alt=""/>
-    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105828.png" 
+    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/%E6%88%AA%E5%9B%BE%20(3).png" 
         width="180" height="320"
         alt=""/>
-    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/Screenshot_20160605-105846.png" 
+    <img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/%E6%88%AA%E5%9B%BE%20(5).png" 
         width="180" height="320"
         alt=""/>
 </div>
@@ -19,7 +19,7 @@
 
 ## 介绍
 
-外观设计高仿了小沃天气，天气数据来源百度API平台和风数据。主要包含以下模块。
+外观设计遵循Material Design。主要包含以下功能：
 
 - 天气界面
 - 添加城市
@@ -29,13 +29,18 @@
 
 ##使用到的开源库
 
-- okHttpUtils
-- HelloCharts，          
-- view-pager-transforms
-- RxJava          
-- swipeBackLayout
-- ACache
+- [okHttpUtils](https://github.com/hongyangAndroid/okhttp-utils)
+- [HelloCharts](https://github.com/lecho/hellocharts-android)          
+- [RxJava](https://github.com//RxJava)          
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [swipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)
+- [ACache](https://github.com/yangfuhai/ASimpleCache)
 
 ##感谢
 
 感谢开源库的作者，和github上无私奉献的技术大牛。
+
+## LESSER
+
+后续补充
+
