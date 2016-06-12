@@ -6,9 +6,9 @@
     <dimen name="activity_horizontal_margin">5dp</dimen>
     <dimen name="activity_vertical_margin">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="app_bar_height">220dp</dimen>
+    <dimen name="app_bar_height">240dp</dimen>
     <dimen name="bottom_daily">140dp</dimen>
     <dimen name="item_ver">10dp</dimen>
     <dimen name="item_hor">10dp</dimen>
-    <dimen name="content_item_margen">10dp</dimen>
+    <dimen name="content_item_margen">8dp</dimen>
 </resources>

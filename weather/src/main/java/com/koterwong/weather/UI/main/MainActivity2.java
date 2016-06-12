@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -22,37 +20,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer;
 import com.koterwong.weather.R;
 import com.koterwong.weather.commons.ActivityStatueBarCompat;
-import com.koterwong.weather.commons.SettingPref;
-import com.koterwong.weather.service.AutoUpdateService;
-import com.koterwong.weather.ui.about.AboutActivity;
 import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
 import com.koterwong.weather.ui.main.view.MainView;
-import com.koterwong.weather.ui.managercity.ManagerCityActivity;
-import com.koterwong.weather.ui.setting.SettingsActivity;
 import com.koterwong.weather.ui.weather.WeatherLazyFragment;
-import com.koterwong.weather.utils.ServiceStatueUtils;
 import com.koterwong.weather.utils.ShareUtils;
+import com.koterwong.weather.widget.ZoomOutSlideTransformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Author：Koterwong，Data：2016/4/27.
  * Description:
+ * =================================
+ * 1.删除Activity过度动画。因为在很多国内的Rom不起作用。
  */
 public class MainActivity2 extends AppCompatActivity implements MainView, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private final int REQUEST_CODE_ADD = 0;
-    private final int REQUEST_CODE_DELETE = 1;
+    public static final int REQUEST_CODE_ADD = 0;
+//    private final int REQUEST_CODE_DELETE = 1;
 
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
@@ -72,11 +64,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         initView();
         mPresenter = new MainPresenterImp(this);
         mPresenter.loadCities();
-        if (!ServiceStatueUtils.isServiceRunning(this, "AutoUpdateService")) {
-            if (SettingPref.getBoolean(SettingPref.IS_ALLOW_UPDATE, false)) {
-                startService(new Intent(this, AutoUpdateService.class));
-            }
-        }
     }
 
     private void initView() {
@@ -102,8 +89,8 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         mChoiceBtn.setOnClickListener(this);
         //viewPager
         mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
-        //设置viewPager的缓冲数俩个
-        mViewPager.setOffscreenPageLimit(3);
+        //设置viewPager的缓冲数。2几位看不见的个数。
+        mViewPager.setOffscreenPageLimit(2);
         //设置ViewPager动画
         mViewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
 //        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -121,7 +108,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
      */
     @Override public void setCities(List<String> mCityList) {
         this.mCityList = mCityList;
-        String cityName = mCityList.get(0);
+//        String cityName = mCityList.get(0);
 //        setToolbarTitle(cityName);
         if (mAdapter == null) {
             mAdapter = new MainAdapter(getSupportFragmentManager());
@@ -161,36 +148,46 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
         return true;
     }
 
-    @Override public void switch2ChoiceCityActivity() {
-        Intent intent = new Intent(this, ChoiceCityActivity.class);
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,mToolbar,"");
-        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_ADD,compat.toBundle());
+//    @Override public void switch2ChoiceCityActivity() {
+//        Intent intent = new Intent(this, ChoiceCityActivity.class);
+//        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                this,mViewPager,"");
+//        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_ADD,compat.toBundle());
+//    }
+
+//    @Override public void switch2ManagerCityActivity() {
+//        Intent intent = new Intent(this, ManagerCityActivity.class);
+//        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                this,mViewPager,"");
+//        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_DELETE,compat.toBundle());
+//    }
+//
+//    @Override public void switch2SettingActivity() {
+//        Intent intent = new Intent(this, SettingsActivity.class);
+//        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                this,mViewPager,"");
+//        ActivityCompat.startActivity(this,intent,compat.toBundle());
+//    }
+//
+//    @Override public void switch2AboutActivity() {
+//        Intent intent = new Intent(this, AboutActivity.class);
+//        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                this,mViewPager,"");
+//        ActivityCompat.startActivity(this,intent,compat.toBundle());
+//    }
+
+    @Override public void switch2Activity(Class activityClass) {
+        Intent intent = new Intent(this,activityClass);
+        startActivity(intent);
     }
 
-    @Override public void switch2ManagerCityActivity() {
-        Intent intent = new Intent(this, ManagerCityActivity.class);
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,mToolbar,"");
-        ActivityCompat.startActivityForResult(this,intent,REQUEST_CODE_DELETE,compat.toBundle());
-    }
-
-    @Override public void switch2SettingActivity() {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,mToolbar,"");
-        ActivityCompat.startActivity(this,intent,compat.toBundle());
-    }
-
-    @Override public void switch2AboutActivity() {
-        Intent intent = new Intent(this, AboutActivity.class);
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,mToolbar,"");
-        ActivityCompat.startActivity(this,intent,compat.toBundle());
+    @Override public void switch2ActivityForResult(Class activityClass,int reqCode) {
+        Intent intent = new Intent(this,activityClass);
+        startActivityForResult(intent,reqCode);
     }
 
     @Override public void onClick(View v) {
-        this.switch2ChoiceCityActivity();
+        this.switch2ActivityForResult(ChoiceCityActivity.class,REQUEST_CODE_ADD);
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -207,34 +204,6 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
                     mPresenter.addCityToDB(city);
                 }
                 break;
-            case REQUEST_CODE_DELETE:
-                if (resultCode == RESULT_OK) {
-                    Bundle bundle = data.getExtras();
-                    Set<String> keySet = bundle.keySet();
-                    if (keySet.size() > 0) {
-                        Iterator<String> iterator = keySet.iterator();
-                        while (iterator.hasNext()) {
-                            String key = iterator.next();
-                            String deleteCity = bundle.getString(key);
-                            /**
-                             * 将Map中管理的Fragment删除。
-                             */
-                            mFragments.remove(deleteCity);
-                            /**
-                             * 同样将城市从集合中移除
-                             */
-                            mCityList.remove(deleteCity);
-                        }
-                        if (mFragments.size() == 0) {
-                            setContentVisible(false);
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        /**
-                         * 从新设置标题，修复标题和天气信息不一致bug。
-                         */
-//                        setToolbarTitle(mCityList.get(mViewPager.getCurrentItem()));
-                    }
-                }
         }
     }
 

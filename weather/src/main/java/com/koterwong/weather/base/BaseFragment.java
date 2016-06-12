@@ -21,7 +21,6 @@ import android.view.ViewGroup;
  * transaction.hide(aFragment);
  * transaction.show(aFragment);
  * <p>
- * Created by Koterwong
  */
 public abstract class BaseFragment extends Fragment {
 

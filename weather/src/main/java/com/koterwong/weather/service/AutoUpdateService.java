@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.koterwong.weather.MyApp;
-import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.commons.database.SavedCityDBManager;
 import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.utils.LogUtils;
 import com.koterwong.weather.ui.weather.model.WeatherModelImp;

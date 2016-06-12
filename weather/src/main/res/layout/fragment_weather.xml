@@ -45,7 +45,7 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/load_error"
-            android:textColor="#fefefe"/>
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

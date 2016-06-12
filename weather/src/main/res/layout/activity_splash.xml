@@ -21,17 +21,16 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:paddingBottom="166dp"
-        android:textColor="#efefef"
+        android:paddingBottom="300dp"
+        android:textColor="#aaffffff"
         android:textSize="36sp"
         tools:text="简单天气"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:background="#1affffff"
         android:layout_alignParentBottom="true"
         >
@@ -42,19 +41,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="8dp"
-            android:textColor="#ffffff"
+            android:textColor="#aaffffff"
             android:textSize="16sp"
             />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Powered  By  @Koterwong"
-            android:textColor="#ffffff"
-            android:layout_marginTop="16dp"
-            android:textSize="14sp"
-            />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text=""-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:textSize="14sp"-->
+            <!--/>-->
     </LinearLayout>
 
 </RelativeLayout>

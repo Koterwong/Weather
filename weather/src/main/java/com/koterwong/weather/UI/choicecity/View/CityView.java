@@ -12,6 +12,7 @@ import java.util.List;
 public interface CityView {
 
     void setProDatas(List<ProvinceBean> mDatas);
+
     void setCityDatas(List<CityBean> mDatas);
 
     void showProgressBar();

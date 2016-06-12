@@ -1,4 +1,4 @@
-package com.koterwong.weather.commons;
+package com.koterwong.weather.commons.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

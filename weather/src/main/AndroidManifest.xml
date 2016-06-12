@@ -45,7 +45,7 @@
         <activity
             android:name=".ui.choicecity.ChoiceCityActivity"
             android:exported="false"
-            android:label="@string/choice_city"
+            android:label="@string/title_choice_city"
             android:parentActivityName=".ui.main.MainActivity2"
             android:screenOrientation="portrait"
             android:theme="@style/windowTranslucent"

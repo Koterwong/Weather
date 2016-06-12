@@ -76,7 +76,7 @@
                             android:paddingLeft="60dp"
                             android:paddingRight="60dp"
                             android:text="@string/add_city"
-                            android:textColor="#fefefe"
+                            android:textColor="@color/white"
                             />
                     </RelativeLayout>
 

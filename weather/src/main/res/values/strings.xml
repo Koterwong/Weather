@@ -3,26 +3,23 @@
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
-
     <string name="action_settings">Settings</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_weather">天气</string>
     <string name="nav_manager_city">管理城市</string>
     <string name="nav_choice_city">选择城市</string>
     <string name="nav_setting">设置</string>
     <string name="nav_about">关于</string>
+    <string name="menu_share">分享</string>
+    <string name="title_choice_city">选择城市</string>
     <string name="title_activity_manager_city">管理城市</string>
     <string name="title_activity_settings">设置</string>
-
+    <string name="title_about">关于</string>
     <string-array name="pref_example_list_values">
         <item>1</item>
         <item>0</item>
         <item>-1</item>
     </string-array>
-
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-    <string name="share">分享</string>
 
     <string-array name="pref_sync_update">
         <item>2 小时</item>
@@ -44,32 +41,32 @@
         <item>6</item>
         <item>8</item>
     </string-array>
-    <string name="title_activity_about">AboutActivity</string>
     <string name="load_error">加载失败点击重试</string>
-    <string name="add_city">请添加城市或地区</string>
-    <string name="about">关于</string>
-    <string name="github_intro">在Github上查看项目介绍</string>
-    <string name="ok">OK</string>
+    <string name="add_city">请添加城市信息</string>
     <string name="save_one">请至少保留一个城市</string>
     <string name="delete_city_success">删除成功,下次启动生效</string>
     <string name="slide_delete">滑动删除</string>
-    <string name="action">Action</string>
-    <string name="thx">感谢以下开源库的作者或组织</string>
     <string name="dependencies">
-        \t\tOkHttpUtils
-        \n\t\tHelloCharts
-        \n\t\tView-pager-transforms
-        \n\t\tRxJava
-        \n\t\tRxAndroid
-        \n\t\tRxPermission
-        \n\t\tSwipeBackLayouts
-        \n\t\tASimpleCache
-        \n\t\tMaterialDialog</string>
-    <string name="weather">Simple Weather</string>
-    <string name="choice_city">选择城市</string>
+        swipebacklayout
+        \nokhttputils
+        \nbutterknife
+        \nhellocharts-android
+        \nview-pager-transforms
+        \nrxjava
+        \nrxandroid
+        \nrxpermissions
+        \nmaterialdialog
+        \nrecyclerview-animators
+    </string>
+
     <string name="has_new_version">有最近版本，赶紧下载更新吧！</string>
     <string name="this_is_new_version">当前版本为最新版本</string>
-    <string name="contact_me">如果你有好的意见或建议，可以微博留言给我@koterwong，或者联系我邮箱331244921@qq.com。\n不胜感激！</string>
+    <string name="contact_me">如果你有好的意见或建议，可以联系我。\n新浪微博：@koterwong。\n邮箱：331244921@qq.com。\n我将十分注重你的建议，在此感谢！</string>
     <string name="clear_cache">确定要清除缓存吗？\n如果不清理会在你设定的时间内清除，并不会占用手机内存</string>
     <string name="share_app">推荐一款精美天气软件，太好用了。下载地址：http://fir.im/jiandantianqi</string>
+    <string name="app_name_with_introduce">简单天气-只专注天气</string>
+    <string name="introduce">
+        简单天气是一款小而美的天气软件，并且只专注于天气模块。
+        \n在设计风格上遵循了Material Design。
+        \n无广告、危险权限，注重用户体验。\n</string>
 </resources>

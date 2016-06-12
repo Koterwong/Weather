@@ -1,4 +1,4 @@
-package com.koterwong.weather.commons;
+package com.koterwong.weather.commons.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,7 +25,11 @@ public class SavedCityDBManager {
 
     public synchronized static SavedCityDBManager getInstance(Context context) {
         if (mDatabaseManager == null) {
-            mDatabaseManager = new SavedCityDBManager(context);
+            synchronized (SavedCityDBManager.class){
+                if (mDatabaseManager==null){
+                    mDatabaseManager = new SavedCityDBManager(context);
+                }
+            }
         }
         return mDatabaseManager;
     }

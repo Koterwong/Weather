@@ -14,25 +14,21 @@ import android.net.NetworkInfo;
 public class ToolsUtil {
 
 	public static final int getHeightInPx(Context context) {
-		final int height = context.getResources().getDisplayMetrics().heightPixels;
-		return height;
+		return context.getResources().getDisplayMetrics().heightPixels;
 	}
 
 	public static final int getWidthInPx(Context context) {
-		final int width = context.getResources().getDisplayMetrics().widthPixels;
-		return width;
+		return context.getResources().getDisplayMetrics().widthPixels;
 	}
 
 	public static final int getHeightInDp(Context context) {
 		final float height = context.getResources().getDisplayMetrics().heightPixels;
-		int heightInDp = px2dip(context, height);
-		return heightInDp;
+		return px2dip(context, height);
 	}
 
 	public static final int getWidthInDp(Context context) {
 		final float width = context.getResources().getDisplayMetrics().widthPixels;
-		int widthInDp = px2dip(context, width);
-		return widthInDp;
+		return px2dip(context, width);
 	}
 
 	public static int dip2px(Context context, float dpValue) {
@@ -98,5 +94,4 @@ public class ToolsUtil {
 		}
 		return false;
 	}
-
 }

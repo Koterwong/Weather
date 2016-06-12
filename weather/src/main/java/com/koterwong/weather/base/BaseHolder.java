@@ -33,4 +33,8 @@ public abstract class BaseHolder<Data> {
     }
 
     public abstract void refreshView(Data data);
+
+    public void unBindView(){
+        ButterKnife.unbind(this);
+    }
 }

@@ -32,25 +32,15 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     private RecyclerView mRecyclerView;
     private ManagerCityAdapter mAdapter;
-    /**
-     * data
-     */
+
     private List<String> mCityDatas;
     private ManagerCityPresenter mPresenter;
-    /**
-     * 回传给MainActivity的数据
-     */
-    private Bundle mResultBundle;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new ManagerCityPresenter(this);
         initView();
         initRecyclerView();
-        mResultBundle = new Bundle();
     }
-
 
     private void initView() {
         setContentView(R.layout.activity_manager_city);
@@ -64,8 +54,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
         mFloatingAb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, R.string.slide_delete, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.action, null).show();
+                Snackbar.make(view, R.string.slide_delete, Snackbar.LENGTH_LONG).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -123,17 +112,15 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
                 mAdapter.notifyItemRemoved(position);
                 return;
             }
-            /*移除，并在数据库中删除城市*/
+            //移除，并在数据库中删除城市
             String removeCity = mCityDatas.remove(position);
             mPresenter.deleteCity(removeCity);
             Snackbar.make(mRecyclerView, R.string.delete_city_success, Snackbar.LENGTH_LONG).show();
             /*将移除的数据保存到bundle中*/
-            mResultBundle.putString(removeCity + position, removeCity);
             mAdapter.notifyItemRemoved(position);
         }
 
-        @Override
-        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        @Override public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                 //滑动时改变Item的透明度
@@ -146,19 +133,16 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     class ManagerCityAdapter extends RecyclerView.Adapter<ManagerCityHolder> {
 
-        @Override
-        public ManagerCityHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        @Override public ManagerCityHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ManagerCityHolder(LayoutInflater.from(MyApp.getApp()).
                     inflate(R.layout.item_maneger_city, parent, false));
         }
 
-        @Override
-        public int getItemCount() {
+        @Override public int getItemCount() {
             return mCityDatas == null ? 0 : mCityDatas.size();
         }
 
-        @Override
-        public void onBindViewHolder(ManagerCityHolder holder, int position) {
+        @Override public void onBindViewHolder(ManagerCityHolder holder, int position) {
             holder.mTextView.setText(mCityDatas.get(position));
             WeatherBean.NowBean nowBean = mPresenter.querySimpleWeather(mCityDatas.get(position));
             if (nowBean != null) {

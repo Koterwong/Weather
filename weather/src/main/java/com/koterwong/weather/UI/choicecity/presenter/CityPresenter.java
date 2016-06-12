@@ -5,6 +5,6 @@ package com.koterwong.weather.ui.choicecity.presenter;
  * Description:
  */
 public interface CityPresenter {
-    void loadDataList();
+    void queryProvince();
     void queryCity(String proID);
 }

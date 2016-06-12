@@ -4,10 +4,15 @@ import android.app.Activity;
 
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.commons.database.SavedCityDBManager;
 import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.ui.about.AboutActivity;
+import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
+import com.koterwong.weather.ui.main.MainActivity2;
 import com.koterwong.weather.ui.main.model.MainModelImpl;
 import com.koterwong.weather.ui.main.view.MainView;
+import com.koterwong.weather.ui.managercity.ManagerCityActivity;
+import com.koterwong.weather.ui.setting.SettingsActivity;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
@@ -32,16 +37,16 @@ public class MainPresenterImp implements MainPresenter {
             public void run() {
                 switch (position) {
                     case R.id.nav_choice_city:
-                        mMainView.switch2ChoiceCityActivity();
+                        mMainView.switch2ActivityForResult(ChoiceCityActivity.class, MainActivity2.REQUEST_CODE_ADD);
                         break;
                     case R.id.nav_manager_city:
-                        mMainView.switch2ManagerCityActivity();
+                        mMainView.switch2Activity(ManagerCityActivity.class);
                         break;
                     case R.id.nav_setting:
-                        mMainView.switch2SettingActivity();
+                        mMainView.switch2Activity(SettingsActivity.class);
                         break;
                     case R.id.nav_about:
-                        mMainView.switch2AboutActivity();
+                        mMainView.switch2Activity(AboutActivity.class);
                         break;
                 }
             }

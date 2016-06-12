@@ -4,12 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.koterwong.weather.MyApp;
+import com.koterwong.weather.R;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
-import com.koterwong.weather.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +19,17 @@ import java.util.List;
  */
 public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
 
-    List<ProvinceBean> mProDatas = new ArrayList<>();
-    List<CityBean> mCityDatas = new ArrayList<>();
+    private List<ProvinceBean> mProDatas ;
+    private List<CityBean> mCityDatas ;
+
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
     public static int currentLevel = LEVEL_PROVINCE;
+
+    public CityListAdapter() {
+        mProDatas = new ArrayList<>();
+        mCityDatas = new ArrayList<>();
+    }
 
     public void setmProDatas(List<ProvinceBean> mProDatas) {
         if (this.mProDatas.size() != 0) {
@@ -84,7 +89,6 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
                 });
             }
         }
-
     }
 
     @Override
@@ -102,13 +106,3 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
     }
 }
 
-class CityListHolder extends RecyclerView.ViewHolder {
-
-    public TextView mTextView;
-
-    public CityListHolder(View view) {
-        super(view);
-        mTextView = (TextView) itemView.findViewById(R.id.tv_city);
-    }
-
-}

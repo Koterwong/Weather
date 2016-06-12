@@ -10,7 +10,7 @@ import java.io.File;
  * Author：Koterwong，Data：2016/4/25.
  * Description:
  */
-public class CityDbManager {
+public class ChinaCityDataBase {
 
     private static SQLiteDatabase db;
     private static final String CITY_DB_NAME = "china_city.db";
@@ -28,12 +28,7 @@ public class CityDbManager {
      * 获取数据库Copy的位置.
      */
     public static String getDBCopyPath() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append(File.separator)
-                .append(MyApp.getApp().getFilesDir().getAbsolutePath())
-                .append(File.separator)
-                .append(CITY_DB_NAME)
-                .toString();
+        return MyApp.getApp().getFilesDir().getAbsolutePath() + File.separator + CITY_DB_NAME;
 //         builder.append(File.separator)
 //                .append("data")
 //                .append(Environment.getDataDirectory().getAbsolutePath())

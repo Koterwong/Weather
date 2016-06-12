@@ -1,19 +1,12 @@
 package com.koterwong.weather.ui.choicecity.Model;
 
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.koterwong.weather.MyApp;
-import com.koterwong.weather.R;
 import com.koterwong.weather.beans.CityBean;
 import com.koterwong.weather.beans.ProvinceBean;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +17,10 @@ import java.util.List;
 public class CityModelImp implements CityModel {
 
     @Override public void queryProvince(CityModelImp.QueryProListener listener) {
-        SQLiteDatabase cityDb = CityDbManager.getCityDataBase(CityDbManager.getDBCopyPath());
+        SQLiteDatabase cityDb = ChinaCityDataBase.getCityDataBase(ChinaCityDataBase.getDBCopyPath());
         Cursor cursor = cityDb.query("T_Province", null, null, null, null, null, null);
         if (cursor == null) {
-            listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
+            listener.queryProvinceFailed(new FileNotFoundException("数据库文件不存在"));
             return;
         }
         List<ProvinceBean> list = new ArrayList<>();
@@ -40,15 +33,15 @@ public class CityModelImp implements CityModel {
                 list.add(province);
             } while (cursor.moveToNext());
             cursor.close();
-            listener.querySuccess(list);
+            listener.queryProvinceSuccess(list);
         }
     }
 
     @Override public void queryCity(String ProID, CityModelImp.QueryCityListener listener) {
-        SQLiteDatabase cityDb = CityDbManager.getCityDataBase(CityDbManager.getDBCopyPath());
+        SQLiteDatabase cityDb = ChinaCityDataBase.getCityDataBase(ChinaCityDataBase.getDBCopyPath());
         Cursor cursor = cityDb.query("T_City", null, "ProID = ?", new String[]{ProID}, null, null, null);
         if (cursor == null) {
-            listener.queryFailed(new FileNotFoundException("数据库文件不存在"));
+            listener.queryCityFailed(new FileNotFoundException("数据库文件不存在"));
             return;
         }
         List<CityBean> list = new ArrayList<>();
@@ -59,12 +52,12 @@ public class CityModelImp implements CityModel {
                 city.ProID = ProID;
                 list.add(city);
             } while (cursor.moveToNext());
-            listener.querySuccess(list);
+            listener.queryCitySuccess(list);
         }
         cursor.close();
     }
 
-    @Override public void copyDatabase(final CityModelImp.LoadCityDBListener listener) {
+/*    @Override public void copyDatabase(final CityModelImp.LoadCityDBListener listener) {
         File file = new File(CityDbManager.getDBCopyPath());
         if (file.exists()) {
             listener.copySuccess();
@@ -107,26 +100,19 @@ public class CityModelImp implements CityModel {
                 }
             }
         }).start();
-    }
-
-    public interface LoadCityDBListener {
-
-        void copySuccess();
-
-        void copyFailed(Exception e);
-    }
+    }*/
 
     public interface QueryCityListener {
 
-        void querySuccess(List<CityBean> cityList);
+        void queryCitySuccess(List<CityBean> cityList);
 
-        void queryFailed(Exception e);
+        void queryCityFailed(Exception e);
     }
 
     public interface QueryProListener {
 
-        void querySuccess(List<ProvinceBean> provinceList);
+        void queryProvinceSuccess(List<ProvinceBean> provinceList);
 
-        void queryFailed(Exception e);
+        void queryProvinceFailed(Exception e);
     }
 }

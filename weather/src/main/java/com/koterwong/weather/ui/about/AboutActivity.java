@@ -7,9 +7,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.koterwong.weather.R;
 import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.utils.AppUtils;
 
 import me.drakeet.materialdialog.MaterialDialog;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
@@ -17,22 +19,27 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class AboutActivity extends SwipeBackActivity {
 
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.initView();
+        this.initFab();
+    }
+
+    private void initView() {
         setContentView(R.layout.activity_about);
         ActivityStatueBarCompat.compat(this);
-
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.about);
+        toolbar.setTitle(R.string.title_about);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((TextView)findViewById(R.id.tv_version)).setText("Version："+AppUtils.getVersionName(this));
+    }
 
+    private void initFab() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +47,7 @@ public class AboutActivity extends SwipeBackActivity {
                         .setTitle("点赞")
                         .setMessage("去GitHub查看项目详细介绍，并给作者点个赞 o(∩_∩)o")
                         .setCanceledOnTouchOutside(true)
-                        .setPositiveButton("好咧", new View.OnClickListener() {
+                        .setPositiveButton("好的", new View.OnClickListener() {
                             @Override public void onClick(View v) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.github.com/koterwong"));
                                 startActivity(intent);
@@ -49,10 +56,6 @@ public class AboutActivity extends SwipeBackActivity {
                 dialog.show();
             }
         });
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fl_content, new AboutFragment())
-                .commit();
     }
 
     @Override

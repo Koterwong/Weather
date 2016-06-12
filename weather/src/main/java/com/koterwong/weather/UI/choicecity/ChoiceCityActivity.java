@@ -20,7 +20,7 @@ import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.choicecity.View.CityView;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenterImp;
-import com.koterwong.weather.commons.SavedCityDBManager;
+import com.koterwong.weather.commons.database.SavedCityDBManager;
 import com.koterwong.weather.widget.BorderDividerItemDecoration;
 import com.koterwong.weather.utils.ToolsUtil;
 
@@ -32,7 +32,6 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
 
-
     //ui
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
@@ -40,28 +39,25 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     private CityPresenter mCityPresenter;
     private CityListAdapter mAdapter;
     private CollapsingToolbarLayout mCollapsing;
-    private Toolbar mToolbar;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCityPresenter = new CityPresenterImp(this);
-        initView();
-        initEvent();
+        this.initView();
+        this.initEvent();
     }
 
     private void initView() {
         setContentView(R.layout.activity_choice_city);
         ActivityStatueBarCompat.compat(this);
-
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
         //ScrollToolbar
         mCollapsing = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         mCollapsing.setTitle("选择城市");
-
         //back
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -78,7 +74,8 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
         adapter.setFirstOnly(false);
         mRecyclerView.setAdapter(adapter);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        loadDatas();
+
+        mCityPresenter.queryProvince();
     }
 
     private void initEvent() {
@@ -91,9 +88,7 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
                         mCollapsing.setTitle(msg);
                         break;
                     case CityListAdapter.LEVEL_CITY:
-                        /**
-                         * 判断保存城市的数据中是否存在该城市
-                         */
+                       // 判断保存城市的数据中是否存在该城市
                         boolean containTheCity = SavedCityDBManager.getInstance(ChoiceCityActivity.this).isExistCity(msg);
                         if (containTheCity){
                             Snackbar.make(mRecyclerView,"已经包含该城市",Snackbar.LENGTH_LONG).show();
@@ -103,9 +98,9 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
                             Snackbar.make(mRecyclerView,"网络未连接，请连接网络重试",Snackbar.LENGTH_LONG).show();
                             return;
                         }
-                        Intent mIntent = new Intent();
-                        mIntent.putExtra("city",msg);
-                        setResult(RESULT_OK,mIntent);
+                        Intent intent = new Intent();
+                        intent.putExtra("city",msg);
+                        setResult(RESULT_OK,intent);
                         finish();
                         break;
                 }
@@ -122,18 +117,12 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadDatas() {
-        mCityPresenter.loadDataList();
-    }
-
-    @Override
-    public void setProDatas(List<ProvinceBean> mDatas) {
+    @Override public void setProDatas(List<ProvinceBean> mDatas) {
         mAdapter.setmProDatas(mDatas);
         setTitle("选择城市");
     }
 
-    @Override
-    public void setCityDatas(List<CityBean> mDatas) {
+    @Override public void setCityDatas(List<CityBean> mDatas) {
         mAdapter.setmCityDatass(mDatas);
     }
 
@@ -145,21 +134,18 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    public void setTitle(String title) {
+    @Override public void setTitle(String title) {
         mCollapsing.setTitle(title);
     }
 
-    @Override
-    public void showToast(String msg) {
+    @Override public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onBackPressed() {
+    @Override public void onBackPressed() {
         if (CityListAdapter.currentLevel == CityListAdapter.LEVEL_CITY){
             //回到省份
-            mCityPresenter.loadDataList();
+            mCityPresenter.queryProvince();
         }else{
             super.onBackPressed();
         }

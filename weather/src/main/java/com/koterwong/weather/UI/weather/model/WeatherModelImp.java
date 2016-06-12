@@ -1,11 +1,8 @@
 package com.koterwong.weather.ui.weather.model;
 
-import android.os.Process;
-
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.UrlHelper;
-import com.koterwong.weather.utils.ThreadManager;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -24,6 +21,12 @@ public class WeatherModelImp implements WeatherModel {
 
 
     private String cityName;
+//    private CompositeSubscription mCompositeSubscription;
+//
+//    public WeatherModelImp() {
+//        mCompositeSubscription = new CompositeSubscription();
+//    }
+
     /**
      * 加载网络数据
      *
@@ -53,12 +56,13 @@ public class WeatherModelImp implements WeatherModel {
                             listener.onLoadServiceFailed(e);
                         }
                     }
+
                     @Override public void onResponse(WeatherBean weatherBean) {
-                        if (listener!=null){
+                        if (listener != null) {
                             if (weatherBean != null) {
                                 listener.onLoadServiceSuccess(weatherBean);
                             } else {
-                                listener.onLoadServiceFailed(new Exception("没有该城市数据，sorry~"));
+                                listener.onLoadServiceFailed(new Exception("暂时没有该城市天气数据"));
                             }
                         }
                     }
@@ -73,36 +77,50 @@ public class WeatherModelImp implements WeatherModel {
 
         @Override public WeatherBean parseNetworkResponse(Response response) throws IOException {
             String json = response.body().string();
-            return WeatherJsonUtil.parseJSON(cityName,json);
+            return WeatherJsonUtil.parseJSON(cityName, json);
         }
     }
 
     @Override public void loadLocation(final String cityName, final LoadLocationListener listener) {
-        ThreadManager.getInstance().createShortPool().execute(new Runnable() {
-            @Override
-            public void run() {
+//        //RxJava替换线程,有数据显示的bug，能力限制、展示待不做替换。
+//        Subscription subscribe = Observable.create(new Observable.OnSubscribe<WeatherBean>() {
+//            @Override public void call(Subscriber<? super WeatherBean> subscriber) {
+//                subscriber.onNext(WeatherJsonUtil.getLocWeatherBean(cityName));
+//            }
+//        }).subscribeOn(AndroidSchedulers.mainThread())
+//                .observeOn(Schedulers.io())
+//                .subscribe(new Subscriber<WeatherBean>() {
+//                    @Override public void onCompleted() {
+//
+//                    }
+//
+//                    @Override public void onError(Throwable e) {
+//                        listener.onLoadLocFailed(new Exception("本地没有缓存"));
+//                    }
+//
+//                    @Override public void onNext(WeatherBean weatherBean) {
+//                        if (weatherBean != null) {
+//                            listener.onLoadLocSuccess(weatherBean);
+//                        } else {
+//                            listener.onLoadLocFailed(new Exception("本地没有缓存"));
+//                        }
+//                    }
+//                });
+//        mCompositeSubscription.add(subscribe);
+        new Thread(new Runnable() {
+            @Override public void run() {
                 final WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(cityName);
-                //将跟新UI的操作放到主线程主执行
-                if (Process.myTid()== MyApp.getMainId()){
-                    if (weatherBean != null) {
-                        listener.onLoadLocSuccess(weatherBean);
-                    } else {
-                        listener.onLoadLocFailed(new Exception("本地没有缓存~"));
-                    }
-                }else {
-                    MyApp.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (weatherBean != null) {
-                                listener.onLoadLocSuccess(weatherBean);
-                            } else {
-                                listener.onLoadLocFailed(new Exception("本地没有缓存~"));
-                            }
+                MyApp.getHandler().post(new Runnable() {
+                    @Override public void run() {
+                        if (weatherBean != null) {
+                            listener.onLoadLocSuccess(weatherBean);
+                        } else {
+                            listener.onLoadLocFailed(new Exception("本地没有缓存"));
                         }
-                    });
-                }
+                    }
+                });
             }
-        });
+        }).start();
     }
 
     public interface LoadServiceListener {

@@ -1,48 +1,48 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="通用设置">
+        <Preference
+            android:key="update"
+            android:summary="@string/this_is_new_version"
+            android:title="检查更新" />
         <SwitchPreference
             android:defaultValue="true"
             android:key="switch_location"
             android:summaryOff="自动定位已关闭"
             android:summaryOn="自动定位已开启"
-            android:title="开启定位" />
+            android:title="开启定位"/>
         <SwitchPreference
-            android:key="switch_update"
             android:defaultValue="false"
+            android:key="switch_update"
             android:summary="开启自动更新天气，只有需要时才会请求网络，并不会在后台消耗流量，建议开启每4小时更新"
-            android:title="天气自动更新" />
+            android:title="天气自动更新"/>
         <ListPreference
-            android:key="sync_frequency"
             android:defaultValue="4"
             android:dependency="switch_update"
             android:entries="@array/pref_cache_time"
             android:entryValues="@array/pref_sync_update_values"
+            android:key="sync_frequency"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
-            android:title="更新频率" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="通知">
+            android:title="更新频率"/>
         <CheckBoxPreference
-            android:key="cb_notification"
             android:checked="false"
-            android:title="通知栏天气"
-            android:summary="开启通知栏天气"/>
+            android:key="cb_notification"
+            android:summary="开启通知栏天气"
+            android:title="通知栏天气"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="缓存"
+        android:title="缓存设置"
         >
         <ListPreference
-            android:key="list_pre_cache_time"
             android:defaultValue="4"
             android:entries="@array/pref_sync_update"
             android:entryValues="@array/pref_sync_update_values"
+            android:key="list_pre_cache_time"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
-            android:title="本地缓存存放时间" />
+            android:title="本地缓存存放时间"/>
 
         <Preference
             android:key="pref_cache_size_clear"

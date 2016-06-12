@@ -207,5 +207,9 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
     @Override public void onDestroy() {
         super.onDestroy();
         mPresenter = null;
+        ButterKnife.unbind(this);
+        mDailyHolder.unBindView();
+        mIndexHolder.unBindView();
+        mOverviewHolder.unBindView();
     }
 }

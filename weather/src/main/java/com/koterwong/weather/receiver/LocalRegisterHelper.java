@@ -18,7 +18,7 @@ public class LocalRegisterHelper {
     private Context mContext;
     private static LocalRegisterHelper mInstance;
 
-    public static final String action = "com.koterwong.weather.Notification";
+    public static final String action_notify = "com.koterwong.weather.Notification";
 
     private LocalRegisterHelper(Context context) {
         this.mContext = context;
@@ -36,7 +36,7 @@ public class LocalRegisterHelper {
     }
 
     public void send(BroadcastReceiver receiver, String action) {
-        this.register(receiver, action).sendBroadcast(new Intent(LocalRegisterHelper.action));
+        this.register(receiver, action).sendBroadcast(new Intent(LocalRegisterHelper.action_notify));
     }
 
     public void unRegister(BroadcastReceiver receiver){
