@@ -60,9 +60,9 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
     @Bind(R.id.weather_pm25)
     TextView mPm25;
 
-    public static Fragment newInstance(String city){
+    public static Fragment newInstance(String city) {
         Bundle bundle = new Bundle();
-        bundle.putString("city",city);
+        bundle.putString("city", city);
         WeatherLazyFragment weatherLazyFragment = new WeatherLazyFragment();
         weatherLazyFragment.setArguments(bundle);
         return weatherLazyFragment;
@@ -101,7 +101,7 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
         //card4
         mSuggestCard = (CardView) mWeatherView.findViewById(R.id.card_sug);
         this.addSuggestHolder();
-        ButterKnife.bind(this,mWeatherView);
+        ButterKnife.bind(this, mWeatherView);
         return mWeatherView;
     }
 
@@ -170,11 +170,13 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
     }
 
     @Override public void setWeatherPm25(String PM25) {
-        this.mPm25.setText(PM25);
+        if (PM25 != null)
+            this.mPm25.setText(PM25);
     }
 
     @Override public void setWeatherUpdateTime(String time) {
-        mUpdateTv.setText(time);
+        if (time != null)  //不能蹦
+            mUpdateTv.setText(time);
     }
 
     @Override public void showToastMsg(String msg) {

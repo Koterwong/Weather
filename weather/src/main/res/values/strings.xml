@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">简单天气</string>
+    <string name="app_name">心悦天气</string>
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="action_settings">Settings</string>
 
-    <string name="nav_weather">天气</string>
     <string name="nav_manager_city">管理城市</string>
     <string name="nav_choice_city">选择城市</string>
     <string name="nav_setting">设置</string>
@@ -51,10 +50,10 @@
         \nokhttputils
         \nbutterknife
         \nhellocharts-android
-        \nview-pager-transforms
         \nrxjava
         \nrxandroid
         \nrxpermissions
+        \nAsimpleCache
         \nmaterialdialog
         \nrecyclerview-animators
     </string>
@@ -63,10 +62,11 @@
     <string name="this_is_new_version">当前版本为最新版本</string>
     <string name="contact_me">如果你有好的意见或建议，可以联系我。\n新浪微博：@koterwong。\n邮箱：331244921@qq.com。\n我将十分注重你的建议，在此感谢！</string>
     <string name="clear_cache">确定要清除缓存吗？\n如果不清理会在你设定的时间内清除，并不会占用手机内存</string>
-    <string name="share_app">推荐一款精美天气软件，太好用了。下载地址：http://fir.im/jiandantianqi</string>
+    <string name="share_app">推荐一款精美、简约的天气软件，心悦天气。下载地址：http://fir.im/jiandantianqi</string>
     <string name="app_name_with_introduce">简单天气-只专注天气</string>
     <string name="introduce">
-        简单天气是一款小而美的天气软件，并且只专注于天气模块。
+        心悦天气是一款精美、简约的天气软件，并且只专注于天气模块。
         \n在设计风格上遵循了Material Design。
-        \n无广告、危险权限，注重用户体验。\n</string>
+        \n应用无广告、无危险权限，注重用户体验。
+        </string>
 </resources>

@@ -23,7 +23,6 @@ import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;
 import com.koterwong.weather.ui.main.view.MainView;
-import com.koterwong.weather.utils.LogUtils;
 import com.koterwong.weather.utils.RxBus;
 import com.koterwong.weather.utils.ShareUtils;
 import com.koterwong.weather.widget.ZoomOutSlideTransformer;
@@ -57,6 +56,7 @@ public class MainActivity2 extends AppCompatActivity implements MainView, Naviga
     private MainAdapter mAdapter;
 
     private CompositeSubscription mCompositeSubscription;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mCompositeSubscription = new CompositeSubscription();

@@ -11,9 +11,8 @@ import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.SettingPref;
 import com.koterwong.weather.utils.ACache;
+import com.koterwong.weather.utils.CalendarUtils;
 import com.koterwong.weather.utils.JsonUtils;
-
-import java.util.Calendar;
 
 /**
  * Author：Koterwong，Data：2016/4/24.
@@ -38,9 +37,9 @@ public class WeatherJsonUtil {
             JsonElement jsonElement = jsonArray.get(0);
             JsonObject jsonObject1 = jsonElement.getAsJsonObject();
             if ("ok".equals(jsonObject1.get("status").getAsString())) {
-                /*数据请求正确*/
+                //数据请求正确
                 WeatherBean weatherBean = JsonUtils.deserialize(jsonObject1, WeatherBean.class);
-                /*将WeatherBean保存到本地，并设置过期时间,默认为8*/
+                //将WeatherBean保存到本地，并设置过期时间,默认为
                 int time = Integer.valueOf(SettingPref.getString(SettingPref.AUTO_DELETE_CACHE_TIME, "8"));
                 MyApp.getACache().put(cityName, weatherBean, ACache.TIME_HOUR * time);
                 return weatherBean;
@@ -65,10 +64,8 @@ public class WeatherJsonUtil {
     }
 
     public static int getWeatherImgResType2(String weather) {
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int resId = 0;
-        if (6 <= hour && 18 >= hour) {
+        if (CalendarUtils.isDay()) {
             if ("晴".equals(weather)) {
                 resId = R.drawable.weather_clear_day;
             } else if (weather.contains("云")||weather.contains("阴")) {
