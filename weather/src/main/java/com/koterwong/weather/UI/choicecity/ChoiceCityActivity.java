@@ -50,8 +50,9 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     private void initView() {
         setContentView(R.layout.activity_choice_city);
         ActivityStatueBarCompat.compat(this);
-        SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
+        swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        swipeBackLayout.setScrollThresHold(0.5f);
 
         //ScrollToolbar
         mCollapsing = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
@@ -118,12 +119,12 @@ public class ChoiceCityActivity extends SwipeBackActivity implements CityView {
     }
 
     @Override public void setProDatas(List<ProvinceBean> mDatas) {
-        mAdapter.setmProDatas(mDatas);
+        mAdapter.setProDatas(mDatas);
         setTitle("选择城市");
     }
 
     @Override public void setCityDatas(List<CityBean> mDatas) {
-        mAdapter.setmCityDatass(mDatas);
+        mAdapter.setCityDatas(mDatas);
     }
 
     public void showProgressBar() {

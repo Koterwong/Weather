@@ -2,6 +2,7 @@ package com.koterwong.weather.ui.weather;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -59,6 +60,13 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
     @Bind(R.id.weather_pm25)
     TextView mPm25;
 
+    public static Fragment newInstance(String city){
+        Bundle bundle = new Bundle();
+        bundle.putString("city",city);
+        WeatherLazyFragment weatherLazyFragment = new WeatherLazyFragment();
+        weatherLazyFragment.setArguments(bundle);
+        return weatherLazyFragment;
+    }
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

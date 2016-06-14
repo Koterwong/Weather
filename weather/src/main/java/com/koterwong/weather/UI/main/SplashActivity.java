@@ -18,13 +18,13 @@ import com.koterwong.weather.receiver.LocalRegisterHelper;
 import com.koterwong.weather.receiver.NotificationReceiver;
 import com.koterwong.weather.service.AutoUpdateService;
 import com.koterwong.weather.utils.AppUtils;
+import com.koterwong.weather.utils.CalendarUtils;
 import com.koterwong.weather.utils.ServiceStatueUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -55,9 +55,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initView() {
         int resId;
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(calendar.HOUR_OF_DAY);
-        if (hour > 6 && hour < 18) {
+        if (CalendarUtils.isDay()) {
             resId = R.drawable.splash_02;
         }  else {
             resId = R.drawable.splash_01;
@@ -91,9 +89,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private void startActivity(){
         Intent intent = new Intent(SplashActivity.this,MainActivity2.class);
-//        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//               this,null,"");
-//        ActivityCompat.startActivity(this,intent,compat.toBundle());
         startActivity(intent);
         finish();
     }

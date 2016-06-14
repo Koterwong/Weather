@@ -18,9 +18,10 @@ public class SettingsActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         ActivityStatueBarCompat.compat(this);
-        getSwipeBackLayout().
-                setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
-        init();
+        SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
+        swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        swipeBackLayout.setScrollThresHold(0.5f);
+        this.init();
     }
 
     private void init() {

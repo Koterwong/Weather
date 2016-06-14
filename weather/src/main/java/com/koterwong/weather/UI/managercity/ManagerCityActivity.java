@@ -20,8 +20,10 @@ import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;
+import com.koterwong.weather.utils.RxBus;
 import com.koterwong.weather.widget.BorderDividerItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
@@ -35,11 +37,14 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     private List<String> mCityDatas;
     private ManagerCityPresenter mPresenter;
+
+    private ArrayList<String> mResultList = new ArrayList<>();
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new ManagerCityPresenter(this);
-        initView();
-        initRecyclerView();
+        this.initView();
+        this.initRecyclerView();
     }
 
     private void initView() {
@@ -47,6 +52,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
         ActivityStatueBarCompat.compat(this);
         SwipeBackLayout mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        mSwipeBackLayout.setScrollThresHold(0.5F);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -75,7 +81,8 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
             mRecyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
-        new ItemTouchHelper(new MySimpleCallBack()).attachToRecyclerView(mRecyclerView);
+        new ItemTouchHelper(new MySimpleCallBack())
+                .attachToRecyclerView(mRecyclerView);
     }
 
     class MySimpleCallBack extends ItemTouchHelper.SimpleCallback {
@@ -95,8 +102,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
          * @param target       目标位置的ViewHolder
          * @return boolean
          */
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
             return false;
         }
 
@@ -104,19 +110,16 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
          * @param viewHolder 滑动的ViewHolder
          * @param direction  滑动的方向
          */
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
             if (mCityDatas.size() == 1) {
-                Snackbar.make(mRecyclerView, R.string.save_one, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(mRecyclerView, R.string.mast_save_one, Snackbar.LENGTH_LONG).show();
                 mAdapter.notifyItemRemoved(position);
                 return;
             }
-            //移除，并在数据库中删除城市
             String removeCity = mCityDatas.remove(position);
             mPresenter.deleteCity(removeCity);
-            Snackbar.make(mRecyclerView, R.string.delete_city_success, Snackbar.LENGTH_LONG).show();
-            /*将移除的数据保存到bundle中*/
+            mResultList.add(removeCity);
             mAdapter.notifyItemRemoved(position);
         }
 
@@ -152,7 +155,7 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
         }
     }
 
-    class ManagerCityHolder extends RecyclerView.ViewHolder {
+    static class ManagerCityHolder extends RecyclerView.ViewHolder {
 
         private TextView mTextView, mTmpTV, mDesTv;
 
@@ -164,19 +167,19 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
         }
     }
 
-    /**
-     * 回传数据，回传之前一定要调用finish()方发、
-     */
-//    @Override
-//    public void onBackPressed() {
-//        Intent mIntent = new Intent();
-//        mIntent.putExtras(mResultBundle);
-//        setResult(RESULT_OK, mIntent);
-//        finish();
-//    }
+    @Override protected void onPause() {
+        super.onPause();
+    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override protected void onDestroy() {
+        if (mResultList.size() > 0) {
+            RxBus.getInstance()
+                    .send(mResultList);
+        }
+        super.onDestroy();
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;

@@ -43,7 +43,7 @@
     </string-array>
     <string name="load_error">加载失败点击重试</string>
     <string name="add_city">请添加城市信息</string>
-    <string name="save_one">请至少保留一个城市</string>
+    <string name="mast_save_one">请至少保留一个城市</string>
     <string name="delete_city_success">删除成功,下次启动生效</string>
     <string name="slide_delete">滑动删除</string>
     <string name="dependencies">

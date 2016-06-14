@@ -31,6 +31,7 @@ public class AboutActivity extends SwipeBackActivity {
         ActivityStatueBarCompat.compat(this);
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        swipeBackLayout.setScrollThresHold(0.5f);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.title_about);
         setSupportActionBar(toolbar);

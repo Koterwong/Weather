@@ -32,20 +32,15 @@ public class WeatherPresenterImp implements
             mWeatherView.showToastMsg("未接受到城市数据");
             return;
         }
-        mCity = city;
-        if (mWeatherView.isSwipeRefreshLayoutRefreshing()) {
-            //如果为下拉刷新状态，才去去服务加载数据
-            if (!ToolsUtil.isNetworkAvailable(MyApp.getApp())) {
-                mWeatherView.showToastMsg("网络未连接");
-                mWeatherView.setSwipeRefreshLayoutStatue(false);
-                return;
-            }
-            mWeatherModel.loadWeatherFromServer(city, this);
-        } else {
-            //不是下拉刷新状态，则直接加载本地数据
-            mWeatherView.showLoadingVisible();
-            mWeatherModel.loadLocation(city, this);
+        this.mCity = city;
+        if (!ToolsUtil.isNetworkAvailable(MyApp.getApp())){
+            mWeatherView.showToastMsg("网络为连接");
+            mWeatherView.setSwipeRefreshLayoutStatue(false);
+            return;
         }
+        //改为加载网路数据,if（失败） loadlocal
+        mWeatherView.showLoadingVisible();
+        mWeatherModel.loadWeatherFromServer(city,this);
     }
 
     /**
@@ -60,13 +55,8 @@ public class WeatherPresenterImp implements
      */
     @Override public void onLoadServiceFailed(Exception e) {
         //加载失败原因：1.请求超时，2.没有该城市天气信息。
-        mWeatherView.showToastMsg(e.toString());
-        if (mWeatherView.isSwipeRefreshLayoutRefreshing()) {
-            //下拉刷新失败
-            mWeatherView.setSwipeRefreshLayoutStatue(false);
-        } else {
-            mWeatherView.showErrorVisible();
-        }
+        mWeatherView.showToastMsg(e.getMessage());
+        mWeatherModel.loadLocation(mCity,this);
     }
 
     /**
@@ -80,8 +70,14 @@ public class WeatherPresenterImp implements
      * 加载本地失败的回调。
      */
     @Override public void onLoadLocFailed(Exception e) {
-        if (mCity != null)
-            mWeatherModel.loadWeatherFromServer(mCity, this);
+        if (mWeatherView.isSwipeRefreshLayoutRefreshing()){
+            mWeatherView.setSwipeRefreshLayoutStatue(false);
+        }
+        this.showErrorPage();
+    }
+
+    private void showErrorPage(){
+        mWeatherView.showErrorVisible();
     }
 
     private void upDateWeatherUI(WeatherBean weatherBean) {

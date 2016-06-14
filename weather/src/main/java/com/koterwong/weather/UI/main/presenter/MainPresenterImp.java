@@ -67,8 +67,7 @@ public class MainPresenterImp implements MainPresenter {
             RxPermissions.getInstance((Activity) mMainView)
                     .request(android.Manifest.permission.ACCESS_COARSE_LOCATION)
                     .subscribe(new Action1<Boolean>() {
-                        @Override
-                        public void call(Boolean aBoolean) {
+                        @Override public void call(Boolean aBoolean) {
                             if (aBoolean) {
                                 SettingPref.putBoolean(SettingPref.IS_ALLOW_LOCATION, true);
                                 MainPresenterImp.this.location();
@@ -91,7 +90,6 @@ public class MainPresenterImp implements MainPresenter {
                 mMainView.setToolbarTitle(((Activity)mMainView).getResources().getString(R.string.app_name));
                 MainPresenterImp.this.addCityToDB(city);
             }
-
             @Override public void locationError() {
 
             }

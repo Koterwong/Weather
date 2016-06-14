@@ -31,7 +31,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
         mCityDatas = new ArrayList<>();
     }
 
-    public void setmProDatas(List<ProvinceBean> mProDatas) {
+    public void setProDatas(List<ProvinceBean> mProDatas) {
         if (this.mProDatas.size() != 0) {
             this.mProDatas.clear();
         }
@@ -40,7 +40,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
         this.notifyDataSetChanged();
     }
 
-    public void setmCityDatass(List<CityBean> mCityDatas) {
+    public void setCityDatas(List<CityBean> mCityDatas) {
         if (this.mCityDatas.size() != 0) {
             this.mCityDatas.clear();
         }
@@ -59,15 +59,13 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
         void onClick(View itemView, int position, String name, String id, int Level);
     }
 
-    @Override
-    public CityListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override public CityListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(MyApp.getApp()).
                 inflate(R.layout.item_city, parent, false);
         return new CityListHolder(inflate);
     }
 
-    @Override
-    public void onBindViewHolder(CityListHolder holder, final int position) {
+    @Override public void onBindViewHolder(CityListHolder holder, final int position) {
         if (currentLevel == LEVEL_PROVINCE) {
             holder.mTextView.setText(mProDatas.get(position).ProName);
             if (listener != null) {
@@ -91,8 +89,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListHolder> {
         }
     }
 
-    @Override
-    public int getItemCount() {
+    @Override public int getItemCount() {
         if (currentLevel == LEVEL_PROVINCE) {
             if (mProDatas != null && mProDatas.size() > 0) {
                 return mProDatas.size();

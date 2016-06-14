@@ -22,8 +22,7 @@ public class MyRecyclerView extends RecyclerView {
 
     int startX;
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    @Override public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //对ACTION_DOWN消费，否则ACTION_MOVE不会调用。

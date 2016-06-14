@@ -14,6 +14,6 @@ public class CalendarUtils {
     public static boolean isDay(){
         Calendar calendar = Calendar.getInstance();
         int time = calendar.get(Calendar.HOUR_OF_DAY);
-        return time > 6 && time < 18;
+        return time >= 6 && time < 18;
     }
 }

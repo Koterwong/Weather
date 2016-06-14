@@ -19,6 +19,13 @@ public class RxBus {
 
     // If multiple threads are going to emit events to this
     // then it must be made thread-safe like this instead
+
+    private static RxBus mInstance = new RxBus();
+
+    public static RxBus getInstance() {
+        return mInstance;
+    }
+
     private final Subject<Object, Object> rxBus =
             new SerializedSubject<>(PublishSubject.create());
 
@@ -26,11 +33,15 @@ public class RxBus {
         rxBus.onNext(object);  //在这里向bus发布消息
     }
 
-    public Observable<Object> toObervable(){
+    public Observable<Object> toObervable() {
         return rxBus;          //拿到rxBus上的Observable，订阅消息
     }
 
-    public  boolean hasObservablie(){
+    public <T> Observable<T> toObserverable(Class<T> eventType) {
+        return rxBus.ofType(eventType);
+    }
+
+    public boolean hasObservable() {
         return rxBus.hasObservers();
     }
 }
