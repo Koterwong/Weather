@@ -27,8 +27,10 @@ public class MyApp extends Application {
         mainId = android.os.Process.myTid();
         mHandler = new Handler();
         mACache = ACache.get(this, CACHE_NAME);
-        LogUtils.isDebug = true;  //release版本不打印log
-        FIR.init(this);  //新版本检查更新。
+        //release版本不打印log
+        LogUtils.isDebug = true;
+        //新版本检查更新。
+        FIR.init(this);
     }
 
     /**

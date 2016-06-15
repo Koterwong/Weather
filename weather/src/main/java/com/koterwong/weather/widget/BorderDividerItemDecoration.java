@@ -10,6 +10,7 @@ import android.view.View;
  * Description:
  */
 public class BorderDividerItemDecoration extends RecyclerView.ItemDecoration{
+
     private final int verticalItemSpacingInPx;
     private final int horizontalItemSpacingInPx;
 

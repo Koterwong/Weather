@@ -3,26 +3,30 @@ package com.koterwong.weather.ui.weather;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseFragment;
 import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.ui.weather.holder.OverviewHolder;
 import com.koterwong.weather.ui.weather.holder.DailyForecastHolder;
 import com.koterwong.weather.ui.weather.holder.IndexHolder;
+import com.koterwong.weather.ui.weather.holder.OverviewHolder;
 import com.koterwong.weather.ui.weather.presenter.WeatherPresenter;
 import com.koterwong.weather.ui.weather.presenter.WeatherPresenterImp;
 import com.koterwong.weather.ui.weather.view.WeatherView;
+import com.koterwong.weather.utils.ToolsUtil;
 
 import java.util.List;
 
@@ -199,6 +203,14 @@ public class WeatherLazyFragment extends BaseFragment implements WeatherView, Vi
         mLoadingRl.setVisibility(View.GONE);
         mLoadError.setVisibility(View.GONE);
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+        if (mSwipeRefreshLayout.isShown()) {
+            mSwipeRefreshLayout.setTranslationY(ToolsUtil.getHeightInPx(MyApp.getApp()) * 0.7f);
+            ViewCompat.animate(mSwipeRefreshLayout)
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .setDuration(555)
+                    .start();
+        }
     }
 
     /**

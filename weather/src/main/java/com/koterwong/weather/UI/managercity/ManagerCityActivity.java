@@ -19,6 +19,7 @@ import com.koterwong.weather.R;
 import com.koterwong.weather.beans.WeatherBean;
 import com.koterwong.weather.commons.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
+import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenterImpl;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;
 import com.koterwong.weather.utils.RxBus;
 import com.koterwong.weather.widget.BorderDividerItemDecoration;
@@ -37,12 +38,11 @@ public class ManagerCityActivity extends SwipeBackActivity implements ManagerCit
 
     private List<String> mCityDatas;
     private ManagerCityPresenter mPresenter;
-
     private ArrayList<String> mResultList = new ArrayList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new ManagerCityPresenter(this);
+        mPresenter = new ManagerCityPresenterImpl(this);
         this.initView();
         this.initRecyclerView();
     }

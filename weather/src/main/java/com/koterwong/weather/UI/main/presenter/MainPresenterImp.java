@@ -57,11 +57,9 @@ public class MainPresenterImp implements MainPresenter {
         SavedCityDBManager mDatabase = SavedCityDBManager.getInstance((Activity) mMainView);
         List<String> mCityList = mDatabase.queryCities();
         if (mCityList != null && mCityList.size() > 0) {
-            //更新界面，设置数据给MainView
             mMainView.setContentVisible(true);
             mMainView.setCities(mCityList);
         } else {
-            //没有城市数据，更新界面
             mMainView.setContentVisible(false);
             //请求定位权限。
             RxPermissions.getInstance((Activity) mMainView)

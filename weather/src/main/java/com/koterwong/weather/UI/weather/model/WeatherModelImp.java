@@ -102,20 +102,6 @@ public class WeatherModelImp implements WeatherModel {
                         }
                     }
                 });
-//        new Thread(new Runnable() {
-//            @Override public void run() {
-//                final WeatherBean weatherBean = WeatherJsonUtil.getLocWeatherBean(cityName);
-//                MyApp.getHandler().post(new Runnable() {
-//                    @Override public void run() {
-//                        if (weatherBean != null) {
-//                            listener.onLoadLocSuccess(weatherBean);
-//                        } else {
-//                            listener.onLoadLocFailed(new Exception("本地没有缓存"));
-//                        }
-//                    }
-//                });
-//            }
-//        }).start();
     }
 
     public interface LoadServiceListener {
