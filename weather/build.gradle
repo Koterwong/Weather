@@ -4,6 +4,8 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    
+
     defaultConfig {
         applicationId "com.koterwong.weather"
         minSdkVersion 14

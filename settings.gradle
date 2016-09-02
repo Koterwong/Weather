@@ -1,1 +1,1 @@
-include ':mvppractices', ':weather', ':swipeback', ':app', ':oauthtest', ':progressbarwithnum'
+include ':weather', ':swipeback'
