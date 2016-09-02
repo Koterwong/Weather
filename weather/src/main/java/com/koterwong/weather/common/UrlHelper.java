@@ -1,4 +1,4 @@
-package com.koterwong.weather.commons;
+package com.koterwong.weather.common;
 
 /**
  * 作者：Koterwong，创建日期：2016/4/24.

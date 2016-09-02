@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
-import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.bean.WeatherBean;
+import com.koterwong.weather.common.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenter;
 import com.koterwong.weather.ui.managercity.presenter.ManagerCityPresenterImpl;
 import com.koterwong.weather.ui.managercity.view.ManagerCityView;

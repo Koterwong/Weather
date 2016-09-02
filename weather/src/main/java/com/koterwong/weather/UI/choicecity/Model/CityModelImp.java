@@ -3,8 +3,8 @@ package com.koterwong.weather.ui.choicecity.Model;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.koterwong.weather.beans.CityBean;
-import com.koterwong.weather.beans.ProvinceBean;
+import com.koterwong.weather.bean.CityBean;
+import com.koterwong.weather.bean.ProvinceBean;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

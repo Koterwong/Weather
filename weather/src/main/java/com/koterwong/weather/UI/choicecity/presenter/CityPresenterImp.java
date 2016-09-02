@@ -1,7 +1,7 @@
 package com.koterwong.weather.ui.choicecity.presenter;
 
-import com.koterwong.weather.beans.CityBean;
-import com.koterwong.weather.beans.ProvinceBean;
+import com.koterwong.weather.bean.CityBean;
+import com.koterwong.weather.bean.ProvinceBean;
 import com.koterwong.weather.ui.choicecity.Model.CityModel;
 import com.koterwong.weather.ui.choicecity.Model.CityModelImp;
 import com.koterwong.weather.ui.choicecity.View.CityView;

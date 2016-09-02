@@ -14,8 +14,8 @@ import android.view.View;
 
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
-import com.koterwong.weather.beans.VersionBean;
-import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.bean.VersionBean;
+import com.koterwong.weather.common.SettingPref;
 import com.koterwong.weather.receiver.LocalRegisterHelper;
 import com.koterwong.weather.receiver.NotificationReceiver;
 import com.koterwong.weather.service.AutoUpdateService;

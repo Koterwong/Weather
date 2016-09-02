@@ -1,4 +1,4 @@
-package com.koterwong.weather.commons;
+package com.koterwong.weather.common;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

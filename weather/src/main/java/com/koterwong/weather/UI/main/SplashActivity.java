@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.common.SettingPref;
 import com.koterwong.weather.receiver.LocalRegisterHelper;
 import com.koterwong.weather.receiver.NotificationReceiver;
 import com.koterwong.weather.service.AutoUpdateService;

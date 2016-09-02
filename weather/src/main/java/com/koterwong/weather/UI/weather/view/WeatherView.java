@@ -1,6 +1,6 @@
 package com.koterwong.weather.ui.weather.view;
 
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.bean.WeatherBean;
 
 import java.util.List;
 

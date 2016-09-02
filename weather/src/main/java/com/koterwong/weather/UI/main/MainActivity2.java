@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.common.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.choicecity.ChoiceCityActivity;
 import com.koterwong.weather.ui.main.presenter.MainPresenter;
 import com.koterwong.weather.ui.main.presenter.MainPresenterImp;

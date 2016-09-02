@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseHolder;
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.bean.WeatherBean;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 import com.koterwong.weather.utils.CalendarUtils;
 import com.koterwong.weather.utils.DateUtils;

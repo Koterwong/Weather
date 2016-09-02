@@ -11,11 +11,9 @@ import java.util.List;
  */
 public class ServiceStatueUtils {
 
-    private static ActivityManager am;
-
     public static boolean isServiceRunning(Context context, String serviceName) {
 
-        am = (ActivityManager) context.getSystemService
+        ActivityManager am = (ActivityManager) context.getSystemService
                 (Context.ACTIVITY_SERVICE);
         // 获取系统所有正在运行的服务,最多返回100个
         List<ActivityManager.RunningServiceInfo> runningServices = am.getRunningServices(100);

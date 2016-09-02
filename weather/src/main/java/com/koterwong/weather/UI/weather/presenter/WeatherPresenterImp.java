@@ -1,7 +1,7 @@
 package com.koterwong.weather.ui.weather.presenter;
 
 import com.koterwong.weather.MyApp;
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.bean.WeatherBean;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 import com.koterwong.weather.ui.weather.model.WeatherModel;
 import com.koterwong.weather.ui.weather.model.WeatherModelImp;
@@ -34,8 +34,8 @@ public class WeatherPresenterImp implements
         }
         this.mCity = city;
         if (!ToolsUtil.isNetworkAvailable(MyApp.getApp())){
-            mWeatherView.showToastMsg("网络为连接");
-            mWeatherView.setSwipeRefreshLayoutStatue(false);
+            mWeatherView.showToastMsg("当前网络未连接哦");
+            mWeatherModel.loadLocation(city,this);
             return;
         }
         //改为加载网路数据,if（失败） loadlocal

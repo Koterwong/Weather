@@ -1,4 +1,4 @@
-package com.koterwong.weather.beans;
+package com.koterwong.weather.bean;
 
 import com.google.gson.annotations.SerializedName;
 

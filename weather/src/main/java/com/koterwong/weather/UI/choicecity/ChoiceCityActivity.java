@@ -14,13 +14,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.beans.CityBean;
-import com.koterwong.weather.beans.ProvinceBean;
-import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.bean.CityBean;
+import com.koterwong.weather.bean.ProvinceBean;
+import com.koterwong.weather.common.ActivityStatueBarCompat;
 import com.koterwong.weather.ui.choicecity.View.CityView;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenter;
 import com.koterwong.weather.ui.choicecity.presenter.CityPresenterImp;
-import com.koterwong.weather.commons.database.SavedCityDBManager;
+import com.koterwong.weather.common.database.SavedCityDBManager;
 import com.koterwong.weather.widget.BorderDividerItemDecoration;
 import com.koterwong.weather.utils.ToolsUtil;
 

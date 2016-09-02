@@ -1,4 +1,4 @@
-package com.koterwong.weather.commons;
+package com.koterwong.weather.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.koterwong.weather.beans;
+package com.koterwong.weather.bean;
 
 /**
  * Author：Koterwong，Data：2016/4/25.

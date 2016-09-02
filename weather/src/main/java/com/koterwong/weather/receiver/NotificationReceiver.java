@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.koterwong.weather.R;
 import com.koterwong.weather.MyApp;
-import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.commons.database.SavedCityDBManager;
-import com.koterwong.weather.commons.SettingPref;
+import com.koterwong.weather.bean.WeatherBean;
+import com.koterwong.weather.common.database.SavedCityDBManager;
+import com.koterwong.weather.common.SettingPref;
 import com.koterwong.weather.ui.main.MainActivity2;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 

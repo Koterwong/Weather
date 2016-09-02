@@ -1,7 +1,7 @@
 package com.koterwong.weather.ui.choicecity.View;
 
-import com.koterwong.weather.beans.CityBean;
-import com.koterwong.weather.beans.ProvinceBean;
+import com.koterwong.weather.bean.CityBean;
+import com.koterwong.weather.bean.ProvinceBean;
 
 import java.util.List;
 

@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
-import com.koterwong.weather.beans.CityBean;
-import com.koterwong.weather.beans.ProvinceBean;
+import com.koterwong.weather.bean.CityBean;
+import com.koterwong.weather.bean.ProvinceBean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.common.ActivityStatueBarCompat;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;

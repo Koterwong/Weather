@@ -1,7 +1,7 @@
 package com.koterwong.weather.ui.weather.model;
 
-import com.koterwong.weather.beans.WeatherBean;
-import com.koterwong.weather.commons.UrlHelper;
+import com.koterwong.weather.bean.WeatherBean;
+import com.koterwong.weather.common.UrlHelper;
 import com.koterwong.weather.ui.weather.WeatherJsonUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;

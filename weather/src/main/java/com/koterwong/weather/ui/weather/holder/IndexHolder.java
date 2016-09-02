@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseHolder;
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.bean.WeatherBean;
 
 import butterknife.Bind;
 

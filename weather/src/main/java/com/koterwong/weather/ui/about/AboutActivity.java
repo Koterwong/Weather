@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.koterwong.weather.R;
-import com.koterwong.weather.commons.ActivityStatueBarCompat;
+import com.koterwong.weather.common.ActivityStatueBarCompat;
 import com.koterwong.weather.utils.AppUtils;
 
 import me.drakeet.materialdialog.MaterialDialog;

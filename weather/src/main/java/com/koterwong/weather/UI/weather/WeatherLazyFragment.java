@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.koterwong.weather.MyApp;
 import com.koterwong.weather.R;
 import com.koterwong.weather.base.BaseFragment;
-import com.koterwong.weather.beans.WeatherBean;
+import com.koterwong.weather.bean.WeatherBean;
 import com.koterwong.weather.ui.weather.holder.DailyForecastHolder;
 import com.koterwong.weather.ui.weather.holder.IndexHolder;
 import com.koterwong.weather.ui.weather.holder.OverviewHolder;
