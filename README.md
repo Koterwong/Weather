@@ -20,6 +20,12 @@
         alt=""/>
 </div>
 
+<div align=center>
+<img src="https://raw.githubusercontent.com/Koterwong/Weather/master/screen/%E6%88%AA%E5%9B%BE%20(9).png"
+        width="360" height="640"
+        alt=""/>
+</div>
+
 ####2016/9/2 更新
 
 自学android半年后，在一家外包公司上班，每天都很忙，很少回过头看原来写的代码。今天抽出空review了自己的代码，发现以前自己写的代码还挺规范的。
