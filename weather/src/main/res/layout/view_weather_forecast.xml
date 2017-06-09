@@ -25,14 +25,17 @@
             style="@style/daily_week_text"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/weather_week4"
             style="@style/daily_week_text"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/weather_week5"
             style="@style/daily_week_text"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/weather_week6"
             style="@style/daily_week_text"/>
     </LinearLayout>
@@ -57,15 +60,18 @@
             style="@style/daily_week_img"/>
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/weather_icon4"
             style="@style/daily_week_img"/>
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/weather_icon5"
             style="@style/daily_week_img"
             />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/weather_icon6"
             style="@style/daily_week_img"
             />
@@ -75,8 +81,8 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="202dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:paddingBottom="35dp"
         android:paddingTop="35dp"
         />
